@@ -1,6 +1,6 @@
 /* Learning Buddy service worker: makes the app work offline.
    Bump VERSION whenever you publish a new index.html. */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = 'learning-buddy-' + VERSION;
 const SHELL = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];

@@ -231,6 +231,12 @@
   .letters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:18px auto 0;max-width:520px}
   .ltile{width:64px;height:68px;border-radius:16px;background:#fff;border:2px solid var(--line);box-shadow:0 5px 0 var(--line);font-size:36px;font-weight:600}
   .ltile:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+  .ltile.wide{width:auto;min-width:84px;padding:0 14px}
+  .klanken{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .kl{display:inline-block;padding:2px 10px;border-radius:16px;background:#EEF0FF;border-bottom:5px solid #C9C7F3}
+  .kl.v{background:#FFE9F1;border-bottom-color:#F4A7C4;color:#B8336A}
+  .needs{font-size:14px;font-weight:600;color:#B8336A}
+  .topbar .push{margin-left:auto}
   .ltile.glow{border-color:var(--ok);background:#FFF1DF;animation:pulse 1s ease-in-out 3}
   @keyframes pulse{50%{transform:scale(1.15)}}
   @media (max-width:480px){ .readword{font-size:64px} .slot{width:42px;height:54px;font-size:32px} .ltile{width:56px;height:60px} }
@@ -326,7 +332,7 @@ const OBJECTS = ['🍎','🐟','⭐','🚗','🐞','🍓','🎈','🐥','⚽','�
 /* Texts in both languages */
 const T = {
   nl:{
-    brand:'Learning Buddy', pictures:'Plaatjes', pick:'Kies een level', pickSub:'Verdien sterren en speel nieuwe levels vrij!',
+    brand:'Learning Buddy', pictures:'Plaatjes', pick:'Kies een level', pickSub:'Kies zelf een level en verdien sterren!',
     names:{add:'Plussommen tot {n}', sub:'Minsommen tot {n}', mix:'Plus en min tot {n}'},
     locked:'Haal eerst een ster bij het vorige level 🔒',
     good:['Goed zo!','Super!','Knap hoor!','Top!','Geweldig!'],
@@ -352,11 +358,13 @@ const T = {
     clockLv:['Hele uren','Halve uren','Kwartieren'], clockEx:['3 uur','half 4','kwart over 3'],
     clockWas:'Het is {w}', clockScore:'{c} van de {n} klokken meteen goed', clockHint:'De korte wijzer wijst het uur aan, de lange wijzer de minuten.',
     menuRead:'Lezen', menuReadSub:'Eerst klanken, dan woorden lezen.',
-    menuWrite:'Schrijven', menuWriteSub:'Kijk naar het plaatje en maak het woord met letters.',
-    wordLv:['Korte woorden','Langere woorden','Lange woorden'],
-    readLv:['Klanken','Moeilijke klanken','Korte woorden','Langere woorden','Lange woorden'],
+    menuWrite:'Schrijven', menuWriteSub:'Kijk naar het plaatje en maak het woord met klanken.',
+    wordLv:['Korte woorden','Woorden met moeilijke klanken','Lange woorden'],
+    readLv:['Klanken','Moeilijke klanken','Korte woorden','Woorden met moeilijke klanken','Lange woorden'],
+    klankhulp:'Klankhulp', needRead:'Eerst een ster bij Lezen: {lvl}',
+    moreLetters:'Bijna! Deze klank heeft {n} letters. Luister goed.', fewerLetters:'Bijna! Deze klank is korter.',
     soundQ:'Welke klank is dit? Zeg hem hardop en tik om de kaart om te draaien.', soundScore:'{c} van de {n} klanken wist je meteen',
-    readQ:'Welk plaatje hoort bij dit woord?', writeQ:'Tik de letters op de goede volgorde.',
+    readQ:'Welk plaatje hoort bij dit woord?', writeQ:'Tik de klanken op de goede volgorde.',
     wordWas:'Het woord was: {w}', wordScore:'{c} van de {n} woorden meteen goed',
     whatToDo:'Wat wil je doen?', menuSums:'Sommen', menuSumsSub:'Plus en min, level voor level', menuFlash:'Flitskaarten', menuFlashSub:'Oefen de splitsingen', otherCards:'Andere kaarten kiezen',
     who:'Wie speelt er?', whoSub:'Tik op je eigen profiel.', newProfile:'Nieuw profiel', player:'Speler {n}', hi:'Hoi {name}!',
@@ -365,7 +373,7 @@ const T = {
     reset:'↺ Alles opnieuw beginnen', resetAsk:'Alle sterren, hersenkracht en dagen van {name} wissen en opnieuw beginnen?', resetYes:'Ja, wissen', cancel:'Nee', resetDone:'Alles is gewist. Veel plezier! ⭐'
   },
   en:{
-    brand:'Learning Buddy', pictures:'Pictures', pick:'Pick a level', pickSub:'Earn stars to unlock new levels!',
+    brand:'Learning Buddy', pictures:'Pictures', pick:'Pick a level', pickSub:'Pick any level and earn stars!',
     names:{add:'Adding up to {n}', sub:'Taking away up to {n}', mix:'Add and take away to {n}'},
     locked:'Get a star on the previous level first 🔒',
     good:['Well done!','Super!','Great job!','Awesome!','Brilliant!'],
@@ -391,11 +399,13 @@ const T = {
     clockLv:["O'clock",'Half past','Quarter past and to'], clockEx:["3 o'clock",'half past 3','quarter past 3'],
     clockWas:'It is {w}', clockScore:'{c} of {n} clocks right on the first try', clockHint:'The short hand shows the hour, the long hand shows the minutes.',
     menuRead:'Reading', menuReadSub:'First letter sounds, then reading words.',
-    menuWrite:'Writing', menuWriteSub:'Look at the picture and build the word with letters.',
-    wordLv:['Short words','Longer words','Long words'],
-    readLv:['Letter sounds','Tricky sounds','Short words','Longer words','Long words'],
+    menuWrite:'Writing', menuWriteSub:'Look at the picture and build the word with sounds.',
+    wordLv:['Short words','Words with tricky sounds','Long words'],
+    readLv:['Letter sounds','Tricky sounds','Short words','Words with tricky sounds','Long words'],
+    klankhulp:'Sound help', needRead:'First get a star in Reading: {lvl}',
+    moreLetters:'Almost! This sound has {n} letters. Listen carefully.', fewerLetters:'Almost! This sound is shorter.',
     soundQ:'What sound is this? Say it out loud, then tap to flip the card.', soundScore:'You knew {c} of {n} sounds straight away',
-    readQ:'Which picture goes with this word?', writeQ:'Tap the letters in the right order.',
+    readQ:'Which picture goes with this word?', writeQ:'Tap the sounds in the right order.',
     wordWas:'The word was: {w}', wordScore:'{c} of {n} words right on the first try',
     whatToDo:'What do you want to do?', menuSums:'Sums', menuSumsSub:'Adding and taking away, level by level', menuFlash:'Flashcards', menuFlashSub:'Practise number splits', otherCards:'Choose other cards',
     who:"Who's playing?", whoSub:'Tap your own profile.', newProfile:'New profile', player:'Player {n}', hi:'Hi {name}!',
@@ -444,7 +454,8 @@ function t(key, vars){
 }
 function levelName(i){ const L = LEVELS[i]; return t('names.'+L.op, {n:L.max}); }
 function starsOf(i){ const p = cur(); return (p && p.stars[i]) || 0; }
-function unlocked(i){ return i===0 || starsOf(i-1) > 0; }
+// All levels are open: children can pick any level. Stars only show progress.
+function unlocked(i){ return true; }
 function sumStars(map){ return Object.values(map || {}).reduce((a,b)=>a+b,0); }
 function sectionStars(p, sec){
   const k = {read:'starsRead', write:'starsWrite', clock:'starsClock'}[sec]; if(!p[k]) p[k] = {};
@@ -977,18 +988,32 @@ function confetti(){
    Writing: see the picture, build the word with letter tiles.
    Word lists per language; 3 levels (short → long words).
    ============================================================ */
+/* Words are stored split into sounds (klanken), the way Dutch schools
+   teach "hakken en plakken": b|oo|m, k|oe, sch|aa|p, r|i|ng.
+   List 0: only easy one-letter sounds · List 1: harder sounds · List 2: long words */
 const WORDS = {
   nl: [
-    [['vis','🐟'],['kat','🐱'],['bal','⚽'],['bus','🚌'],['zon','☀️'],['bed','🛏️'],['kip','🐔'],['vos','🦊'],['pan','🍳'],['web','🕸️'],['ijs','🍦'],['pet','🧢'],['mug','🦟'],['aap','🐒'],['koe','🐄'],['uil','🦉']],
-    [['maan','🌙'],['boom','🌳'],['roos','🌹'],['vuur','🔥'],['boot','⛵'],['huis','🏠'],['muis','🐭'],['deur','🚪'],['peer','🍐'],['kaas','🧀'],['hond','🐶'],['boek','📖'],['auto','🚗'],['eend','🦆'],['slak','🐌'],['beer','🐻'],['vlag','🚩'],['bloem','🌸'],['appel','🍎'],['fiets','🚲'],['trein','🚆']],
-    [['banaan','🍌'],['olifant','🐘'],['tomaat','🍅'],['konijn','🐰'],['giraf','🦒'],['wortel','🥕'],['paraplu','☂️'],['vlinder','🦋'],['aardbei','🍓'],['kasteel','🏰'],['raket','🚀'],['ballon','🎈'],['tijger','🐯'],['regenboog','🌈'],['schildpad','🐢'],['pompoen','🎃']]
+    [['v|i|s','🐟'],['k|a|t','🐱'],['b|a|l','⚽'],['b|u|s','🚌'],['z|o|n','☀️'],['b|e|d','🛏️'],['k|i|p','🐔'],['v|o|s','🦊'],['p|a|n','🍳'],['w|e|b','🕸️'],
+     ['p|e|t','🧢'],['m|u|g','🦟'],['t|e|n|t','⛺'],['j|a|s','🧥'],['s|o|k','🧦'],['h|o|n|d','🐶'],['s|l|a|k','🐌'],['v|l|a|g','🚩'],['p|e|n','🖊️']],
+    [['m|aa|n','🌙'],['b|oo|m','🌳'],['r|oo|s','🌹'],['v|uu|r','🔥'],['b|oo|t','⛵'],['h|ui|s','🏠'],['m|ui|s','🐭'],['d|eu|r','🚪'],['p|ee|r','🍐'],['k|aa|s','🧀'],
+     ['b|oe|k','📖'],['ee|n|d','🦆'],['b|ee|r','🐻'],['k|oe','🐄'],['aa|p','🐒'],['ui|l','🦉'],['ij|s','🍦'],['ei','🥚'],['f|ie|t|s','🚲'],['t|r|ei|n','🚆'],
+     ['b|l|oe|m','🌸'],['r|i|ng','💍'],['s|l|a|ng','🐍'],['sch|aa|p','🐑'],['sch|oe|n','👟'],['sch|i|p','🚢'],['au|t|o','🚗'],['t|ou|w','🪢'],['g|ei|t','🐐'],['l|i|ch|t','💡']],
+    [['b|a|n|aa|n','🍌'],['o|l|i|f|a|n|t','🐘'],['t|o|m|aa|t','🍅'],['k|o|n|ij|n','🐰'],['g|i|r|a|f','🦒'],['w|o|r|t|e|l','🥕'],['p|a|r|a|p|l|u','☂️'],['v|l|i|n|d|e|r','🦋'],
+     ['aa|r|d|b|ei','🍓'],['k|a|s|t|ee|l','🏰'],['r|a|k|e|t','🚀'],['b|a|l|o|n','🎈'],['t|ij|g|e|r','🐯'],['r|e|g|e|n|b|oo|g','🌈'],['sch|i|l|d|p|a|d','🐢'],['p|o|m|p|oe|n','🎃'],['s|t|i|nk|d|ie|r','🦨']]
   ],
   en: [
-    [['cat','🐱'],['dog','🐶'],['sun','☀️'],['bus','🚌'],['bed','🛏️'],['hat','🎩'],['pig','🐷'],['fox','🦊'],['egg','🥚'],['bee','🐝'],['ant','🐜'],['owl','🦉'],['cow','🐄'],['car','🚗'],['key','🔑']],
-    [['fish','🐟'],['frog','🐸'],['duck','🦆'],['boat','⛵'],['moon','🌙'],['tree','🌳'],['cake','🎂'],['ball','⚽'],['book','📖'],['star','⭐'],['milk','🥛'],['bear','🐻'],['door','🚪'],['rose','🌹'],['ship','🚢'],['house','🏠'],['snail','🐌'],['train','🚆'],['apple','🍎']],
-    [['banana','🍌'],['rabbit','🐰'],['rocket','🚀'],['flower','🌸'],['turtle','🐢'],['rainbow','🌈'],['tomato','🍅'],['carrot','🥕'],['castle','🏰'],['balloon','🎈'],['tiger','🐯'],['umbrella','☂️'],['butterfly','🦋'],['elephant','🐘'],['pumpkin','🎃']]
+    [['c|a|t','🐱'],['d|o|g','🐶'],['s|u|n','☀️'],['b|u|s','🚌'],['b|e|d','🛏️'],['h|a|t','🎩'],['p|i|g','🐷'],['f|o|x','🦊'],['e|g|g','🥚'],['a|n|t','🐜'],
+     ['f|r|o|g','🐸'],['t|e|n|t','⛺'],['l|a|m|p','💡'],['p|e|n','🖊️']],
+    [['f|i|sh','🐟'],['sh|i|p','🚢'],['d|u|ck','🦆'],['b|oa|t','⛵'],['m|oo|n','🌙'],['t|r|ee','🌳'],['b|ee','🐝'],['s|t|ar','⭐'],['c|ar','🚗'],['c|or|n','🌽'],
+     ['t|r|ai|n','🚆'],['s|n|ai|l','🐌'],['r|i|ng','💍'],['qu|ee|n','👑'],['b|oo|k','📖'],['c|l|o|ck','🕒'],['s|o|ck','🧦']],
+    [['r|o|ck|e|t','🚀'],['r|o|b|o|t','🤖'],['p|u|m|p|k|i|n','🎃'],['s|a|n|d|w|i|ch','🥪'],['ch|i|ck|e|n','🐔'],['h|o|t|d|o|g','🌭'],['l|e|m|o|n','🍋'],
+     ['m|e|l|o|n','🍈'],['m|a|g|n|e|t','🧲'],['b|a|th|t|u|b','🛁']]
   ]
 };
+const wordOf = w => w[0].replace(/\|/g, '');
+const soundsOf = w => w[0].split('|');
+const VOWELISH = /[aeiouy]/;
+// Writing levels follow the reading order (easy sounds → tricky sounds → long words)
 const WORD_LEVELS = [ {color:'#E0569B'}, {color:'#F29A2E'}, {color:'#5B5BD6'} ];
 
 /* Reading follows how Dutch schools teach it:
@@ -1000,7 +1025,8 @@ const SOUNDS = {
            ['b','bal','⚽'],['d','deur','🚪'],['l','lamp','💡'],['h','hond','🐶'],['j','jas','🧥'],['w','web','🕸️'],['z','zon','☀️'],['f','fiets','🚲'],
            ['g','geit','🐐'],['a','kat','🐱'],['e','bed','🛏️'],['i','kip','🐔'],['o','vos','🦊'],['u','bus','🚌']],
     hard: [['aa','aap','🐒'],['ee','eend','🦆'],['oo','boot','⛵'],['uu','vuur','🔥'],['ie','fiets','🚲'],['oe','koe','🐄'],['eu','deur','🚪'],
-           ['ui','huis','🏠'],['ei','ei','🥚'],['ij','ijs','🍦'],['ou','touw','🪢'],['au','auto','🚗'],['ng','ring','💍'],['sch','schaap','🐑']]
+           ['ui','huis','🏠'],['ei','ei','🥚'],['ij','ijs','🍦'],['ou','touw','🪢'],['au','auto','🚗'],['ng','ring','💍'],['nk','stinkdier','🦨'],
+           ['ch','licht','💡'],['sch','schaap','🐑']]
   },
   en: {
     easy: [['s','sun','☀️'],['a','ant','🐜'],['t','tent','⛺'],['p','pig','🐷'],['i','pin','📌'],['n','nose','👃'],['m','moon','🌙'],['d','dog','🐶'],
@@ -1025,7 +1051,17 @@ const WORDS_PER_SET = 8;
 let wgame = null;
 
 function wordStarsOf(mode, i){ const p = cur(); return p ? (sectionStars(p, mode)[i] || 0) : 0; }
-function wordUnlocked(mode, i){ return i===0 || wordStarsOf(mode, i-1) > 0; }
+function needsReading(mode, i){ return false; }   // levels are never blocked
+function wordUnlocked(mode, i){ return true; }
+function klankOn(){ const p = cur(); return !p || p.klank !== false; }
+
+/* Klankhulp: show a word as coloured sound blocks */
+function splitHTML(w){
+  return `<span class="klanken">${soundsOf(w).map(sd => `<span class="kl ${VOWELISH.test(sd)?'v':''}">${sd}</span>`).join('')}</span>`;
+}
+function klankToggle(){
+  return `<button class="toggle ${klankOn()?'on':''}" data-action="klank" role="switch" aria-checked="${klankOn()}"><span>🧩</span><span>${t('klankhulp')}</span><span class="switch"></span></button>`;
+}
 
 function renderWordLevels(mode){
   screen = 'wordLevels';
@@ -1035,18 +1071,20 @@ function renderWordLevels(mode){
     const open = wordUnlocked(mode, i);
     const ex = (mode==='read' && L.type==='sound')
       ? SOUNDS[state.lang][L.set].slice(0,4).map(x => x[0]).join(' · ')
-      : WORDS[state.lang][wordListIndex(mode, i)].slice(0,3).map(w => w[0]).join(' · ');
+      : WORDS[state.lang][wordListIndex(mode, i)].slice(0,3).map(wordOf).join(' · ');
+    const waitRead = needsReading(mode, i) ? `<div class="needs">📖 ${t('needRead', {lvl: t('readLv')[L.needRead]})}</div>` : '';
     cards += `<button class="level ${open?'':'locked'}" data-wlevel="${i}">
       ${open?'':'<span class="lock">🔒</span>'}
       <div class="num" style="background:${L.color}">${i+1}</div>
       <div class="name">${wordLevelName(mode, i)}</div>
-      <div class="ex">${ex}</div>
+      <div class="ex">${ex}</div>${waitRead}
       <div class="stars">${starRow(wordStarsOf(mode, i))}</div>
     </button>`;
   });
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button>
-      <h1 class="inline">${mode==='read' ? '📖 '+t('menuRead') : '✏️ '+t('menuWrite')}</h1></div>
+      <h1 class="inline">${mode==='read' ? '📖 '+t('menuRead') : '✏️ '+t('menuWrite')}</h1>
+      ${mode==='read' ? `<div class="push">${klankToggle()}</div>` : ''}</div>
     <p class="sub">${mode==='read' ? t('menuReadSub') : t('menuWriteSub')}</p>
     <div class="levels">${cards}</div>`;
 }
@@ -1054,7 +1092,7 @@ function renderWordLevels(mode){
 function startWordLevel(mode, i){
   if(mode==='read' && READ_LEVELS[i].type==='sound') return startSounds(i);
   const list = shuffle(WORDS[state.lang][wordListIndex(mode, i)].slice()).slice(0, WORDS_PER_SET);
-  wgame = { mode, level:i, list, q:0, firstTry:0, mistakes:0, wrongHere:0, results:[], busy:false, pos:0, gained:0 };
+  wgame = { mode, level:i, list, q:0, firstTry:0, mistakes:0, wrongHere:0, results:[], busy:false, pos:0, buf:'', gained:0 };
   screen = 'word';
   renderWord();
 }
@@ -1065,29 +1103,47 @@ function wordDots(){
   return d;
 }
 
+/* Sound tiles for writing: the word's own sounds + look-alikes she might confuse them with */
+const LOOKALIKE = { aa:['a'], ee:['e'], oo:['o'], uu:['u'], ie:['i'], oe:['o','oo'], eu:['e','u'], ui:['u','uu'], ei:['ij'], ij:['ei'],
+  ou:['au'], au:['ou'], ng:['n','nk'], nk:['ng','n'], ch:['g'], sch:['s'], a:['aa'], e:['ee'], o:['oo'], u:['uu'], i:['ie'],
+  sh:['s'], th:['t'], ck:['k'], ai:['a'], oa:['o'], ar:['a'], or:['o'], qu:['k'] };
+function soundTiles(w, wordLevel){
+  const own = [...new Set(soundsOf(w))];
+  let extra = [];
+  if(wordLevel > 0){   // level 1 (easy sounds) gets only plain letters as extra tiles
+    own.forEach(sd => (LOOKALIKE[sd] || []).forEach(x => {
+      if(wordLevel < 2 && ((sd==='ei' && x==='ij') || (sd==='ij' && x==='ei'))) return;   // ei/ij only in the last level
+      extra.push(x);
+    }));
+  }
+  extra = [...new Set(extra)].filter(x => !own.includes(x));
+  const singles = shuffle('abdeghiklmnoprstuvwz'.split('').filter(l => !own.includes(l) && !extra.includes(l)));
+  while(own.length + extra.length < 8 && singles.length) extra.push(singles.pop());
+  return shuffle([...own, ...extra.slice(0, Math.max(3, 9 - own.length))]);
+}
+
 function renderWord(){
-  const [word, pic] = wgame.list[wgame.q];
+  const w = wgame.list[wgame.q], pic = w[1], snds = soundsOf(w);
   let body = '';
   if(wgame.mode==='read'){
     if(!wgame.choices){
-      const pool = WORDS[state.lang].flat().filter(w => w[1]!==pic);
-      wgame.choices = shuffle([pic, ...shuffle(pool.slice()).slice(0,2).map(w=>w[1])]);
+      const pool = WORDS[state.lang].flat().filter(x => x[1]!==pic);
+      wgame.choices = shuffle([pic, ...shuffle(pool.slice()).slice(0,2).map(x=>x[1])]);
     }
     body = `
       <div class="card">
-        <div class="readword">${word}</div>
+        <div class="readword">${klankOn() ? splitHTML(w) : wordOf(w)}</div>
         <div class="hint">${t('readQ')}</div>
         <div class="feedback" id="feedback"></div>
       </div>
       <div class="choices">${wgame.choices.map(c => `<button class="choice" data-choice="${c}">${c}</button>`).join('')}</div>`;
   } else {
-    if(!wgame.tiles){
-      const letters = [...new Set(word.split(''))];
-      const extra = shuffle('abdeghiklmnoprstuvwz'.split('').filter(l => !letters.includes(l))).slice(0, Math.max(3, 8 - letters.length));
-      wgame.tiles = shuffle([...letters, ...extra]);
-    }
+    if(!wgame.tiles) wgame.tiles = soundTiles(w, wgame.level);
     let slots = '';
-    for(let k=0;k<word.length;k++) slots += `<div class="slot ${k<wgame.pos?'done':''} ${k===wgame.pos?'cur':''}">${k<wgame.pos?word[k]:''}</div>`;
+    snds.forEach((sd,k) => {
+      const txt = k < wgame.pos ? sd : (k===wgame.pos ? wgame.buf : '');
+      slots += `<div class="slot ${k<wgame.pos?'done':''} ${k===wgame.pos?'cur':''}" style="min-width:${30 + 22*sd.length}px">${txt}</div>`;
+    });
     body = `
       <div class="card">
         <div class="wpic">${pic}</div>
@@ -1095,7 +1151,7 @@ function renderWord(){
         <div class="hint">${t('writeQ')}</div>
         <div class="feedback" id="feedback"></div>
       </div>
-      <div class="letters">${wgame.tiles.map(l => `<button class="ltile" data-letter="${l}">${l}</button>`).join('')}</div>`;
+      <div class="letters">${wgame.tiles.map(x => `<button class="ltile ${x.length>1?'wide':''}" data-letter="${x}">${x}</button>`).join('')}</div>`;
   }
   $('#main').innerHTML = `
     <div class="topbar">
@@ -1123,40 +1179,52 @@ function chooseReading(btn){
     if(wgame.mistakes >= 2){
       wgame.results[wgame.q] = 'r';
       document.querySelector(`[data-choice="${pic}"]`).classList.add('right');
-      wordFeedback(t('wordWas', {w: wgame.list[wgame.q][0]}), 'bad');
+      wordFeedback(t('wordWas', {w: wordOf(wgame.list[wgame.q])}), 'bad');
       wgame.busy = true; setTimeout(nextWord, 2000);
     } else wordFeedback(t('tryAgain'), 'bad');
   }
 }
 
-function typeLetter(l){
+/* A whole sound was chosen (tile tap, or completed by typing) */
+function typeSound(sd){
   if(wgame.busy) return;
-  const word = wgame.list[wgame.q][0];
-  if(l === word[wgame.pos]){
+  const snds = soundsOf(wgame.list[wgame.q]), need = snds[wgame.pos];
+  wgame.buf = '';
+  if(sd === need){
     wgame.pos++; wgame.wrongHere = 0;
-    if(wgame.pos === word.length){
+    if(wgame.pos === snds.length){
       wgame.results[wgame.q] = wgame.mistakes===0 ? 'g' : (wgame.mistakes<=2 ? 'o' : 'r');
       if(wgame.mistakes===0) wgame.firstTry++;
       renderWord(); wordFeedback(pick(T[state.lang].good), 'good');
-      document.querySelectorAll('.slot').forEach(s => s.classList.add('good'));
+      document.querySelectorAll('.slot').forEach(x => x.classList.add('good'));
       wgame.busy = true; setTimeout(nextWord, 1200);
     } else renderWord();
   } else {
     wgame.mistakes++; wgame.wrongHere++;
+    renderWord();
     const slot = document.querySelectorAll('.slot')[wgame.pos];
     slot.classList.remove('shake','bad'); void slot.offsetWidth; slot.classList.add('shake','bad');
-    wordFeedback(t('tryAgain'), 'bad');
-    if(wgame.wrongHere >= 2){   // hint: make the right letter glow
-      document.querySelectorAll(`[data-letter="${word[wgame.pos]}"]`).forEach(b => b.classList.add('glow'));
-    }
+    // Picked part of the sound (o instead of oo, n instead of ng): a gentle, specific hint
+    if(need.length > sd.length && need.startsWith(sd)) wordFeedback(t('moreLetters', {n: need.length}), 'bad');
+    else if(sd.length > need.length && sd.startsWith(need)) wordFeedback(t('fewerLetters'), 'bad');
+    else wordFeedback(t('tryAgain'), 'bad');
+    if(wgame.wrongHere >= 2) document.querySelectorAll(`[data-letter="${need}"]`).forEach(b => b.classList.add('glow'));
   }
+}
+/* Typing on a keyboard: letters collect until they make the sound */
+function typeKey(l){
+  if(wgame.busy) return;
+  const need = soundsOf(wgame.list[wgame.q])[wgame.pos], buf = wgame.buf + l;
+  if(buf === need) return typeSound(buf);
+  if(need.startsWith(buf)){ wgame.buf = buf; renderWord(); return; }
+  typeSound(buf);
 }
 
 function nextWord(){
   if(screen!=='word') return;
   wgame.q++;
   if(wgame.q >= WORDS_PER_SET) return finishWords();
-  Object.assign(wgame, { mistakes:0, wrongHere:0, busy:false, pos:0, choices:null, tiles:null });
+  Object.assign(wgame, { mistakes:0, wrongHere:0, busy:false, pos:0, buf:'', choices:null, tiles:null });
   renderWord();
 }
 
@@ -1295,7 +1363,7 @@ function clockSVG(h, m, cls=''){
 }
 
 function clockStarsOf(i){ const p = cur(); return p ? (sectionStars(p,'clock')[i] || 0) : 0; }
-function clockUnlocked(i){ return i===0 || clockStarsOf(i-1) > 0; }
+function clockUnlocked(i){ return true; }
 
 function renderClockLevels(){
   screen = 'clockLevels';
@@ -1399,7 +1467,8 @@ document.addEventListener('click', e => {
   const av = e.target.closest('[data-avatar]');
   if(av){ editing.avatar = av.dataset.avatar; document.querySelectorAll('.av').forEach(b => b.classList.toggle('on', b===av)); return; }
   const wl = e.target.closest('[data-wlevel]');
-  if(wl){ const i = +wl.dataset.wlevel; wordUnlocked(wgame.mode, i) ? startWordLevel(wgame.mode, i) : toast(t('locked')); return; }
+  if(wl){ const i = +wl.dataset.wlevel; wordUnlocked(wgame.mode, i) ? startWordLevel(wgame.mode, i)
+    : toast(needsReading(wgame.mode, i) ? t('needRead', {lvl: t('readLv')[WORD_LEVELS[i].needRead]}) : t('locked')); return; }
   const cl = e.target.closest('[data-clevel]');
   if(cl){ const i = +cl.dataset.clevel; clockUnlocked(i) ? startClock(i) : toast(t('locked')); return; }
   const ct = e.target.closest('[data-ctime]');
@@ -1407,7 +1476,7 @@ document.addEventListener('click', e => {
   const ch = e.target.closest('[data-choice]');
   if(ch){ chooseReading(ch); return; }
   const lt = e.target.closest('[data-letter]');
-  if(lt){ typeLetter(lt.dataset.letter); return; }
+  if(lt){ typeSound(lt.dataset.letter); return; }
   const fl = e.target.closest('[data-flash]');
   if(fl){ startFlash(fl.dataset.flash); return; }
   const key = e.target.closest('[data-key]');
@@ -1445,6 +1514,7 @@ document.addEventListener('click', e => {
     if(a==='flashAgain') startFlash(flash.which);
     if(a==='home' || a==='levels') renderHome();
     if(a==='menu' && cur()) renderMenu();
+    if(a==='klank'){ const p = cur(); if(p){ p.klank = !klankOn(); persist(); renderWordLevels('read'); } }
     if(a==='math') renderMathMenu();
     if(a==='clockPick' || a==='clockLevels') renderClockLevels();
     if(a==='clockAgain') startClock(cgame.level);
@@ -1460,7 +1530,7 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if(screen==='profileForm'){ if(e.key==='Enter') saveProfile(); return; }
-  if(screen==='word' && wgame.mode==='write'){ if(/^[a-z]$/i.test(e.key)) typeLetter(e.key.toLowerCase()); return; }
+  if(screen==='word' && wgame.mode==='write'){ if(/^[a-z]$/i.test(e.key)) typeKey(e.key.toLowerCase()); return; }
   if(screen==='flash'){
     if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flipCard(); }
     return;
