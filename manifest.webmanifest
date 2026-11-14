@@ -1,6 +1,6 @@
 {
-  "name": "Rekenhelden",
-  "short_name": "Rekenhelden",
+  "name": "Learning Buddy",
+  "short_name": "Learning Buddy",
   "description": "Rekenen, lezen en schrijven oefenen voor kinderen.",
   "start_url": "./",
   "scope": "./",
