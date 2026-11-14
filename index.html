@@ -255,6 +255,11 @@
   .clock{width:min(260px,70vw);height:auto;display:block;margin:4px auto 10px}
   .clock .nums{font-family:'Fredoka',sans-serif;font-size:18px;font-weight:600;fill:#2B2A4C}
   .clock.mini{width:112px;margin:0}
+  .tchoices.clocks{display:grid;grid-template-columns:repeat(3,1fr);max-width:560px}
+  .tchoices.clocks .tchoice{padding:8px}
+  .clock.choice{width:100%;margin:0}
+  .tchoices.digis .tchoice{font-family:'Courier New',monospace;font-size:34px;font-weight:700;letter-spacing:2px}
+  .timeword{font-size:56px;font-weight:700;margin:14px 0 6px;color:var(--primary)}
   .tchoices{display:flex;flex-direction:column;gap:12px;margin:18px auto 0;max-width:420px}
   .tchoice{border-radius:20px;background:#fff;border:3px solid var(--line);box-shadow:0 5px 0 var(--line);font-size:28px;font-weight:600;padding:14px}
   .tchoice:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
@@ -445,7 +450,8 @@ const T = {
     liter:'liter', shapes:{circle:'cirkel', triangle:'driehoek', square:'vierkant', rect:'rechthoek'},
     measureScore:'{c} van de {n} meteen goed', measureWas:'Het antwoord is {w}',
     menuClock:'Klokkijken', menuClockSub:'Hoe laat is het?', clockQ:'Hoe laat is het?',
-    clockLv:['Hele uren','Halve uren','Kwartieren','Digitale klok'], clockEx:['3 uur','half 4','kwart over 3','08:30 = half 9'],
+    clockLv:['Hele uren','Halve uren','Kwartieren','Digitale klok','Alles door elkaar'], clockEx:['3 uur','half 4','kwart over 3','08:30 = half 9','🔀 steeds een andere opdracht'],
+    clockPickQ:'Welke klok hoort bij deze tijd?', clockDigQ:'Welke digitale tijd hoort bij deze klok?',
     clockWas:'Het is {w}', clockScore:'{c} van de {n} klokken meteen goed', clockHint:'De korte wijzer wijst het uur aan, de lange wijzer de minuten.',
     menuRead:'Lezen', menuReadSub:'Eerst klanken, dan woorden lezen.',
     menuWrite:'Schrijven', menuWriteSub:'Kijk naar het plaatje en maak het woord met klanken.',
@@ -501,7 +507,8 @@ const T = {
     liter:'litres', shapes:{circle:'circle', triangle:'triangle', square:'square', rect:'rectangle'},
     measureScore:'{c} of {n} right on the first try', measureWas:'The answer is {w}',
     menuClock:'Telling time', menuClockSub:'What time is it?', clockQ:'What time is it?',
-    clockLv:["O'clock",'Half past','Quarter past and to','Digital clock'], clockEx:["3 o'clock",'half past 3','quarter past 3','08:30 = half past 8'],
+    clockLv:["O'clock",'Half past','Quarter past and to','Digital clock','Everything mixed'], clockEx:["3 o'clock",'half past 3','quarter past 3','08:30 = half past 8','🔀 a different task each time'],
+    clockPickQ:'Which clock shows this time?', clockDigQ:'Which digital time matches this clock?',
     clockWas:'It is {w}', clockScore:'{c} of {n} clocks right on the first try', clockHint:'The short hand shows the hour, the long hand shows the minutes.',
     menuRead:'Reading', menuReadSub:'First letter sounds, then reading words.',
     menuWrite:'Writing', menuWriteSub:'Look at the picture and build the word with sounds.',
@@ -1573,7 +1580,7 @@ function finishWords(){
    CLOCK — read an analogue clock, pick the right time.
    Dutch: "half 4" = 3:30, "kwart voor 4" = 3:45.
    ============================================================ */
-const CLOCK_LEVELS = [ {kind:'hour', color:'#2FA4D8'}, {kind:'half', color:'#24A86E'}, {kind:'quarter', color:'#5B5BD6'}, {kind:'digital', color:'#E0569B'} ];
+const CLOCK_LEVELS = [ {kind:'hour', color:'#2FA4D8'}, {kind:'half', color:'#24A86E'}, {kind:'quarter', color:'#5B5BD6'}, {kind:'digital', color:'#E0569B'}, {kind:'mix', color:'#2B2A4C'} ];
 const CLOCK_PER_SET = 8;
 let cgame = null;
 
@@ -1595,6 +1602,7 @@ function digitalHTML(h, m){ return `<div class="digital">${String(h).padStart(2,
 function clockMinutes(kind){
   if(kind==='hour') return [0];
   if(kind==='half' || kind==='digital') return [0,30,30];
+  if(kind==='mix') return [0,0,30,30,15,45];
   return [15,45,15,45,0,30];
 }
 function makeTime(kind, prev){
@@ -1603,15 +1611,16 @@ function makeTime(kind, prev){
     if(!prev || prev.h!==tm.h || prev.m!==tm.m) return tm;
   }
 }
-function clockChoices(kind, tm){
+// Two tempting wrong times (hour off by one, or another minute option), each with a different label
+function clockDistractors(kind, tm){
   const ms = [...new Set(clockMinutes(kind))];
-  // tempting wrong answers: hour off by one, and the other minute options
   const cands = [ {h:nextH(tm.h), m:tm.m}, {h:prevH(tm.h), m:tm.m} ];
   ms.forEach(m => { if(m!==tm.m){ cands.push({h:tm.h, m}); cands.push({h:nextH(tm.h), m}); } });
-  const right = timeLabel(tm.h, tm.m);
-  const wrong = [...new Set(shuffle(cands).map(c => timeLabel(c.h, c.m)))].filter(l => l!==right).slice(0,2);
-  return shuffle([right, ...wrong]);
+  const right = timeLabel(tm.h, tm.m), seen = new Set([right]), out = [];
+  for(const c of shuffle(cands)){ const l = timeLabel(c.h, c.m); if(!seen.has(l)){ seen.add(l); out.push(c); } if(out.length===2) break; }
+  return out;
 }
+const digitalText = (h, m) => `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
 
 function clockSVG(h, m, cls=''){
   const pt = (deg, r) => { const a = deg*Math.PI/180; return [100 + r*Math.sin(a), 100 - r*Math.cos(a)]; };
@@ -1652,29 +1661,57 @@ function renderClockLevels(){
     <p class="sub">${t('clockHint')}</p><div class="levels">${cards}</div>`;
 }
 
+/* One clock question. Types:
+   read      – analogue clock → pick the time in words
+   digital   – digital clock  → pick the time in words
+   pick      – time in words  → pick the right analogue clock
+   toDigital – analogue clock → pick the matching digital time
+   The "mix" level changes type and minutes every question. */
+function makeClockQ(levelKind, prevTime){
+  const time = makeTime(levelKind, prevTime);
+  const type = levelKind==='mix' ? pick(['read','digital','pick','toDigital'])
+             : (levelKind==='digital' ? 'digital' : 'read');
+  const all = shuffle([time, ...clockDistractors(levelKind, time)]);
+  const lbl = x => timeLabel(x.h, x.m);
+  let choices, answer, answerText = lbl(time), prompt = t('clockQ');
+  if(type==='pick'){
+    choices = all.map(x => ({ key: lbl(x), html: clockSVG(x.h, x.m, 'choice') })); answer = lbl(time); prompt = t('clockPickQ');
+  } else if(type==='toDigital'){
+    choices = all.map(x => ({ key: digitalText(x.h, x.m), html: digitalText(x.h, x.m) })); answer = digitalText(time.h, time.m);
+    answerText = answer; prompt = t('clockDigQ');
+  } else {
+    choices = all.map(x => ({ key: lbl(x), html: lbl(x) })); answer = lbl(time);
+  }
+  return { time, type, choices, answer, answerText, prompt };
+}
+
 function startClock(i){
-  cgame = { level:i, q:0, firstTry:0, mistakes:0, results:[], busy:false, time:null, choices:null };
-  cgame.time = makeTime(CLOCK_LEVELS[i].kind);
+  cgame = { level:i, q:0, firstTry:0, mistakes:0, results:[], busy:false };
+  cgame.item = makeClockQ(CLOCK_LEVELS[i].kind);
   screen = 'clock'; renderClock();
 }
 function renderClock(){
-  if(!cgame.choices) cgame.choices = clockChoices(CLOCK_LEVELS[cgame.level].kind, cgame.time);
+  const it = cgame.item, tm = it.time;
   let dots = '';
   for(let k=0;k<CLOCK_PER_SET;k++){ const r = cgame.results[k]; dots += `<div class="dot ${r||''} ${k===cgame.q && !r?'cur':''}"></div>`; }
+  const show = it.type==='digital' ? digitalHTML(tm.h, tm.m)
+             : it.type==='pick' ? `<div class="timeword">${timeLabel(tm.h, tm.m)}</div>`
+             : clockSVG(tm.h, tm.m);
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="clockLevels" aria-label="back">←</button><div class="dots">${dots}</div></div>
     <p class="levelname">${t('clockLv')[cgame.level]}</p>
     <div class="card">
-      ${CLOCK_LEVELS[cgame.level].kind==='digital' ? digitalHTML(cgame.time.h, cgame.time.m) : clockSVG(cgame.time.h, cgame.time.m)}
-      <div class="hint">${t('clockQ')}</div>
+      ${show}
+      <div class="hint">${it.prompt}</div>
       <div class="feedback" id="feedback"></div>
     </div>
-    <div class="tchoices">${cgame.choices.map(c => `<button class="tchoice" data-ctime="${c}">${c}</button>`).join('')}</div>`;
+    <div class="tchoices ${it.type==='pick' ? 'clocks' : ''} ${it.type==='toDigital' ? 'digis' : ''}">
+      ${it.choices.map(c => `<button class="tchoice" data-ctime="${c.key}">${c.html}</button>`).join('')}</div>`;
 }
 function chooseTime(btn){
   if(cgame.busy || btn.disabled) return;
-  const right = timeLabel(cgame.time.h, cgame.time.m), fb = $('#feedback');
-  if(btn.dataset.ctime === right){
+  const it = cgame.item, fb = $('#feedback');
+  if(btn.dataset.ctime === it.answer){
     btn.classList.add('right');
     cgame.results[cgame.q] = cgame.mistakes===0 ? 'g' : 'o';
     if(cgame.mistakes===0) cgame.firstTry++;
@@ -1684,8 +1721,8 @@ function chooseTime(btn){
     cgame.mistakes++; btn.classList.add('wrong'); btn.disabled = true;
     if(cgame.mistakes >= 2){
       cgame.results[cgame.q] = 'r';
-      document.querySelectorAll('.tchoice').forEach(b => { if(b.dataset.ctime===right) b.classList.add('right'); });
-      fb.textContent = t('clockWas', {w:right}); fb.className = 'feedback bad';
+      document.querySelectorAll('.tchoice').forEach(b => { if(b.dataset.ctime===it.answer) b.classList.add('right'); });
+      fb.textContent = t('clockWas', {w:it.answerText}); fb.className = 'feedback bad';
       cgame.busy = true; setTimeout(nextClock, 2200);
     } else { fb.textContent = t('tryAgain'); fb.className = 'feedback bad'; }
   }
@@ -1694,7 +1731,7 @@ function nextClock(){
   if(screen!=='clock') return;
   cgame.q++;
   if(cgame.q >= CLOCK_PER_SET) return finishClock();
-  Object.assign(cgame, { mistakes:0, busy:false, choices:null, time: makeTime(CLOCK_LEVELS[cgame.level].kind, cgame.time) });
+  Object.assign(cgame, { mistakes:0, busy:false, item: makeClockQ(CLOCK_LEVELS[cgame.level].kind, cgame.item.time) });
   renderClock();
 }
 function finishClock(){
