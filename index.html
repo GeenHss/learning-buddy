@@ -124,6 +124,11 @@
   .chip{width:64px;height:64px;border-radius:18px;background:#fff;border:3px solid var(--line);box-shadow:0 5px 0 var(--line);font-size:28px;font-weight:700}
   .chip.wide{width:auto;padding:0 18px;font-size:19px;font-weight:600}
   .chip:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+  .fsum{display:flex;align-items:center;gap:12px;font-size:56px;font-weight:700}
+  .fsum .sbox{width:84px;height:76px;font-size:44px}
+  .fsum.small{font-size:30px;color:var(--good);gap:8px;margin-top:4px}
+  .eggsq{font-size:20px;font-weight:600;text-align:center;max-width:300px}
+  .chip.star{width:auto;padding:0 16px;border-color:#FFC233;background:#FFF8E1}
   .count{font-weight:600;font-size:18px;color:var(--muted);margin-left:auto}
   .flip{perspective:1200px;cursor:pointer;max-width:440px;margin:0 auto;width:100%}
   .flip-inner{display:grid;transition:transform .5s;transform-style:preserve-3d}
@@ -256,6 +261,70 @@
   .tchoice.right{border-color:var(--good);background:#E8F7EF;color:var(--good)}
   .tchoice.wrong{border-color:var(--bad);background:#FDECEA;opacity:.6;animation:shake .4s}
 
+  /* More sums */
+  .answer.wait{border-style:dashed;border-color:#E3E0F5;background:#FAFAFF}
+  .answer.small{min-width:68px;height:60px;font-size:36px;border-radius:14px;border-width:3px}
+  .sum.text{font-size:40px;flex-wrap:wrap}
+  .sum.pm{font-size:52px;gap:10px;flex-wrap:wrap}
+  .sum.pm .answer{min-width:76px;height:80px}
+  .sumgrid{display:grid;grid-template-columns:repeat(5,auto);column-gap:14px;row-gap:4px;align-items:center;justify-content:center;
+           font-size:64px;font-weight:700;margin:6px 0}
+  .bsplit{grid-column:3;grid-row:2;display:flex;flex-direction:column;align-items:center;font-size:initial}
+  .bsplit svg{width:110px;height:30px}
+  .bsplit line{stroke:#2B2A4C;stroke-width:4;stroke-linecap:round}
+  .bboxes{display:flex;gap:14px}
+  .pic.nline{width:min(640px,92vw)}
+  .snum.jump{fill:#24A86E;font-size:18px}
+  .pad.ops{grid-template-columns:repeat(2,1fr);max-width:300px}
+  .opkey{height:88px;font-size:52px}
+  @media (max-width:480px){ .sumgrid{font-size:48px;column-gap:8px} .sum.pm{font-size:38px} .sum.text{font-size:30px} }
+
+  /* Measuring */
+  .tiles.four{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .martwrap{display:flex;justify-content:center;margin:2px 0 8px}
+  .pic{width:min(340px,82vw);height:auto;display:block}
+  .pic.shape{width:min(230px,60vw)}
+  .rnum{font-family:'Fredoka',sans-serif;font-size:14px;font-weight:600;fill:#2B2A4C}
+  .snum{font-family:'Fredoka',sans-serif;font-size:17px;font-weight:600;fill:#2B2A4C}
+  .snum.sm{font-size:14px}
+  .cartons-m{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:360px;padding:8px 0}
+  .carton-m{width:44px;height:auto}
+  .money{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:12px 0;max-width:460px}
+  .bill{width:118px;height:62px;border-radius:8px;background:var(--bc);border:2px solid rgba(0,0,0,.25);position:relative;color:#fff;
+        box-shadow:inset 0 0 0 5px rgba(255,255,255,.35)}
+  .bill .bv{position:absolute;right:10px;top:4px;font-size:34px;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+  .bill .be{position:absolute;left:10px;bottom:6px;font-size:11px;font-weight:700;letter-spacing:1px;opacity:.9}
+  .coin{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:700;color:#5A4410;
+        border:6px solid #D9B44A;background:#C7CBD1;box-shadow:0 2px 3px rgba(0,0,0,.25)}
+  .coin.c1{border-color:#D9B44A;background:#C7CBD1}
+  .coin.c2{border-color:#C7CBD1;background:#E3C25A}
+  .wlab{font-family:'Fredoka',sans-serif;font-size:12px;font-weight:700;fill:#2B2A4C}
+  .cans{display:flex;gap:12px;align-items:flex-end;justify-content:center;padding:10px 0}
+  .can{position:relative;background:#F7E7B4;border:3px solid #B9860F;border-radius:10px 10px 8px 8px;display:flex;align-items:center;justify-content:center}
+  .can.s5{width:86px;height:110px} .can.s2{width:64px;height:80px} .can.s1{width:50px;height:60px}
+  .can .cap{position:absolute;top:-12px;right:10px;width:16px;height:12px;background:#B9860F;border-radius:3px 3px 0 0}
+  .can .lab{display:flex;flex-direction:column;align-items:center;line-height:1;color:#5A4410}
+  .can .lab b{font-size:28px} .can .lab span{font-size:13px;font-weight:600}
+  .can.s1 .lab b{font-size:20px} .can.s1 .lab span{font-size:10px}
+  .litre{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0}
+  .lbig{font-size:110px;line-height:1.1} .lname{font-size:26px;font-weight:600}
+  .lref{margin-top:8px;font-size:16px;color:var(--muted);background:#F4F1FF;padding:4px 12px;border-radius:999px}
+  .pursewrap{display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap}
+  .purse{width:120px;height:96px;background:#2E6B45;border-radius:22px 22px 40px 40px;display:grid;place-items:center;position:relative}
+  .purse::before{content:"";position:absolute;top:-12px;left:40px;width:40px;height:16px;border:5px solid #7A7A7A;border-bottom:0;border-radius:14px 14px 0 0}
+  .purse span{background:#fff;border-radius:50%;width:70px;height:70px;display:grid;place-items:center;font-size:22px;font-weight:700}
+  .pursewrap .plus{font-size:40px;font-weight:700;color:var(--muted)}
+  .paytag{display:flex;align-items:center;gap:14px;justify-content:center;padding:10px 0}
+  .pitem{font-size:84px}
+  .tag{background:#C9862B;color:#fff;font-size:34px;font-weight:700;padding:10px 26px 10px 34px;border-radius:8px 18px 18px 8px;position:relative}
+  .tag::before{content:"";position:absolute;left:10px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:#fff}
+  .tchoices.wide{max-width:560px}
+  .tchoices.wide .tchoice{padding:6px}
+  .tchoice .money{padding:4px 0;gap:6px} .tchoice .bill{width:90px;height:48px} .tchoice .bill .bv{font-size:26px}
+  .tchoice .coin{width:44px;height:44px;font-size:20px;border-width:5px}
+  .digital{display:inline-block;margin:10px auto 14px;padding:10px 26px;border-radius:18px;background:#E9EEF2;border:6px solid #2B2A4C;
+           font-family:'Courier New',monospace;font-size:64px;font-weight:700;letter-spacing:4px;color:#1B3A2A;box-shadow:inset 0 3px 6px rgba(0,0,0,.15)}
+
   /* Front page tiles */
   .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:6px}
   .tile{background:#fff;border:3px solid var(--line);border-radius:28px;box-shadow:0 6px 0 var(--line);padding:22px 20px 18px;
@@ -325,6 +394,12 @@ const LEVELS = [
   { op:'add', max:20, pics:false, color:'#B45BD6' },
   { op:'sub', max:20, pics:false, color:'#E0569B' },
   { op:'mix', max:20, pics:false, color:'#2B2A4C' },
+  // Extra exercise types, like in the Rekenbrug workbooks
+  { kind:'line',    color:'#2FA4D8' },   // number line 0–20, pairs like 5+3 and 15+3
+  { kind:'bridge',  color:'#F29A2E' },   // past 10 by splitting: 6+7 → 6+4+3
+  { kind:'double',  color:'#24A86E' },   // doubles and halves
+  { kind:'missing', color:'#E0569B' },   // 8 + … = 13
+  { kind:'plusmin', color:'#5B5BD6' },   // 16 … 6 … 3 = 19 (fill in + or −)
 ];
 const QUESTIONS_PER_LEVEL = 10;
 const OBJECTS = ['🍎','🐟','⭐','🚗','🐞','🍓','🎈','🐥','⚽','🧁'];
@@ -334,6 +409,10 @@ const T = {
   nl:{
     brand:'Learning Buddy', pictures:'Plaatjes', pick:'Kies een level', pickSub:'Kies zelf een level en verdien sterren!',
     names:{add:'Plussommen tot {n}', sub:'Minsommen tot {n}', mix:'Plus en min tot {n}'},
+    kindNames:{line:'Getallenlijn tot 20', bridge:'Over de 10 met splitsen', double:'Dubbelen en helften', missing:'Welk getal mist?', plusmin:'Plus of min?'},
+    dblOf:'Het dubbele van {n} is', halfOf:'De helft van {n} is',
+    bHint1:'Van {a} naar 10: hoeveel erbij?', bHint2:'{b} is {s} en …?', bHint3:'Reken nu uit: {a} + {b} = ?',
+    lineHint:'Kijk naar de sprong op de getallenlijn.', pmHint:'Kies + of −',
     locked:'Haal eerst een ster bij het vorige level 🔒',
     good:['Goed zo!','Super!','Knap hoor!','Top!','Geweldig!'],
     tryAgain:'Bijna! Probeer het nog eens.', answerIs:'Het antwoord is {n}',
@@ -341,7 +420,7 @@ const T = {
     score:'{c} van de {n} sommen meteen goed',
     again:'Nog een keer', next:'Volgende level ➜', home:'Naar de levels',
     newLevel:'Nieuw level vrijgespeeld! 🎉',
-    flashTitle:'Flitskaarten: splitsingen', flashSub:'Kies een getal om te splitsen.',
+    flashTitle:'Flitskaarten: splitsingen', flashSub:'Kies een getal om te splitsen. Bij 10 ⭐ zijn er extra veel kaarten.', eggsQ:'Hoeveel eieren erbij om de doos vol te maken?',
     splitsOf:'Splitsingen van {n}', mixAll:'Alles door elkaar', mixTitle:'Splitsingen door elkaar',
     tapFlip:'Weet je het? Tik om de kaart om te draaien.', knew:'✓ Wist ik!', practise:'↻ Nog oefenen',
     flashDone:'Alle kaarten gedaan!', flashPerfect:'Je wist ze allemaal meteen!',
@@ -353,9 +432,20 @@ const T = {
     streakDay:'dag op rij', streakDays:'dagen op rij', streak0:'Maak een ronde af om je reeks te starten!',
     streakKeep:'Maak vandaag een ronde af, dan groeit je reeks! 🔥', streakDone:'Vandaag al geoefend. Goed bezig! 🎉',
     streakUp:'🔥 {n} op rij! Vandaag heb je geoefend.', brainGained:'+{n} hersenkracht 🧠',
-    menuMath:'Rekenen', menuMathSub:'Sommen, flitskaarten en klokkijken',
+    menuMath:'Rekenen', menuMathSub:'Sommen, flitskaarten, klok en meten',
+    menuMeasure:'Meten en meetkunde', menuMeasureSub:'Lengte, gewicht, inhoud, geld en vormen',
+    measureLv:['Lengte','Gewicht','Weegschaal','Inhoud','Meer of minder dan 1 liter','Geld tellen','Gepast betalen','Vormen'],
+    measureEx:['📏 centimeter','⚖️ kilogram','⚖️ zwaarste kant','🪣 liter','🥛 meer of minder?','💶 hoeveel euro?','🏷️ zo weinig mogelijk','🔷 cirkel, vierkant …'],
+    qHeavy:'Welke kant is het zwaarst?', left:'⬅ Links', right:'Rechts ➡', qOther:'Hoeveel kg komt aan de andere kant?',
+    qLitre:'Is het meer of minder dan 1 liter?', lessL:'Minder dan 1 liter', moreL:'Meer dan 1 liter', oneLitre:'1 melkpak = 1 liter',
+    qCans:'Hoeveel liter is het samen?', qPurse:'Hoeveel euro is het samen?',
+    qPay:'Betaal gepast met zo weinig mogelijk biljetten en munten.', measureShown:'Kijk: dit is het goede antwoord.',
+    qLength:'Hoe lang is de lijn?', qWeight:'Hoe zwaar is het?', qVolume:'Hoeveel liter zit er in de emmer?',
+    qCartons:'Hoeveel liter is het samen? 1 melkpak = 1 liter.', qMoney:'Hoeveel geld is het samen?', qShape:'Welke vorm is dit?',
+    liter:'liter', shapes:{circle:'cirkel', triangle:'driehoek', square:'vierkant', rect:'rechthoek', diamond:'ruit'},
+    measureScore:'{c} van de {n} meteen goed', measureWas:'Het antwoord is {w}',
     menuClock:'Klokkijken', menuClockSub:'Hoe laat is het?', clockQ:'Hoe laat is het?',
-    clockLv:['Hele uren','Halve uren','Kwartieren'], clockEx:['3 uur','half 4','kwart over 3'],
+    clockLv:['Hele uren','Halve uren','Kwartieren','Digitale klok'], clockEx:['3 uur','half 4','kwart over 3','08:30 = half 9'],
     clockWas:'Het is {w}', clockScore:'{c} van de {n} klokken meteen goed', clockHint:'De korte wijzer wijst het uur aan, de lange wijzer de minuten.',
     menuRead:'Lezen', menuReadSub:'Eerst klanken, dan woorden lezen.',
     menuWrite:'Schrijven', menuWriteSub:'Kijk naar het plaatje en maak het woord met klanken.',
@@ -375,6 +465,10 @@ const T = {
   en:{
     brand:'Learning Buddy', pictures:'Pictures', pick:'Pick a level', pickSub:'Pick any level and earn stars!',
     names:{add:'Adding up to {n}', sub:'Taking away up to {n}', mix:'Add and take away to {n}'},
+    kindNames:{line:'Number line to 20', bridge:'Past 10 by splitting', double:'Doubles and halves', missing:'Missing number', plusmin:'Plus or minus?'},
+    dblOf:'Double {n} is', halfOf:'Half of {n} is',
+    bHint1:'From {a} to 10: how many more?', bHint2:'{b} is {s} and …?', bHint3:'Now work out {a} + {b} = ?',
+    lineHint:'Look at the jump on the number line.', pmHint:'Pick + or −',
     locked:'Get a star on the previous level first 🔒',
     good:['Well done!','Super!','Great job!','Awesome!','Brilliant!'],
     tryAgain:'Almost! Try again.', answerIs:'The answer is {n}',
@@ -382,7 +476,7 @@ const T = {
     score:'{c} of {n} right on the first try',
     again:'Play again', next:'Next level ➜', home:'Back to levels',
     newLevel:'New level unlocked! 🎉',
-    flashTitle:'Flashcards: number splits', flashSub:'Pick a number to split.',
+    flashTitle:'Flashcards: number splits', flashSub:'Pick a number to split. 10 ⭐ has lots of extra cards.', eggsQ:'How many more eggs to fill the box?',
     splitsOf:'Splits of {n}', mixAll:'Mix them up', mixTitle:'Number splits mixed',
     tapFlip:'Do you know it? Tap to flip the card.', knew:'✓ I knew it!', practise:'↻ Practise again',
     flashDone:'All cards done!', flashPerfect:'You knew them all straight away!',
@@ -394,9 +488,20 @@ const T = {
     streakDay:'day in a row', streakDays:'days in a row', streak0:'Finish a round to start your streak!',
     streakKeep:'Finish a round today to grow your streak! 🔥', streakDone:'Already practised today. Well done! 🎉',
     streakUp:'🔥 {n} in a row! You practised today.', brainGained:'+{n} brain power 🧠',
-    menuMath:'Maths', menuMathSub:'Sums, flashcards and telling time',
+    menuMath:'Maths', menuMathSub:'Sums, flashcards, clock and measuring',
+    menuMeasure:'Measuring and shapes', menuMeasureSub:'Length, weight, volume, money and shapes',
+    measureLv:['Length','Weight','Balance','Volume','More or less than 1 litre','Counting money','Paying exactly','Shapes'],
+    measureEx:['📏 centimetres','⚖️ kilograms','⚖️ heavier side','🪣 litres','🥛 more or less?','💶 how many euros?','🏷️ fewest coins','🔷 circle, square …'],
+    qHeavy:'Which side is heavier?', left:'⬅ Left', right:'Right ➡', qOther:'How many kg go on the other side?',
+    qLitre:'Is it more or less than 1 litre?', lessL:'Less than 1 litre', moreL:'More than 1 litre', oneLitre:'1 milk carton = 1 litre',
+    qCans:'How many litres together?', qPurse:'How many euros together?',
+    qPay:'Pay exactly, with as few notes and coins as possible.', measureShown:'Look: this is the right answer.',
+    qLength:'How long is the line?', qWeight:'How heavy is it?', qVolume:'How many litres are in the bucket?',
+    qCartons:'How many litres together? 1 carton = 1 litre.', qMoney:'How much money is it together?', qShape:'What shape is this?',
+    liter:'litres', shapes:{circle:'circle', triangle:'triangle', square:'square', rect:'rectangle', diamond:'diamond'},
+    measureScore:'{c} of {n} right on the first try', measureWas:'The answer is {w}',
     menuClock:'Telling time', menuClockSub:'What time is it?', clockQ:'What time is it?',
-    clockLv:["O'clock",'Half past','Quarter past and to'], clockEx:["3 o'clock",'half past 3','quarter past 3'],
+    clockLv:["O'clock",'Half past','Quarter past and to','Digital clock'], clockEx:["3 o'clock",'half past 3','quarter past 3','08:30 = half past 8'],
     clockWas:'It is {w}', clockScore:'{c} of {n} clocks right on the first try', clockHint:'The short hand shows the hour, the long hand shows the minutes.',
     menuRead:'Reading', menuReadSub:'First letter sounds, then reading words.',
     menuWrite:'Writing', menuWriteSub:'Look at the picture and build the word with sounds.',
@@ -452,20 +557,20 @@ function t(key, vars){
   if(vars) for(const k in vars) s = s.replace('{'+k+'}', vars[k]);
   return s;
 }
-function levelName(i){ const L = LEVELS[i]; return t('names.'+L.op, {n:L.max}); }
+function levelName(i){ const L = LEVELS[i]; return L.kind ? t('kindNames')[L.kind] : t('names.'+L.op, {n:L.max}); }
 function starsOf(i){ const p = cur(); return (p && p.stars[i]) || 0; }
 // All levels are open: children can pick any level. Stars only show progress.
 function unlocked(i){ return true; }
 function sumStars(map){ return Object.values(map || {}).reduce((a,b)=>a+b,0); }
 function sectionStars(p, sec){
-  const k = {read:'starsRead', write:'starsWrite', clock:'starsClock'}[sec]; if(!p[k]) p[k] = {};
+  const k = {read:'starsRead', write:'starsWrite', clock:'starsClock', measure:'starsMeasure'}[sec]; if(!p[k]) p[k] = {};
   if(sec==='read' && !p.readV2){   // reading got 2 sound levels in front of the word levels
     const old = p.starsRead; p.starsRead = {}; for(const i in old) p.starsRead[+i + 2] = old[i];
     p.readV2 = true;
   }
   return p[k];
 }
-function totalStars(p = cur()){ return p ? sumStars(p.stars) + sumStars(p.starsRead) + sumStars(p.starsWrite) + sumStars(p.starsClock) : 0; }
+function totalStars(p = cur()){ return p ? sumStars(p.stars) + sumStars(p.starsRead) + sumStars(p.starsWrite) + sumStars(p.starsClock) + sumStars(p.starsMeasure) : 0; }
 function starRow(n){ let h=''; for(let k=0;k<3;k++) h += `<span class="${k<n?'star-on':'star-off'}">★</span>`; return h; }
 
 const toastQueue = []; let toastBusy = false;
@@ -548,16 +653,86 @@ function floatPlus(){
 function gainHTML(n){ return `<p class="gain">${t('brainGained', {n})}</p>`; }
 
 /* ============================================================
+   SPECIAL SUMS — every problem has one or more answer boxes that
+   are filled in order (boxes[step]). A box holds a number or + / −.
+   ============================================================ */
+function makeSpecial(kind, prev, q){
+  for(let tries=0; tries<40; tries++){
+    const p = makeSpecialOnce(kind, prev, q);
+    if(!prev || p.key !== prev.key) return p;
+  }
+  return makeSpecialOnce(kind, null, q);
+}
+function makeSpecialOnce(kind, prev, q){
+  const P = o => Object.assign({ kind, step:0 }, o);
+  if(kind==='line'){
+    // Pairs: first a sum below 10, then the same sum ten higher (5+3, then 15+3)
+    if(q % 2 === 1 && prev && prev.kind==='line' && prev.a < 10){
+      const a = prev.a + 10, b = prev.b, op = prev.op, ans = op==='add' ? a+b : a-b;
+      return P({ op, a, b, ans, key:'L'+op+a+'-'+b, boxes:[{ans}] });
+    }
+    const op = Math.random() < .5 ? 'add' : 'sub';
+    let a, b;
+    if(op==='add'){ a = rand(1,8); b = rand(1, 9-a); } else { a = rand(3,9); b = rand(1, a-1); }
+    const ans = op==='add' ? a+b : a-b;
+    return P({ op, a, b, ans, key:'L'+op+a+'-'+b, boxes:[{ans}] });
+  }
+  if(kind==='bridge'){
+    const a = rand(5,9), b = rand(11-a, 9), s1 = 10-a, s2 = b - s1;
+    return P({ op:'add', a, b, ans:a+b, s1, s2, key:'B'+a+'-'+b, boxes:[{ans:s1},{ans:s2},{ans:a+b}] });
+  }
+  if(kind==='double'){
+    if(Math.random() < .5){ const n = rand(1,10); return P({ sub:'dbl', n, key:'D'+n, boxes:[{ans:2*n}] }); }
+    const m = 2*rand(1,10); return P({ sub:'half', n:m, key:'H'+m, boxes:[{ans:m/2}] });
+  }
+  if(kind==='missing'){
+    if(Math.random() < .5){ const c = rand(5,20), a = rand(1,c-1); return P({ op:'add', a, c, key:'M+'+a+'-'+c, boxes:[{ans:c-a}] }); }
+    const a = rand(5,20), x = rand(1,a), c = a - x; return P({ op:'sub', a, c, key:'M-'+a+'-'+c, boxes:[{ans:x}] });
+  }
+  // plusmin: a … b … c = r, with b ≠ c so there is exactly one right answer
+  for(;;){
+    const a = rand(10,20), b = rand(1,9), c = rand(1,9);
+    if(b===c) continue;
+    const o1 = pick(['+','-']), o2 = pick(['+','-']);
+    const mid = o1==='+' ? a+b : a-b, r = o2==='+' ? mid+c : mid-c;
+    if(mid < 0 || mid > 20 || r < 0 || r > 20) continue;
+    return P({ a, b, c, r, key:'P'+a+o1+b+o2+c, boxes:[{ans:o1, op:true},{ans:o2, op:true}] });
+  }
+}
+
+/* Number line 0–20 with the jump drawn, like the workbook */
+function numberLineSVG(a, b, op){
+  const x0 = 24, w = 28, X = v => x0 + v*w, end = op==='add' ? a+b : a-b, y = 70;
+  let ticks = '';
+  for(let v=0; v<=20; v++){
+    const big = v%5===0;
+    ticks += `<line x1="${X(v)}" y1="${y-(big?12:7)}" x2="${X(v)}" y2="${y+(big?12:7)}" stroke="#2B2A4C" stroke-width="${big?3:2}"/>`;
+    if(big && v!==a) ticks += `<text x="${X(v)}" y="${y+34}" text-anchor="middle" class="snum">${v}</text>`;
+  }
+  const xa = X(a), xe = X(end), top = 22, sign = op==='add' ? '+' : '−';
+  return `<svg class="pic nline" viewBox="0 0 ${x0*2 + 20*w} 112" aria-hidden="true">
+    <line x1="${X(0)}" y1="${y}" x2="${X(20)}" y2="${y}" stroke="#2B2A4C" stroke-width="3"/>
+    ${ticks}
+    <path d="M${xa} ${y-14} L${xa} ${top} L${xe} ${top} L${xe} ${y-16}" fill="none" stroke="#24A86E" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="${xe-6},${y-22} ${xe+6},${y-22} ${xe},${y-12}" fill="#24A86E"/>
+    <text x="${(xa+xe)/2}" y="${top-6}" text-anchor="middle" class="snum jump">${sign}${b}</text>
+    <rect x="${xa-15}" y="${y+16}" width="30" height="26" rx="7" fill="#fff" stroke="#2B2A4C" stroke-width="2"/>
+    <text x="${xa}" y="${y+34}" text-anchor="middle" class="snum">${a}</text>
+  </svg>`;
+}
+
+/* ============================================================
    PROBLEM GENERATOR
    ============================================================ */
-function makeProblem(L, prev){
+function makeProblem(L, prev, q){
+  if(L.kind) return makeSpecial(L.kind, prev, q || 0);
   for(let tries=0; tries<30; tries++){
     const op = L.op==='mix' ? (Math.random()<.5?'add':'sub') : L.op;
     const low = L.max>10 ? 8 : 2;
     let a,b,ans;
     if(op==='add'){ ans = rand(low, L.max); a = rand(1, ans-1); b = ans - a; }
     else          { a = rand(low, L.max);   b = rand(1, a-1);   ans = a - b; }
-    const p = { op, a, b, ans, obj: pick(OBJECTS) };
+    const p = { kind:'basic', op, a, b, ans, obj: pick(OBJECTS), step:0, boxes:[{ans}] };
     if(!prev || prev.a!==a || prev.b!==b || prev.op!==op) return p;
   }
 }
@@ -649,7 +824,7 @@ function renderMenu(){
         <div class="tile-art"><span>3</span><span class="op">+</span><span>2</span></div>
         <div class="tile-title">${t('menuMath')}</div>
         <div class="tile-sub">${t('menuMathSub')}</div>
-        ${tileStats(p, 'math', sumStars(p.stars) + sumStars(sectionStars(p,'clock')), (LEVELS.length + CLOCK_LEVELS.length)*3)}
+        ${tileStats(p, 'math', sumStars(p.stars) + sumStars(sectionStars(p,'clock')) + sumStars(sectionStars(p,'measure')), (LEVELS.length + CLOCK_LEVELS.length + MEASURE_LEVELS.length)*3)}
       </button>
       <button class="tile" data-action="read" style="--tc:#E0569B;--tl:#FDECF4">
         <div class="tile-art"><span class="tile-word">maan</span><span class="tile-emoji">🌙</span></div>
@@ -672,7 +847,7 @@ function renderMathMenu(){
   const p = cur();
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><h1 class="inline">🔢 ${t('menuMath')}</h1></div>
-    <div class="tiles three">
+    <div class="tiles four">
       <button class="tile" data-action="levels" style="--tc:#5B5BD6;--tl:#EEEEFF">
         <div class="tile-art"><span>3</span><span class="op">+</span><span>2</span></div>
         <div class="tile-title">${t('menuSums')}</div>
@@ -694,6 +869,12 @@ function renderMathMenu(){
         <div class="tile-title">${t('menuClock')}</div>
         <div class="tile-sub">${t('menuClockSub')}</div>
         <div class="tile-meta"><span class="star-on">★</span> ${sumStars(sectionStars(p,'clock'))} / ${CLOCK_LEVELS.length*3}</div>
+      </button>
+      <button class="tile" data-action="measurePick" style="--tc:#F29A2E;--tl:#FFF1DF">
+        <div class="tile-art"><span class="tile-emoji">📏</span><span class="tile-emoji">⚖️</span><span class="tile-emoji">🔷</span></div>
+        <div class="tile-title">${t('menuMeasure')}</div>
+        <div class="tile-sub">${t('menuMeasureSub')}</div>
+        <div class="tile-meta"><span class="star-on">★</span> ${sumStars(sectionStars(p,'measure'))} / ${MEASURE_LEVELS.length*3}</div>
       </button>
     </div>`;
 }
@@ -729,7 +910,7 @@ function renderHome(){
 function renderFlashPick(){
   screen = 'flashPick';
   let chips = '';
-  for(let n=2;n<=10;n++) chips += `<button class="chip" data-flash="${n}">${n}</button>`;
+  for(let n=2;n<=10;n++) chips += `<button class="chip ${n===10?'star':''}" data-flash="${n}">${n}${n===10?' ⭐':''}</button>`;
   chips += `<button class="chip wide" data-flash="mix">${t('mixAll')}</button>`;
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">🃏 ${t('flashTitle')}</h1></div>
@@ -748,8 +929,15 @@ function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.
 
 function startFlash(which){
   let deck = [];
-  const add = n => { for(let k=1;k<n;k++) deck.push({ n, k, blank: Math.random()<.5 ? 'l' : 'r' }); };
+  const add = n => { for(let k=1;k<n;k++) deck.push({ n, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' }); };
   if(which==='mix'){ for(let n=5;n<=10;n++) add(n); deck = shuffle(deck).slice(0,10); }
+  else if(+which===10){
+    // The splits of 10 matter most, so 10 gets a bigger, varied pile: 15 cards drawn from
+    // 0–10 in four forms: split diagram, 3 + ? = 10, 10 − 3 = ?, and an egg carton to fill.
+    for(let k=0;k<=10;k++) for(const fmt of ['split','plus','minus','eggs'])
+      deck.push({ n:10, k, blank: fmt==='split' ? (Math.random()<.5 ? 'l' : 'r') : 'r', fmt });   // the answer is always 10 − k
+    deck = shuffle(deck).slice(0,15);
+  }
   else { add(+which); shuffle(deck); }
   flash = { which, deck, total:deck.length, missed:new Set(), flipped:false, gained:0 };
   screen = 'flash';
@@ -784,14 +972,25 @@ function renderFlash(){
     <p class="levelname">${title}</p>
     <div class="flip ${flash.flipped?'on':''}" data-action="flip">
       <div class="flip-inner">
-        <div class="face front">${splitHTML(c,false)}<div class="hint">${t('tapFlip')}</div></div>
-        <div class="face rear">${splitHTML(c,true)}${eggs}</div>
+        <div class="face front">${flashFront(c)}<div class="hint">${t('tapFlip')}</div></div>
+        <div class="face rear">${splitHTML(c,true)}${c.fmt!=='split' ? `<div class="fsum small">${c.k} + ${c.n-c.k} = ${c.n}</div>` : ''}${eggs}</div>
       </div>
     </div>
     <div class="rate" style="visibility:${flash.flipped?'visible':'hidden'}">
       <button class="btn" data-action="practise">${t('practise')}</button>
       <button class="btn good" data-action="knew">${t('knew')}</button>
     </div>`;
+}
+
+function flashFront(c){
+  const q = `<span class="sbox q">?</span>`;
+  if(c.fmt==='plus')  return `<div class="fsum"><span>${c.k}</span><span>+</span>${q}<span>=</span><span>${c.n}</span></div>`;
+  if(c.fmt==='minus') return `<div class="fsum"><span>${c.n}</span><span>−</span><span>${c.k}</span><span>=</span>${q}</div>`;
+  if(c.fmt==='eggs'){
+    const arr = []; for(let k=0;k<c.k;k++) arr.push('a');
+    return `${cartonsHTML(arr)}<div class="eggsq">${t('eggsQ')}</div>`;
+  }
+  return splitHTML(c, false);
 }
 
 function flipCard(){
@@ -802,7 +1001,7 @@ function flipCard(){
 
 function rateCard(knew){
   const c = flash.deck.shift();
-  if(!knew){ flash.missed.add(c.n+'-'+c.k); flash.deck.push(c); }
+  if(!knew){ flash.missed.add(c.n+'-'+c.k+'-'+c.fmt); flash.deck.push(c); }
   flash.flipped = false;
   if(flash.deck.length===0) return flashResult();
   renderFlash();
@@ -829,7 +1028,7 @@ function flashResult(){
 
 function startLevel(i){
   game = { level:i, q:0, firstTry:0, attempts:0, input:'', busy:false, results:[], problem:null, gained:0 };
-  game.problem = makeProblem(LEVELS[i]);
+  game.problem = makeProblem(LEVELS[i], null, 0);
   screen = 'play';
   renderPlay();
 }
@@ -866,11 +1065,6 @@ function renderPlay(){
     const r = game.results[k];
     dots += `<div class="dot ${r||''} ${k===game.q && !r?'cur':''}"></div>`;
   }
-  let keys = '';
-  [1,2,3,4,5,6,7,8,9].forEach(n => keys += `<button class="key" data-key="${n}">${n}</button>`);
-  keys += `<button class="key del" data-key="del" aria-label="delete">⌫</button>
-           <button class="key" data-key="0">0</button>
-           <button class="key go" data-key="ok" aria-label="check">✓</button>`;
   $('#main').innerHTML = `
     <div class="topbar">
       <button class="back" data-action="home" aria-label="back">←</button>
@@ -879,51 +1073,125 @@ function renderPlay(){
     <p class="levelname">${levelName(game.level)}</p>
     <div class="card">
       ${picturesHTML(p)}
-      <div class="sum"><span>${p.a}</span><span>${p.op==='add'?'+':'−'}</span><span>${p.b}</span><span>=</span>
-        <div class="answer" id="answer"></div></div>
+      <div id="sumArea"></div>
+      <div class="hint" id="stepHint"></div>
       <div class="feedback" id="feedback"></div>
     </div>
-    <div class="pad">${keys}</div>`;
-  updateAnswer();
+    <div class="pad" id="pad"></div>`;
+  renderSum();
 }
 
-function updateAnswer(cls){
-  const el = $('#answer'); if(!el) return;
-  el.textContent = game.input;
-  el.className = 'answer' + (game.input ? ' filled' : '') + (cls ? ' '+cls : '');
+const opSym = v => v==='-' ? '−' : v;
+function curBox(){ const p = game.problem; return p.boxes[p.step]; }
+
+/* One answer box: done (green/red), active (shows what is typed) or still empty */
+function boxHTML(i, small){
+  const p = game.problem, b = p.boxes[i], cls = small ? ' small' : '';
+  if(i < p.step) return `<div class="answer filled ${b.state||'good'}${cls}">${opSym(b.val)}</div>`;
+  if(i === p.step) return `<div class="answer ${game.input?'filled':''}${cls}" id="answer">${opSym(game.input)}</div>`;
+  return `<div class="answer wait${cls}"></div>`;
+}
+
+function problemHTML(p){
+  const sym = p.op==='sub' ? '−' : '+';
+  if(p.kind==='basic' || p.kind==='line'){
+    return `${p.kind==='line' ? `<div class="martwrap">${numberLineSVG(p.a, p.b, p.op)}</div>` : ''}
+      <div class="sum"><span>${p.a}</span><span>${sym}</span><span>${p.b}</span><span>=</span>${boxHTML(0)}</div>`;
+  }
+  if(p.kind==='bridge'){
+    let eggs = '';
+    if(picsOn()){ const arr = []; for(let k=0;k<p.a;k++) arr.push('a'); for(let k=0;k<p.b;k++) arr.push('b'); eggs = `<div class="pics">${cartonsHTML(arr)}</div>`; }
+    return `${eggs}
+      <div class="sumgrid">
+        <span>${p.a}</span><span>+</span><span>${p.b}</span><span>=</span>${boxHTML(2)}
+        <div class="bsplit">
+          <svg viewBox="0 0 100 30" aria-hidden="true"><line x1="50" y1="2" x2="18" y2="28"/><line x1="50" y1="2" x2="82" y2="28"/></svg>
+          <div class="bboxes">${boxHTML(0,true)}${boxHTML(1,true)}</div>
+        </div>
+      </div>`;
+  }
+  if(p.kind==='double'){
+    return `<div class="sum text"><span>${t(p.sub==='dbl' ? 'dblOf' : 'halfOf', {n:p.n})}</span>${boxHTML(0)}</div>`;
+  }
+  if(p.kind==='missing'){
+    return `<div class="sum"><span>${p.a}</span><span>${sym}</span>${boxHTML(0)}<span>=</span><span>${p.c}</span></div>`;
+  }
+  return `<div class="sum pm"><span>${p.a}</span>${boxHTML(0)}<span>${p.b}</span>${boxHTML(1)}<span>${p.c}</span><span>=</span><span>${p.r}</span></div>`;
+}
+
+function stepHint(p){
+  if(p.kind==='bridge') return [t('bHint1', {a:p.a}), t('bHint2', {b:p.b, s:p.s1}), t('bHint3', {a:p.a, b:p.b})][p.step] || '';
+  if(p.kind==='line') return t('lineHint');
+  if(p.kind==='plusmin') return t('pmHint');
+  return '';
+}
+
+function renderSum(cls){
+  const p = game.problem;
+  $('#sumArea').innerHTML = problemHTML(p);
+  $('#stepHint').textContent = stepHint(p);
+  const box = curBox(), pad = $('#pad');
+  const wantOps = !!(box && box.op);
+  if(pad.dataset.ops !== String(wantOps)){
+    pad.dataset.ops = String(wantOps);
+    if(wantOps){
+      pad.className = 'pad ops';
+      pad.innerHTML = `<button class="key opkey" data-key="+">+</button><button class="key opkey" data-key="-">−</button>`;
+    } else {
+      pad.className = 'pad';
+      let keys = '';
+      [1,2,3,4,5,6,7,8,9].forEach(n => keys += `<button class="key" data-key="${n}">${n}</button>`);
+      keys += `<button class="key del" data-key="del" aria-label="delete">⌫</button>
+               <button class="key" data-key="0">0</button>
+               <button class="key go" data-key="ok" aria-label="check">✓</button>`;
+      pad.innerHTML = keys;
+    }
+  }
+  if(cls){ const el = $('#answer'); if(el) el.classList.add(cls); }
 }
 
 function press(k){
   if(screen!=='play' || game.busy) return;
+  const box = curBox(); if(!box) return;
+  if(box.op){
+    if(k==='+' || k==='-'){ game.input = k; renderSum(); check(); }
+    return;
+  }
   if(k==='del'){ game.input = game.input.slice(0,-1); }
   else if(k==='ok'){ return check(); }
-  else if(game.input.length < 2){ game.input = (game.input==='0' ? '' : game.input) + k; }
+  else if(/^[0-9]$/.test(k) && game.input.length < 2){ game.input = (game.input==='0' ? '' : game.input) + k; }
+  else return;
   $('#feedback').textContent = ''; $('#feedback').className = 'feedback';
-  updateAnswer();
+  renderSum();
 }
 
 function check(){
   if(game.input==='') return;
-  const p = game.problem, fb = $('#feedback');
-  if(parseInt(game.input,10) === p.ans){
+  const p = game.problem, box = curBox(), fb = $('#feedback');
+  if(game.input === String(box.ans)){
+    box.val = game.input; box.state = 'good'; p.step++; game.input = '';
+    if(p.step < p.boxes.length){ fb.textContent = ''; fb.className = 'feedback'; renderSum(); return; }
     if(game.attempts===0) game.firstTry++;
-    game.results[game.q] = game.attempts===0 ? 'g' : 'o';
-    updateAnswer('good');
+    game.results[game.q] = p.revealed ? 'r' : (game.attempts===0 ? 'g' : 'o');
+    renderSum();
     fb.textContent = pick(T[state.lang].good); fb.className = 'feedback good';
     game.busy = true; setTimeout(nextQuestion, 1000);
   } else {
-    game.attempts++;
-    const box = $('#answer'); box.classList.remove('shake'); void box.offsetWidth;
-    if(game.attempts >= 2){
-      game.results[game.q] = 'r';
-      game.input = String(p.ans); updateAnswer('bad');
-      fb.textContent = t('answerIs', {n:p.ans}); fb.className = 'feedback bad';
-      game.busy = true; setTimeout(nextQuestion, 2000);
+    game.attempts++; box.wrong = (box.wrong || 0) + 1;
+    if(box.wrong >= 2){
+      // show the right answer in this box and carry on
+      box.val = String(box.ans); box.state = 'bad'; p.revealed = true; p.step++; game.input = '';
+      fb.textContent = t('answerIs', {n: opSym(box.ans)}); fb.className = 'feedback bad';
+      renderSum();
+      game.busy = true;
+      if(p.step >= p.boxes.length){ game.results[game.q] = 'r'; setTimeout(nextQuestion, 2000); }
+      else setTimeout(() => { game.busy = false; fb.textContent = ''; fb.className = 'feedback'; renderSum(); }, 1500);
     } else {
-      updateAnswer('bad'); box.classList.add('shake');
+      renderSum('bad');
+      const el = $('#answer'); if(el){ el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
       fb.textContent = t('tryAgain'); fb.className = 'feedback bad';
       game.input = '';
-      setTimeout(()=>{ if(!game.busy) updateAnswer(); }, 600);
+      setTimeout(() => { if(!game.busy && screen==='play') renderSum(); }, 600);
     }
   }
 }
@@ -932,7 +1200,7 @@ function nextQuestion(){
   if(screen!=='play') return;
   game.q++;
   if(game.q >= QUESTIONS_PER_LEVEL) return finish();
-  game.problem = makeProblem(LEVELS[game.level], game.problem);
+  game.problem = makeProblem(LEVELS[game.level], game.problem, game.q);
   game.attempts = 0; game.input = ''; game.busy = false;
   renderPlay();
 }
@@ -1056,7 +1324,7 @@ function wordUnlocked(mode, i){ return true; }
 function klankOn(){ const p = cur(); return !p || p.klank !== false; }
 
 /* Klankhulp: show a word as coloured sound blocks */
-function splitHTML(w){
+function klankHTML(w){
   return `<span class="klanken">${soundsOf(w).map(sd => `<span class="kl ${VOWELISH.test(sd)?'v':''}">${sd}</span>`).join('')}</span>`;
 }
 function klankToggle(){
@@ -1132,7 +1400,7 @@ function renderWord(){
     }
     body = `
       <div class="card">
-        <div class="readword">${klankOn() ? splitHTML(w) : wordOf(w)}</div>
+        <div class="readword">${klankOn() ? klankHTML(w) : wordOf(w)}</div>
         <div class="hint">${t('readQ')}</div>
         <div class="feedback" id="feedback"></div>
       </div>
@@ -1305,7 +1573,7 @@ function finishWords(){
    CLOCK — read an analogue clock, pick the right time.
    Dutch: "half 4" = 3:30, "kwart voor 4" = 3:45.
    ============================================================ */
-const CLOCK_LEVELS = [ {kind:'hour', color:'#2FA4D8'}, {kind:'half', color:'#24A86E'}, {kind:'quarter', color:'#5B5BD6'} ];
+const CLOCK_LEVELS = [ {kind:'hour', color:'#2FA4D8'}, {kind:'half', color:'#24A86E'}, {kind:'quarter', color:'#5B5BD6'}, {kind:'digital', color:'#E0569B'} ];
 const CLOCK_PER_SET = 8;
 let cgame = null;
 
@@ -1323,9 +1591,10 @@ function timeLabel(h, m){
   if(m===15) return `quarter past ${h}`;
   return `quarter to ${nextH(h)}`;
 }
+function digitalHTML(h, m){ return `<div class="digital">${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</div>`; }
 function clockMinutes(kind){
   if(kind==='hour') return [0];
-  if(kind==='half') return [0,30,30];
+  if(kind==='half' || kind==='digital') return [0,30,30];
   return [15,45,15,45,0,30];
 }
 function makeTime(kind, prev){
@@ -1396,7 +1665,7 @@ function renderClock(){
     <div class="topbar"><button class="back" data-action="clockLevels" aria-label="back">←</button><div class="dots">${dots}</div></div>
     <p class="levelname">${t('clockLv')[cgame.level]}</p>
     <div class="card">
-      ${clockSVG(cgame.time.h, cgame.time.m)}
+      ${CLOCK_LEVELS[cgame.level].kind==='digital' ? digitalHTML(cgame.time.h, cgame.time.m) : clockSVG(cgame.time.h, cgame.time.m)}
       <div class="hint">${t('clockQ')}</div>
       <div class="feedback" id="feedback"></div>
     </div>
@@ -1453,6 +1722,297 @@ function finishClock(){
 }
 
 /* ============================================================
+   METEN EN MEETKUNDE — length (cm), weight (kg), volume (liter),
+   money (euro) and shapes. Each question: a picture + 3 answers.
+   ============================================================ */
+const MEASURE_LEVELS = [
+  { kind:'length',  color:'#E0569B' }, { kind:'weight', color:'#F29A2E' }, { kind:'balance', color:'#C9862B' },
+  { kind:'volume',  color:'#2FA4D8' }, { kind:'litre',  color:'#3BB3C3' }, { kind:'money',   color:'#24A86E' },
+  { kind:'pay',     color:'#B45BD6' }, { kind:'shapes', color:'#5B5BD6' }
+];
+const LITRE_ITEMS = [   // [picture, Dutch, English, more than 1 litre?]
+  ['☕','kopje','cup',false], ['🥛','glas melk','glass of milk',false], ['🥫','blikje','tin',false], ['🧃','pakje drinken','juice box',false],
+  ['🍼','babyfles','baby bottle',false], ['🥣','kom','bowl',false], ['🍵','theekopje','teacup',false],
+  ['🪣','emmer','bucket',true], ['🛁','badkuip','bathtub',true], ['🛢️','olievat','oil drum',true], ['🏊','zwembad','swimming pool',true], ['🌊','zee','sea',true]
+];
+const PAY_ITEMS = ['🧸','🐒','🎲','🖍️','🪀','🃏','🧩','🪁'];
+// Fewest notes and coins (greedy is always optimal for euros)
+function fewest(v){ const out = []; for(const d of [20,10,5,2,1]) while(v >= d){ out.push(d); v -= d; } return out; }
+const MEASURE_PER_SET = 8;
+let mgame = null;
+
+function numChoices(n, min, max, fmt){
+  const set = new Set([n]);
+  for(const c of shuffle([n-1, n+1, n-2, n+2, n-3, n+3])){ if(set.size >= 3) break; if(c >= min && c <= max) set.add(c); }
+  return shuffle([...set]).map(fmt);
+}
+
+/* --- pictures --- */
+function rulerSVG(n){
+  const cm = 26, x0 = 22, max = 12;
+  let ticks = '';
+  for(let i=0;i<=max*2;i++){
+    const x = x0 + i*cm/2, big = i%2===0;
+    ticks += `<line x1="${x}" y1="58" x2="${x}" y2="${big?78:70}" stroke="#2B2A4C" stroke-width="${big?2:1.2}"/>`;
+    if(big) ticks += `<text x="${x}" y="96" text-anchor="middle" class="rnum">${i/2}</text>`;
+  }
+  return `<svg class="pic" viewBox="0 0 ${x0*2 + max*cm} 112" aria-hidden="true">
+    <line x1="${x0}" y1="30" x2="${x0 + n*cm}" y2="30" stroke="#24A86E" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="${x0}" cy="30" r="6" fill="#2B2A4C"/>
+    <rect x="4" y="56" width="${x0*2 + max*cm - 8}" height="48" rx="6" fill="#FFE08A" stroke="#D4A72C" stroke-width="2"/>
+    ${ticks}
+  </svg>`;
+}
+function scaleSVG(n){
+  const cx = 130, cy = 165, R = 108, a = v => (-65 + v*13) * Math.PI/180;
+  let marks = '';
+  for(let v=0; v<=10; v++){
+    const x1 = cx + (R-12)*Math.sin(a(v)), y1 = cy - (R-12)*Math.cos(a(v)), x2 = cx + R*Math.sin(a(v)), y2 = cy - R*Math.cos(a(v));
+    const tx = cx + (R-30)*Math.sin(a(v)), ty = cy - (R-30)*Math.cos(a(v));
+    marks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2B2A4C" stroke-width="3"/><text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="central" class="snum sm">${v}</text>`;
+  }
+  const px = cx + (R-44)*Math.sin(a(n)), py = cy - (R-44)*Math.cos(a(n));
+  return `<svg class="pic" viewBox="0 0 260 270" aria-hidden="true">
+    <path d="M8 66 Q130 22 252 66 L218 200 L42 200 Z" fill="#fff" stroke="#3B3F8F" stroke-width="7" stroke-linejoin="round"/>
+    ${marks}
+    <line x1="${cx}" y1="${cy}" x2="${px}" y2="${py}" stroke="#2B2A4C" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="9" fill="#EE5D52"/>
+    <rect x="80" y="178" width="100" height="20" rx="4" fill="#C9862B" stroke="#8C5A17" stroke-width="2"/>
+    <rect x="40" y="198" width="180" height="22" rx="6" fill="#3B3F8F"/>
+    <rect x="70" y="220" width="120" height="30" rx="6" fill="#2E7D4F"/>
+  </svg>`;
+}
+function bucketSVG(n){
+  const top = 40, bot = 230, H = bot - top, xl = w => 40 + (1-w)*30, xr = w => 220 - (1-w)*30;
+  const yOf = v => bot - 10 - v/10*(H-20);
+  let ticks = '';
+  for(let v=0; v<=10; v++){
+    const y = yOf(v), big = v%5===0, x = 92;
+    ticks += `<line x1="${x}" y1="${y}" x2="${x + (big?22:12)}" y2="${y}" stroke="#2B2A4C" stroke-width="${big?3:2}"/>`;
+    if(big) ticks += `<text x="${x-6}" y="${y}" text-anchor="end" dominant-baseline="central" class="snum">${v}</text>`;
+  }
+  const yw = yOf(n), fx = y => 40 + (y-top)/H*30, gx = y => 220 - (y-top)/H*30;
+  return `<svg class="pic" viewBox="0 0 260 250" aria-hidden="true">
+    <path d="M40 ${top} Q130 -20 220 ${top}" fill="none" stroke="#2B2A4C" stroke-width="5"/>
+    <path d="M40 ${top} L220 ${top} L190 ${bot} L70 ${bot} Z" fill="#FFF7EC" stroke="#E2622B" stroke-width="7" stroke-linejoin="round"/>
+    ${n>0 ? `<path d="M${fx(yw)} ${yw} L${gx(yw)} ${yw} L190 ${bot-3} L70 ${bot-3} Z" fill="#9ED3F0" opacity=".85"/>` : ''}
+    ${ticks}
+  </svg>`;
+}
+function cartonsHTMLm(n){
+  const one = `<svg class="carton-m" viewBox="0 0 40 70" aria-hidden="true"><path d="M6 18 L20 4 L34 18 Z" fill="#E8EEF5" stroke="#2B2A4C" stroke-width="2"/>
+    <rect x="6" y="18" width="28" height="48" fill="#5B8FD6" stroke="#2B2A4C" stroke-width="2"/><rect x="6" y="44" width="28" height="22" fill="#7CC36E"/>
+    <text x="20" y="34" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">MELK</text></svg>`;
+  return `<div class="cartons-m">${one.repeat(n)}</div>`;
+}
+function weightSVGs(list, cx, baseY, unknown){
+  // a row of kg weights standing on a pan, centred on cx
+  const w = 40, gap = 4, total = list.length*w + (list.length-1)*gap; let x = cx - total/2, out = '';
+  list.forEach(v => {
+    const h = 34 + Math.min(v,6)*3, y = baseY - h;
+    out += `<path d="M${x+6} ${y+8} L${x+w-6} ${y+8} L${x+w} ${baseY} L${x} ${baseY} Z" fill="#7B8190" stroke="#3B3F4A" stroke-width="2"/>
+      <rect x="${x+w/2-7}" y="${y}" width="14" height="10" rx="4" fill="#7B8190" stroke="#3B3F4A" stroke-width="2"/>
+      <circle cx="${x+w/2}" cy="${y+8+(h-8)/2}" r="14" fill="#fff"/>
+      <text x="${x+w/2}" y="${y+8+(h-8)/2}" text-anchor="middle" dominant-baseline="central" class="wlab">${unknown ? '?' : v+'kg'}</text>`;
+    x += w + gap;
+  });
+  return out;
+}
+function balanceSVG(tilt, leftHTML, rightHTML){
+  // tilt: 1 = left side down (heavier), -1 = right side down, 0 = level
+  const cx = 210, py = 150, L = 140, th = 9*Math.PI/180;
+  const yl = py + tilt*L*Math.sin(th), yr = py - tilt*L*Math.sin(th), xl = cx - L*Math.cos(th), xr = cx + L*Math.cos(th);
+  const pan = (x, y) => `<path d="M${x-55} ${y-12} L${x+55} ${y-12} L${x+45} ${y} L${x-45} ${y} Z" fill="#F2B134" stroke="#B9860F" stroke-width="2"/>`;
+  return `<svg class="pic" viewBox="0 0 420 240" aria-hidden="true">
+    <polygon points="${cx},${py} ${cx-30},225 ${cx+30},225" fill="#3B4A57"/>
+    <line x1="${xl}" y1="${yl}" x2="${xr}" y2="${yr}" stroke="#3B4A57" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${py}" r="6" fill="#fff"/>
+    ${pan(xl, yl)}${pan(xr, yr)}
+    <g>${leftHTML(xl, yl-12)}</g><g>${rightHTML(xr, yr-12)}</g>
+  </svg>`;
+}
+function cansHTML(list){
+  return `<div class="cans">${list.map(v => `<div class="can s${v}"><div class="cap"></div><div class="lab"><b>${v}</b><span>${t('liter')}</span></div></div>`).join('')}</div>`;
+}
+
+const MONEY = { 20:{bill:true, c:'#6E8FD6'}, 10:{bill:true, c:'#D9706B'}, 5:{bill:true, c:'#8FA89A'}, 2:{bill:false}, 1:{bill:false} };
+function moneyHTML(items){
+  return `<div class="money">${items.map(v => MONEY[v].bill
+    ? `<div class="bill" style="--bc:${MONEY[v].c}"><span class="bv">${v}</span><span class="be">EURO</span></div>`
+    : `<div class="coin c${v}"><span>${v}</span></div>`).join('')}</div>`;
+}
+function shapeSVG(kind){
+  const col = pick(['#F29A2E','#E0569B','#2FA4D8','#24A86E','#5B5BD6']);
+  let el = '';
+  if(kind==='circle')   el = `<circle cx="110" cy="90" r="70"/>`;
+  if(kind==='square')   el = `<rect x="45" y="25" width="130" height="130" rx="4"/>`;
+  if(kind==='rect')     el = pick([`<rect x="15" y="45" width="190" height="90" rx="4"/>`, `<rect x="65" y="10" width="90" height="160" rx="4"/>`]);
+  if(kind==='triangle') el = pick([`<polygon points="110,15 190,160 30,160"/>`, `<polygon points="35,20 35,160 185,160"/>`]);
+  if(kind==='diamond')  el = `<polygon points="110,10 175,90 110,170 45,90"/>`;
+  return `<svg class="pic shape" viewBox="0 0 220 180" aria-hidden="true"><g fill="${col}" stroke="#2B2A4C" stroke-width="3" stroke-linejoin="round">${el}</g></svg>`;
+}
+
+/* --- question makers --- */
+function makeMeasure(kind, prevKey){
+  for(let k=0;k<20;k++){
+    const q = makeMeasureOnce(kind);
+    if(q.key !== prevKey) return q;
+  }
+}
+function makeMeasureOnce(kind){
+  if(kind==='length'){
+    const n = rand(2,12);
+    return { key:'l'+n, art: rulerSVG(n), q: t('qLength'), answer: n+' cm', choices: numChoices(n, 1, 12, v => v+' cm') };
+  }
+  if(kind==='weight'){
+    const n = rand(1,10);
+    return { key:'w'+n, art: scaleSVG(n), q: t('qWeight'), answer: n+' kg', choices: numChoices(n, 0, 10, v => v+' kg') };
+  }
+  if(kind==='volume'){
+    const n = rand(1,10), fmt = v => v+' '+t('liter'), r = Math.random();
+    if(r < .4) return { key:'v'+n, art: bucketSVG(n), q: t('qVolume'), answer: fmt(n), choices: numChoices(n, 1, 10, fmt) };
+    if(r < .7) return { key:'c'+n, art: cartonsHTMLm(n), q: t('qCartons'), answer: fmt(n), choices: numChoices(n, 1, 10, fmt) };
+    const cans = []; const k = rand(2,3); for(let i=0;i<k;i++) cans.push(pick([5,2,2,1,1])); cans.sort((a,b)=>b-a);
+    const tot = cans.reduce((a,b)=>a+b,0);
+    return { key:'j'+cans.join('-'), art: cansHTML(cans), q: t('qCans'), answer: fmt(tot), choices: numChoices(tot, 1, 15, fmt) };
+  }
+  if(kind==='balance'){
+    if(Math.random() < .5){
+      const [o1, o2] = shuffle(['📦','🎁','🧸','🍉','🥥','🎒','⚽','🍍']).slice(0,2), tilt = pick([1,-1]);
+      const em = e => (x, y) => `<text x="${x}" y="${y-4}" text-anchor="middle" font-size="46">${e}</text>`;
+      const choices = [t('left'), t('right')];
+      return { key:'b'+o1+tilt, art: balanceSVG(tilt, em(o1), em(o2)), q: t('qHeavy'), answer: tilt===1 ? choices[0] : choices[1], choices };
+    }
+    const left = []; const k = rand(2,3); for(let i=0;i<k;i++) left.push(rand(1,5));
+    const tot = left.reduce((a,b)=>a+b,0), fmt = v => v+' kg';
+    const art = balanceSVG(0, (x,y) => weightSVGs(left, x, y), (x,y) => weightSVGs([Math.min(tot,6)], x, y, true));
+    return { key:'B'+left.join('-'), art, q: t('qOther'), answer: fmt(tot), choices: numChoices(tot, 1, 15, fmt) };
+  }
+  if(kind==='litre'){
+    const it = pick(LITRE_ITEMS), choices = [t('lessL'), t('moreL')];
+    const art = `<div class="litre"><div class="lbig">${it[0]}</div><div class="lname">${state.lang==='nl' ? it[1] : it[2]}</div>
+      <div class="lref">🥛 ${t('oneLitre')}</div></div>`;
+    return { key:'L'+it[0], art, q: t('qLitre'), answer: it[3] ? choices[1] : choices[0], choices };
+  }
+  if(kind==='pay'){
+    const price = rand(3,20), best = fewest(price);
+    // a longer way to pay the same amount: break one note or coin into smaller ones
+    const alt = best.slice(), bi = alt.findIndex(v => v > 1);
+    const split = { 20:[10,10], 10:[5,5], 5:[2,2,1], 2:[1,1] }[alt[bi]];
+    alt.splice(bi, 1, ...split); alt.sort((a,b)=>b-a);
+    let off; do { off = price + pick([-2,-1,1,2]); } while(off < 1);
+    const wrong = fewest(off);
+    const opts = [best, alt, wrong].map(moneyHTML), answer = opts[0];
+    const art = `<div class="paytag"><span class="pitem">${pick(PAY_ITEMS)}</span><span class="tag">€ ${price}</span></div>`;
+    return { key:'p'+price, art, q: t('qPay'), answer, choices: shuffle(opts), wide:true };
+  }
+  if(kind==='money' && Math.random() < .35){
+    const purse = rand(5,15), coins = []; const k = rand(1,3); for(let i=0;i<k;i++) coins.push(pick([2,2,1]));
+    coins.sort((a,b)=>b-a); const tot = purse + coins.reduce((a,b)=>a+b,0), fmt = v => '€ ' + v;
+    const art = `<div class="pursewrap"><div class="purse"><span>€ ${purse}</span></div><span class="plus">+</span>${moneyHTML(coins)}</div>`;
+    return { key:'P'+purse+coins.join(''), art, q: t('qPurse'), answer: fmt(tot), choices: numChoices(tot, 1, 30, fmt) };
+  }
+  if(kind==='money'){
+    let items, total;
+    do {
+      items = []; const k = rand(2,4);
+      for(let i=0;i<k;i++) items.push(pick([20,10,10,5,5,2,2,1,1]));
+      items.sort((a,b) => b-a); total = items.reduce((a,b)=>a+b,0);
+    } while(total > 30);
+    const fmt = v => '€ ' + v;
+    return { key:'m'+items.join('-'), art: moneyHTML(items), q: t('qMoney'), answer: fmt(total), choices: numChoices(total, 1, 40, fmt) };
+  }
+  const kinds = ['circle','triangle','square','rect','diamond'], sh = pick(kinds), nm = T[state.lang].shapes;
+  const others = shuffle(kinds.filter(x => x!==sh)).slice(0,2);
+  return { key:'s'+sh, art: shapeSVG(sh), q: t('qShape'), answer: nm[sh], choices: shuffle([sh, ...others]).map(x => nm[x]) };
+}
+
+function measureStarsOf(i){ const p = cur(); return p ? (sectionStars(p,'measure')[i] || 0) : 0; }
+
+function renderMeasureLevels(){
+  screen = 'measureLevels';
+  let cards = '';
+  MEASURE_LEVELS.forEach((L,i)=>{
+    cards += `<button class="level" data-mlevel="${i}">
+      <div class="num" style="background:${L.color}">${i+1}</div>
+      <div class="name">${t('measureLv')[i]}</div>
+      <div class="ex">${t('measureEx')[i]}</div>
+      <div class="stars">${starRow(measureStarsOf(i))}</div>
+    </button>`;
+  });
+  $('#main').innerHTML = `
+    <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">📏 ${t('menuMeasure')}</h1></div>
+    <p class="sub">${t('menuMeasureSub')}</p><div class="levels">${cards}</div>`;
+}
+
+function startMeasure(i){
+  mgame = { level:i, q:0, firstTry:0, mistakes:0, results:[], busy:false };
+  mgame.item = makeMeasure(MEASURE_LEVELS[i].kind);
+  screen = 'measure'; renderMeasure();
+}
+function renderMeasure(){
+  let dots = '';
+  for(let k=0;k<MEASURE_PER_SET;k++){ const r = mgame.results[k]; dots += `<div class="dot ${r||''} ${k===mgame.q && !r?'cur':''}"></div>`; }
+  const it = mgame.item;
+  $('#main').innerHTML = `
+    <div class="topbar"><button class="back" data-action="measureLevels" aria-label="back">←</button><div class="dots">${dots}</div></div>
+    <p class="levelname">${t('measureLv')[mgame.level]}</p>
+    <div class="card">
+      <div class="martwrap">${it.art}</div>
+      <div class="hint">${it.q}</div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    <div class="tchoices ${it.wide?'wide':''}">${it.choices.map((c,i) => `<button class="tchoice" data-mchoice="${i}">${c}</button>`).join('')}</div>`;
+}
+function chooseMeasure(btn){
+  if(mgame.busy || btn.disabled) return;
+  const it = mgame.item, picked = it.choices[+btn.dataset.mchoice], fb = $('#feedback');
+  if(picked === it.answer){
+    btn.classList.add('right');
+    mgame.results[mgame.q] = mgame.mistakes===0 ? 'g' : 'o';
+    if(mgame.mistakes===0) mgame.firstTry++;
+    fb.textContent = pick(T[state.lang].good); fb.className = 'feedback good';
+    mgame.busy = true; setTimeout(nextMeasure, 1000);
+  } else {
+    mgame.mistakes++; btn.classList.add('wrong'); btn.disabled = true;
+    if(mgame.mistakes >= 2){
+      mgame.results[mgame.q] = 'r';
+      document.querySelectorAll('.tchoice').forEach(b => { if(it.choices[+b.dataset.mchoice]===it.answer) b.classList.add('right'); });
+      fb.textContent = it.wide ? t('measureShown') : t('measureWas', {w:it.answer}); fb.className = 'feedback bad';
+      mgame.busy = true; setTimeout(nextMeasure, 2200);
+    } else { fb.textContent = t('tryAgain'); fb.className = 'feedback bad'; }
+  }
+}
+function nextMeasure(){
+  if(screen!=='measure') return;
+  mgame.q++;
+  if(mgame.q >= MEASURE_PER_SET) return finishMeasure();
+  Object.assign(mgame, { mistakes:0, busy:false, item: makeMeasure(MEASURE_LEVELS[mgame.level].kind, mgame.item.key) });
+  renderMeasure();
+}
+function finishMeasure(){
+  screen = 'measureResult';
+  const i = mgame.level, earned = starsFor(mgame.firstTry, MEASURE_PER_SET), map = sectionStars(cur(), 'measure');
+  addBrain('math', 1);
+  map[i] = Math.max(map[i] || 0, earned);
+  persist(); renderChrome();
+  const canNext = i+1 < MEASURE_LEVELS.length;
+  $('#main').innerHTML = `
+    <div class="result">
+      <div class="big-stars">${starRow(earned)}</div>
+      <h2>${t('res')[earned]}</h2>
+      <p>${t('measureScore', {c:mgame.firstTry, n:MEASURE_PER_SET})}</p>
+      ${gainHTML(1)}
+      <div class="btns">
+        ${canNext ? `<button class="btn primary" data-action="measureNext">${t('next')}</button>` : ''}
+        <button class="btn ${canNext?'':'primary'}" data-action="measureAgain">${t('again')}</button>
+        <button class="btn" data-action="measureLevels">${t('home')}</button>
+      </div>
+    </div>`;
+  if(earned >= 2) confetti();
+}
+
+/* ============================================================
    EVENTS
    ============================================================ */
 document.addEventListener('click', e => {
@@ -1469,6 +2029,10 @@ document.addEventListener('click', e => {
   const wl = e.target.closest('[data-wlevel]');
   if(wl){ const i = +wl.dataset.wlevel; wordUnlocked(wgame.mode, i) ? startWordLevel(wgame.mode, i)
     : toast(needsReading(wgame.mode, i) ? t('needRead', {lvl: t('readLv')[WORD_LEVELS[i].needRead]}) : t('locked')); return; }
+  const ml = e.target.closest('[data-mlevel]');
+  if(ml){ startMeasure(+ml.dataset.mlevel); return; }
+  const mc = e.target.closest('[data-mchoice]');
+  if(mc){ chooseMeasure(mc); return; }
   const cl = e.target.closest('[data-clevel]');
   if(cl){ const i = +cl.dataset.clevel; clockUnlocked(i) ? startClock(i) : toast(t('locked')); return; }
   const ct = e.target.closest('[data-ctime]');
@@ -1502,7 +2066,7 @@ document.addEventListener('click', e => {
         <button class="btn danger" data-action="resetYes">${t('resetYes')}</button></div>`;
     if(a==='resetYes'){
       const ep = state.profiles.find(x => x.id===editing.id);
-      ep.stars = {}; ep.starsRead = {}; ep.starsWrite = {}; ep.starsClock = {}; ep.brainBy = {math:0, read:0, write:0}; ep.days = []; delete ep.brain; persist();
+      ep.stars = {}; ep.starsRead = {}; ep.starsWrite = {}; ep.starsClock = {}; ep.starsMeasure = {}; ep.brainBy = {math:0, read:0, write:0}; ep.days = []; delete ep.brain; persist();
       editing.name = $('#pname').value; drawForm(); toast(t('resetDone'));
     }
     if(a==='flip') flipCard();
@@ -1517,6 +2081,9 @@ document.addEventListener('click', e => {
     if(a==='klank'){ const p = cur(); if(p){ p.klank = !klankOn(); persist(); renderWordLevels('read'); } }
     if(a==='math') renderMathMenu();
     if(a==='clockPick' || a==='clockLevels') renderClockLevels();
+    if(a==='measurePick' || a==='measureLevels') renderMeasureLevels();
+    if(a==='measureAgain') startMeasure(mgame.level);
+    if(a==='measureNext') startMeasure(mgame.level+1);
     if(a==='clockAgain') startClock(cgame.level);
     if(a==='clockNext') startClock(cgame.level+1);
     if(a==='read' || a==='write') renderWordLevels(a);
@@ -1543,15 +2110,17 @@ document.addEventListener('keydown', e => {
   if(/^[0-9]$/.test(e.key)) press(e.key);
   else if(e.key==='Backspace') press('del');
   else if(e.key==='Enter') press('ok');
+  else if(e.key==='+' || e.key==='-') press(e.key);
 });
 function rerender(){
   if(screen==='home') renderHome();
   else if(screen==='menu') renderMenu();
   else if(screen==='math') renderMathMenu();
   else if(screen==='clockLevels' || screen==='clock' || screen==='clockResult') renderClockLevels();
+  else if(screen==='measureLevels' || screen==='measure' || screen==='measureResult') renderMeasureLevels();
   else if(screen==='wordLevels' || screen==='word' || screen==='wordResult' || screen==='sound') renderWordLevels(wgame.mode);
   else if(screen==='flashPick') renderFlashPick();
-  else if(screen==='play'){ const inp = game.input; renderPlay(); game.input = inp; updateAnswer(); }
+  else if(screen==='play'){ renderPlay(); }
   else if(screen==='flash') renderFlash();
   else if(screen==='who') renderWho();
   else if(screen==='profileForm'){ editing.name = $('#pname').value; drawForm(); }
