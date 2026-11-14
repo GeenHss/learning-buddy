@@ -1491,8 +1491,18 @@ function rerender(){
 
 // Offline support when installed as an app (ignored where not allowed, e.g. inside Claude)
 try{
-  if('serviceWorker' in navigator && location.protocol==='https:' && !/claude\.ai|claudeusercontent/.test(location.hostname))
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  if('serviceWorker' in navigator && location.protocol==='https:' && !/claude\.ai|claudeusercontent/.test(location.hostname)){
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloaded = false;
+    // When a new version has been installed, reload once so it shows straight away
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if(hadController && !reloaded){ reloaded = true; location.reload(); }
+    });
+    navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(reg => {
+      // Home-screen apps often resume instead of restarting: check for updates when it comes back
+      document.addEventListener('visibilitychange', () => { if(!document.hidden) reg.update().catch(()=>{}); });
+    }).catch(()=>{});
+  }
 }catch(e){}
 
 // Start: new device → create the first profile; otherwise ask who is playing.
