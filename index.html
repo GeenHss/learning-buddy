@@ -442,7 +442,7 @@ const T = {
     qPay:'Betaal gepast met zo weinig mogelijk biljetten en munten.', measureShown:'Kijk: dit is het goede antwoord.',
     qLength:'Hoe lang is de lijn?', qWeight:'Hoe zwaar is het?', qVolume:'Hoeveel liter zit er in de emmer?',
     qCartons:'Hoeveel liter is het samen? 1 melkpak = 1 liter.', qMoney:'Hoeveel geld is het samen?', qShape:'Welke vorm is dit?',
-    liter:'liter', shapes:{circle:'cirkel', triangle:'driehoek', square:'vierkant', rect:'rechthoek', diamond:'ruit'},
+    liter:'liter', shapes:{circle:'cirkel', triangle:'driehoek', square:'vierkant', rect:'rechthoek'},
     measureScore:'{c} van de {n} meteen goed', measureWas:'Het antwoord is {w}',
     menuClock:'Klokkijken', menuClockSub:'Hoe laat is het?', clockQ:'Hoe laat is het?',
     clockLv:['Hele uren','Halve uren','Kwartieren','Digitale klok'], clockEx:['3 uur','half 4','kwart over 3','08:30 = half 9'],
@@ -498,7 +498,7 @@ const T = {
     qPay:'Pay exactly, with as few notes and coins as possible.', measureShown:'Look: this is the right answer.',
     qLength:'How long is the line?', qWeight:'How heavy is it?', qVolume:'How many litres are in the bucket?',
     qCartons:'How many litres together? 1 carton = 1 litre.', qMoney:'How much money is it together?', qShape:'What shape is this?',
-    liter:'litres', shapes:{circle:'circle', triangle:'triangle', square:'square', rect:'rectangle', diamond:'diamond'},
+    liter:'litres', shapes:{circle:'circle', triangle:'triangle', square:'square', rect:'rectangle'},
     measureScore:'{c} of {n} right on the first try', measureWas:'The answer is {w}',
     menuClock:'Telling time', menuClockSub:'What time is it?', clockQ:'What time is it?',
     clockLv:["O'clock",'Half past','Quarter past and to','Digital clock'], clockEx:["3 o'clock",'half past 3','quarter past 3','08:30 = half past 8'],
@@ -1848,7 +1848,6 @@ function shapeSVG(kind){
   if(kind==='square')   el = `<rect x="45" y="25" width="130" height="130" rx="4"/>`;
   if(kind==='rect')     el = pick([`<rect x="15" y="45" width="190" height="90" rx="4"/>`, `<rect x="65" y="10" width="90" height="160" rx="4"/>`]);
   if(kind==='triangle') el = pick([`<polygon points="110,15 190,160 30,160"/>`, `<polygon points="35,20 35,160 185,160"/>`]);
-  if(kind==='diamond')  el = `<polygon points="110,10 175,90 110,170 45,90"/>`;
   return `<svg class="pic shape" viewBox="0 0 220 180" aria-hidden="true"><g fill="${col}" stroke="#2B2A4C" stroke-width="3" stroke-linejoin="round">${el}</g></svg>`;
 }
 
@@ -1922,7 +1921,7 @@ function makeMeasureOnce(kind){
     const fmt = v => '€ ' + v;
     return { key:'m'+items.join('-'), art: moneyHTML(items), q: t('qMoney'), answer: fmt(total), choices: numChoices(total, 1, 40, fmt) };
   }
-  const kinds = ['circle','triangle','square','rect','diamond'], sh = pick(kinds), nm = T[state.lang].shapes;
+  const kinds = ['circle','triangle','square','rect'], sh = pick(kinds), nm = T[state.lang].shapes;
   const others = shuffle(kinds.filter(x => x!==sh)).slice(0,2);
   return { key:'s'+sh, art: shapeSVG(sh), q: t('qShape'), answer: nm[sh], choices: shuffle([sh, ...others]).map(x => nm[x]) };
 }
