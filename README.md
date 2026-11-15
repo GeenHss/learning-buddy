@@ -1,4 +1,4 @@
-# Learning Buddy
+# Leermaatje (Learning buddy)
 
 A small learning app for young children: maths (sums, number splits, telling time), reading (sounds and words) and writing. Dutch and English.
 

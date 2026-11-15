@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Buddy</title>
+<title>Leermaatje</title>
 <!-- Installable app (PWA) -->
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#FFF8EC">
+<meta name="theme-color" content="#EAF5FF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Learning Buddy">
+<meta name="apple-mobile-web-app-title" content="Leermaatje">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
@@ -18,8 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FFF8EC; --ink:#2B2A4C; --muted:#77769A; --card:#FFFFFF; --line:#EFE5D2;
-    --primary:#5B5BD6; --primary-d:#4141B5; --good:#24A86E; --ok:#F29A2E; --bad:#EE5D52; --star:#FFC233;
+    --bg:#EAF5FF; --ink:#22304F; --muted:#55627F; --card:#FFFFFF; --line:#CFE2F5;
+    --primary:#2F7FD8; --primary-d:#1F5FA8; --good:#1F9D6B; --ok:#F29A2E; --bad:#E5534B; --star:#FFB81F;
   }
   *{box-sizing:border-box}
   html,body{margin:0;min-height:100%}
@@ -57,7 +57,7 @@
   .level .stars{margin-top:auto;font-size:22px;letter-spacing:2px}
   .level.locked{opacity:.55;cursor:not-allowed}
   .level.locked .num{background:#B9B6CC!important}
-  .star-on{color:var(--star)} .star-off{color:#E3DCCD}
+  .star-on{color:var(--star)} .star-off{color:#CBD9E8}
   .lock{position:absolute;right:12px;top:12px;font-size:20px}
 
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;
@@ -68,7 +68,7 @@
   .topbar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   .back{border:2px solid var(--line);background:#fff;border-radius:14px;width:48px;height:48px;font-size:22px;flex:none}
   .dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
-  .dot{flex:1;min-width:14px;height:14px;border-radius:999px;background:#E9E1D0}
+  .dot{flex:1;min-width:14px;height:14px;border-radius:999px;background:#D5E6F7}
   .dot.cur{background:#C9C7F3;outline:3px solid var(--primary);outline-offset:1px}
   .dot.g{background:var(--good)} .dot.o{background:var(--ok)} .dot.r{background:var(--bad)}
   .levelname{color:var(--muted);font-size:17px;margin:0 0 8px;text-align:center}
@@ -177,7 +177,7 @@
   .week-top span{font-size:15px;color:var(--muted);font-weight:600}
   .days{display:flex;gap:6px;margin:8px 0 6px}
   .day{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-  .dc{width:100%;max-width:38px;aspect-ratio:1;border-radius:50%;background:#F3ECDF;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px}
+  .dc{width:100%;max-width:38px;aspect-ratio:1;border-radius:50%;background:#E3EEF9;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px}
   .day.done .dc{background:#F97316}
   .day.today .dc{outline:3px solid #F97316;outline-offset:2px}
   .dl{font-size:13px;color:var(--muted);font-weight:600}
@@ -224,7 +224,7 @@
   .choice.wrong{border-color:var(--bad);background:#FDECEA;opacity:.6;animation:shake .4s}
   .wpic{font-size:96px;line-height:1.1;margin:4px 0 10px}
   .slots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-  .slot{width:52px;height:64px;border-radius:14px;border:3px dashed #E6C79C;background:#FFF8EC;display:grid;place-items:center;font-size:40px;font-weight:600;color:var(--ink)}
+  .slot{width:52px;height:64px;border-radius:14px;border:3px dashed #E6C79C;background:#EAF5FF;display:grid;place-items:center;font-size:40px;font-weight:600;color:var(--ink)}
   .slot.cur{border-style:solid;border-color:var(--ok)}
   .slot.done{border-style:solid;border-color:#E6C79C;background:#fff}
   .slot.bad{border-color:var(--bad);background:#FDECEA}
@@ -326,6 +326,47 @@
   .digital{display:inline-block;margin:10px auto 14px;padding:10px 26px;border-radius:18px;background:#E9EEF2;border:6px solid #2B2A4C;
            font-family:'Courier New',monospace;font-size:64px;font-weight:700;letter-spacing:4px;color:#1B3A2A;box-shadow:inset 0 3px 6px rgba(0,0,0,.15)}
 
+  /* ---- Daily practice, sound, parents ---- */
+  .todaycard{background:#fff;border:3px solid var(--line);border-radius:28px;box-shadow:0 6px 0 var(--line);padding:16px 18px;margin:4px 0 18px}
+  .today-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .today-head h2{margin:0;font-size:28px} .today-head p{margin:2px 0 0;color:var(--muted);font-size:17px}
+  .today-btns{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .tbtn{background:var(--primary);color:#fff;border:0;border-radius:22px;box-shadow:0 6px 0 var(--primary-d);padding:14px 16px;text-align:left;display:flex;flex-direction:column;gap:8px}
+  .tbtn:nth-child(2){background:#FF9A3D;box-shadow:0 6px 0 #D97618}
+  .tbtn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--primary-d)}
+  .tbtn-t{font-size:26px;font-weight:700}
+  .sbar-top{display:flex;justify-content:space-between;gap:8px;font-size:15px;font-weight:500}
+  .sbar-top b{font-weight:600}
+  .tbtn .bar{background:rgba(255,255,255,.35);height:12px;margin:4px 0 0}
+  .tbtn .bar div{background:#fff}
+  .result-bar{max-width:340px;margin:0 auto 18px;text-align:left;color:var(--ink)}
+  .result-bar .bar div{background:var(--good)} .result-bar .bar{background:#DDEEE6}
+  .result p.stepup{color:var(--good);font-weight:600}
+  .result .buddy{display:block;margin:0 auto}
+  .sec{font-size:24px;margin:8px 0 10px}
+  .picbtn{border:0;background:transparent;font-size:100px;line-height:1.1;padding:0;margin:0 0 8px}
+  .choices.four{grid-template-columns:repeat(4,1fr);max-width:560px}
+  .ltile.big{width:84px;height:84px;font-size:42px}
+  .ltile.right,.ltile.big.right{border-color:var(--good);background:#E8F7EF;color:var(--good)}
+  .ltile.wrong{border-color:var(--bad);background:#FDECEA;opacity:.55;animation:shake .4s}
+  .fselect{font:inherit;font-size:18px;padding:10px 12px;border:3px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);width:100%}
+  .fhelp{font-size:14px;color:var(--muted);margin-top:-6px}
+  .progress{background:#fff;border:3px solid var(--line);border-radius:24px;padding:16px 20px;max-width:520px;margin-top:16px;display:flex;flex-direction:column;gap:6px}
+  .sec2{font-size:22px;margin:0 0 4px}
+  .prow{display:grid;grid-template-columns:1fr 90px 52px;gap:8px;align-items:center;font-size:15px;padding:2px 0}
+  .prow.now{font-weight:600}
+  .pbar{height:10px;border-radius:999px;background:#E3EEF9;overflow:hidden;display:block}
+  .pbar i{display:block;height:100%;background:var(--good);border-radius:999px}
+  .pc{text-align:right;color:var(--muted);font-size:14px}
+  .hardrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;margin:4px 0 8px}
+  .hardrow span{color:var(--muted);font-weight:600}
+  .hardrow em{font-style:normal;background:#FDECEA;color:#B23A33;border-radius:999px;padding:2px 10px;font-weight:600}
+  /* results are not shown by colour alone */
+  .dot.g::after,.dot.o::after,.dot.r::after{display:block;text-align:center;font-size:11px;line-height:14px;color:#fff;font-weight:700}
+  .dot.g::after{content:"✓"} .dot.o::after{content:"~"} .dot.r::after{content:"•"}
+  .readword,.sound-word,.slot,.ltile{letter-spacing:.06em}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} .confetti{display:none} }
+
   /* Front page tiles */
   .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:6px}
   .tile{background:#fff;border:3px solid var(--line);border-radius:28px;box-shadow:0 6px 0 var(--line);padding:22px 20px 18px;
@@ -360,6 +401,78 @@
     .sum{font-size:50px;gap:10px} .answer{min-width:96px;height:78px}
     .group{font-size:28px} .key{height:62px}
   }
+
+  /* ================= Layout v2 =================
+     Home: one clear first action, then a compact grid. Exercises: question and
+     answer side by side on a wide screen, stacked on a narrow one. */
+  body{background:linear-gradient(180deg,#D6EBFF 0,#EAF5FF 360px) no-repeat var(--bg)}
+  .app{max-width:860px;padding:14px 18px 32px;position:relative}
+  header{margin-bottom:14px;flex-wrap:nowrap}
+  .brand{font-size:22px} .brand .logo{width:36px;height:36px;font-size:20px;border-radius:11px}
+  h1,h2{text-wrap:balance}
+  :focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+  #starPill,#brainPill{display:none!important}
+  body:not([data-screen=who]):not([data-screen=profileForm]) .lang{display:none}
+  body:not([data-screen=play]):not([data-screen=practice]) #picToggle{display:none!important}
+  body:is([data-screen=play],[data-screen=flash],[data-screen=word],[data-screen=sound],[data-screen=clock],[data-screen=measure],[data-screen=practice]) :is(.brand,#whoBtn){display:none!important}
+  body:is([data-screen=play],[data-screen=flash],[data-screen=word],[data-screen=sound],[data-screen=clock],[data-screen=measure],[data-screen=practice]) header{position:absolute;right:18px;top:19px;margin:0;z-index:2}
+  body:is([data-screen=play],[data-screen=practice]) .topbar{padding-right:180px}
+  /* home */
+  .hello{display:flex;align-items:center;gap:14px;margin:2px 0 14px}
+  .hello-av{width:64px;height:64px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;font-size:36px;flex:none}
+  .hello h1{margin:0 0 6px;font-size:28px}
+  .chips2{display:flex;flex-wrap:wrap;gap:6px}
+  .chip2{background:#fff;border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-size:15px;font-weight:600;white-space:nowrap}
+  .chip2.b{color:#B8336A}
+  .todaycard{margin:0 0 14px;border-width:2px;box-shadow:0 5px 0 var(--line)}
+  .week{padding:10px 16px;gap:14px;box-shadow:none;border-width:2px;margin:0 0 22px}
+  .flame{width:72px;height:72px;border-radius:18px} .fnum{font-size:24px} .flab{font-size:11px}
+  .dc{max-width:30px;font-size:15px} .week-top{font-size:17px} .days{margin:6px 0 4px}
+  .sec{font-size:19px;margin:0 0 10px;color:var(--muted);font-weight:600}
+  .grid6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .qt{background:#fff;border:2px solid var(--line);border-radius:22px;box-shadow:0 4px 0 var(--line);padding:14px;display:flex;align-items:center;gap:12px;text-align:left;min-height:86px}
+  .qt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+  .qt-ico{width:52px;height:52px;border-radius:16px;background:var(--tl);color:var(--tc);display:grid;place-items:center;font-size:26px;font-weight:700;flex:none}
+  .qt-name{font-size:20px;font-weight:600;display:block;line-height:1.15}
+  .qt-meta{font-size:14px;color:var(--muted);font-weight:500;display:block;margin-top:2px}
+  @media (max-width:640px){ .grid6{grid-template-columns:repeat(2,minmax(0,1fr))} .qt{flex-direction:column;align-items:flex-start;gap:8px} }
+  /* exercises */
+  .card{min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-width:2px;box-shadow:0 5px 0 var(--line)}
+  .level{border-width:2px;box-shadow:0 4px 0 var(--line)}
+  @media (min-width:900px) and (orientation:landscape){
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) .app{max-width:1080px}
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) #main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:28px;align-items:center;align-content:start}
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) #main > .topbar, body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) #main > .levelname{grid-column:1/-1}
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) #main > :is(.pad,.choices,.tchoices,.letters){margin-top:0;width:100%}
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) .card{min-height:min(560px,calc(100vh - 170px))}
+    body:is([data-screen=play],[data-screen=word],[data-screen=clock],[data-screen=measure],[data-screen=practice]) .key{height:78px}
+  }
+  @media (min-height:1000px) and (orientation:portrait){ .card{min-height:420px} .pad{max-width:440px} .key{height:80px} .ltile{width:76px;height:80px;font-size:40px} }
+  .avatars{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .story{font-size:26px;font-weight:500;line-height:1.4;max-width:30em;margin:6px 12px 10px;text-wrap:pretty}
+  .story.big{font-size:44px;font-weight:700}
+  .sum.mid{font-size:52px;flex-wrap:wrap}
+  .answer.long{min-width:190px;font-size:48px}
+  .unit{font-size:32px;color:var(--muted);font-weight:600}
+  .dot.t{background:#8FB2DA}
+  .tchoice.picked{border-color:var(--primary);background:#E6F1FD}
+  .testrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;font-size:16px;color:var(--muted);font-weight:500}
+  .chipbtn{border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px;font-size:16px;font-weight:600}
+  .chipbtn:active{transform:translateY(2px)}
+  .report{background:#fff;border:2px solid var(--line);border-radius:20px;padding:14px 18px;max-width:560px;margin:0 auto 14px;text-align:left;display:flex;flex-direction:column;gap:6px}
+  .report h3{margin:0;font-size:18px}
+  .wronglist{margin:0;padding-left:20px;font-size:17px;display:flex;flex-direction:column;gap:6px}
+  .wronglist b{color:var(--good);margin-left:6px} .wronglist em{font-style:normal;color:var(--muted);font-size:15px}
+  @media (max-width:520px){ .story{font-size:21px} .story.big{font-size:32px} .sum.mid{font-size:36px} .answer.long{min-width:140px;font-size:36px} }
+  /* settings */
+  .formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-items:start}
+  .form{max-width:none;border-width:2px}
+  .savebtn{display:block;width:100%;max-width:420px;margin:16px auto 0}
+  .progress{max-width:none;border-width:2px}
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:6px 28px}
+  .pgrid > div{display:flex;flex-direction:column;gap:6px}
+  .danger{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 24px;margin-top:10px}
+  .danger .reset-row{margin-top:8px}
 </style>
 </head>
 <body>
@@ -408,7 +521,7 @@ const OBJECTS = ['🍎','🐟','⭐','🚗','🐞','🍓','🎈','🐥','⚽','�
 /* Texts in both languages */
 const T = {
   nl:{
-    brand:'Learning Buddy', pictures:'Plaatjes', pick:'Kies een level', pickSub:'Kies zelf een level en verdien sterren!',
+    brand:'Leermaatje', pictures:'Plaatjes', pick:'Kies een level', pickSub:'Kies zelf een level en verdien sterren!',
     names:{add:'Plussommen tot {n}', sub:'Minsommen tot {n}', mix:'Plus en min tot {n}'},
     kindNames:{line:'Getallenlijn tot 20', bridge:'Over de 10 met splitsen', double:'Dubbelen en helften', missing:'Welk getal mist?', plusmin:'Plus of min?'},
     dblOf:'Het dubbele van {n} is', halfOf:'De helft van {n} is',
@@ -458,6 +571,31 @@ const T = {
     soundQ:'Welke klank is dit? Zeg hem hardop en tik om de kaart om te draaien.', soundScore:'{c} van de {n} klanken wist je meteen',
     readQ:'Welk plaatje hoort bij dit woord?', writeQ:'Tik de klanken op de goede volgorde.',
     wordWas:'Het woord was: {w}', wordScore:'{c} van de {n} woorden meteen goed',
+    prTitle:'Vandaag oefenen', prSub:'10 vragen, precies op jouw niveau.', prMathBtn:'Rekenen', prLangBtn:'Taal', prFree:'Zelf kiezen',
+    prHowMany:'Hoeveel?', prKlankQ:'Welke klank mist?', prLook:'Bijna! Kijk naar het plaatje.',
+    prDone:'Klaar! Goed gewerkt.', prScore:'{c} van de {n} meteen goed', prStepUp:'Nieuwe stap: {s}', prMore:'Nog 10 vragen', prHome:'Naar het begin',
+    groep:'Groep', qAfter:'Welk getal komt na {n}?', qBefore:'Welk getal komt voor {n}?', qRound:'Rond {n} af op een honderdtal.', divSym:':', wRest:'rest', wOf:'van', wEqual:'even veel',
+    qFracMore:'Wat is meer: {a} of {b}?', qPerim:'Een rechthoek is {l} m lang en {b} m breed. Hoe groot is de omtrek?', qArea:'Een rechthoek is {l} m lang en {b} m breed. Hoe groot is de oppervlakte?',
+    units:{h:'uur', min:'minuten', minute:'minuten', sec:'seconden', week:'weken', day:'dagen'},
+    testTitle:'Toets oefenen (20 vragen, zonder hulp):', testDone:'De toets is klaar!', testScore:'{c} van de {n} goed', testLook:'Kijk deze nog eens samen na', testYours:'(jouw antwoord: {a})', testPractise:'Verder oefenen',
+    formChild:'Profiel', formParents:'Voor ouders: waar beginnen?',
+    prStartMath:'Rekenen: begin bij stap', prStartLang:'Taal: begin bij stap', prStartHelp:'De app gaat vanzelf naar de volgende stap als een stap goed gaat.',
+    prProgress:'Voortgang', prHard:'Nog lastig:',
+    skill:{tel5:'Tellen tot 5', tel10:'Tellen tot 10', plus5:'Plus tot 5', min5:'Min tot 5', split5:'Splitsingen tot 5', split7:'Splitsingen van 6 en 7',
+      split9:'Splitsingen van 8 en 9', split10:'Splitsingen van 10', plus10:'Plus tot 10', min10:'Min tot 10', dubbel:'Dubbelen', plus20:'Plus tot 20',
+      min20:'Min tot 20', brugp:'Plus over de 10', brugm:'Min over de 10', klank1:'Klanken 1', klank2:'Klanken 2', lees1:'Korte woorden lezen',
+      schrijf1:'Korte woorden schrijven', klank3:'Lange klanken en tweetekenklanken', klank4:'Moeilijke klanken (ng, sch …)',
+      lees2:'Woorden met moeilijke klanken lezen', schrijf2:'Woorden met moeilijke klanken schrijven', lees3:'Lange woorden lezen', schrijf3:'Lange woorden schrijven',
+      te100:'Tientallen en eenheden', buur100:'Getallenlijn tot 100', plus100a:'Plus tot 100', min100a:'Min tot 100', taf2:'Tafel van 2', taf10:'Tafel van 10', taf5:'Tafel van 5',
+      plus100b:'Plus tot 100 over het tiental', min100b:'Min tot 100 over het tiental', taf3:'Tafel van 3', taf4:'Tafel van 4', verh4:'Verhaaltjessommen groep 4',
+      taf6:'Tafel van 6', taf7:'Tafel van 7', taf8:'Tafel van 8', taf9:'Tafel van 9', deel1:'Delen door 2, 5 en 10', deel2:'Delen door 3, 4 en 6', deel3:'Delen door 7, 8 en 9',
+      te1000:'Getallen tot 1000', plus1000a:'Plus tot 1000', min1000a:'Min tot 1000', plus1000b:'Plus tot 1000 over het honderdtal', min1000b:'Min tot 1000 over het honderdtal',
+      keer10:'Keer met tientallen', verh5:'Verhaaltjessommen groep 5', rest:'Delen met rest', groot:'Getallen tot 10.000', keer6:'Grote keersommen', deel6:'Grote deelsommen',
+      breuk:'Breuken: deel van een getal', breukv:'Breuken vergelijken', komma:'Rekenen met geld', meten:'Maten omrekenen', omtrek:'Omtrek en oppervlakte', verh6:'Verhaaltjessommen groep 6',
+      sp_sch:'Spelling: sch en schr', sp_ng:'Spelling: ng en nk', sp_cht:'Spelling: cht', sp_vz:'Spelling: f/v en s/z', sp_ei:'Spelling: ei en ij', sp_au:'Spelling: au en ou',
+      sp_dt:'Spelling: d of t aan het eind', sp_aai:'Spelling: aai, ooi, oei, eeuw, ieuw', sp_open:'Spelling: bomen en bommen (open en gesloten)', sp_ig:'Spelling: -ig en -lijk',
+      sp_mv:"Spelling: meervoud met 's", sp_c:'Spelling: c en -tie', ww_tt:'Werkwoorden: tegenwoordige tijd', ww_vt:'Werkwoorden: verleden tijd',
+      gr_woord:'Woordsoorten', gr_zin:'Onderwerp en persoonsvorm'},
     whatToDo:'Wat wil je doen?', menuSums:'Sommen', menuSumsSub:'Plus en min, level voor level', menuFlash:'Flitskaarten', menuFlashSub:'Oefen de splitsingen', otherCards:'Andere kaarten kiezen',
     who:'Wie speelt er?', whoSub:'Tik op je eigen profiel.', newProfile:'Nieuw profiel', player:'Speler {n}', hi:'Hoi {name}!',
     nameLabel:'Naam', namePh:'Typ een naam', avatarLabel:'Kies een dier', save:'Opslaan', editProfile:'Profiel aanpassen',
@@ -465,7 +603,7 @@ const T = {
     reset:'↺ Alles opnieuw beginnen', resetAsk:'Alle sterren, hersenkracht en dagen van {name} wissen en opnieuw beginnen?', resetYes:'Ja, wissen', cancel:'Nee', resetDone:'Alles is gewist. Veel plezier! ⭐'
   },
   en:{
-    brand:'Learning Buddy', pictures:'Pictures', pick:'Pick a level', pickSub:'Pick any level and earn stars!',
+    brand:'Learning buddy', pictures:'Pictures', pick:'Pick a level', pickSub:'Pick any level and earn stars!',
     names:{add:'Adding up to {n}', sub:'Taking away up to {n}', mix:'Add and take away to {n}'},
     kindNames:{line:'Number line to 20', bridge:'Past 10 by splitting', double:'Doubles and halves', missing:'Missing number', plusmin:'Plus or minus?'},
     dblOf:'Double {n} is', halfOf:'Half of {n} is',
@@ -515,6 +653,27 @@ const T = {
     soundQ:'What sound is this? Say it out loud, then tap to flip the card.', soundScore:'You knew {c} of {n} sounds straight away',
     readQ:'Which picture goes with this word?', writeQ:'Tap the sounds in the right order.',
     wordWas:'The word was: {w}', wordScore:'{c} of {n} words right on the first try',
+    prTitle:"Today's practice", prSub:'10 questions, right at your level.', prMathBtn:'Maths', prLangBtn:'Language', prFree:'Choose yourself',
+    prHowMany:'How many?', prKlankQ:'Which sound is missing?', prLook:'Almost! Look at the picture.',
+    prDone:'Done! Good work.', prScore:'{c} of {n} right on the first try', prStepUp:'New step: {s}', prMore:'10 more questions', prHome:'Back to start',
+    groep:'Group', qAfter:'Which number comes after {n}?', qBefore:'Which number comes before {n}?', qRound:'Round {n} to the nearest hundred.', divSym:'÷', wRest:'remainder', wOf:'of', wEqual:'the same',
+    qFracMore:'Which is more: {a} or {b}?', qPerim:'A rectangle is {l} m long and {b} m wide. What is the perimeter?', qArea:'A rectangle is {l} m long and {b} m wide. What is the area?',
+    units:{h:'hours', min:'minutes', minute:'minutes', sec:'seconds', week:'weeks', day:'days'},
+    testTitle:'Practise a test (20 questions, no help):', testDone:'The test is finished!', testScore:'{c} of {n} right', testLook:'Look at these again together', testYours:'(your answer: {a})', testPractise:'Keep practising',
+    formChild:'Profile', formParents:'For parents: where to start?',
+    prStartMath:'Maths: start at step', prStartLang:'Language: start at step', prStartHelp:'The app moves on to the next step by itself when a step goes well.',
+    prProgress:'Progress', prHard:'Still hard:',
+    skill:{tel5:'Counting to 5', tel10:'Counting to 10', plus5:'Adding to 5', min5:'Taking away to 5', split5:'Splits up to 5', split7:'Splits of 6 and 7',
+      split9:'Splits of 8 and 9', split10:'Splits of 10', plus10:'Adding to 10', min10:'Taking away to 10', dubbel:'Doubles', plus20:'Adding to 20',
+      min20:'Taking away to 20', brugp:'Adding past 10', brugm:'Taking away past 10', klank1:'Sounds 1', klank2:'Sounds 2', lees1:'Reading short words',
+      schrijf1:'Writing short words', klank3:'Long and two-letter sounds', klank4:'Tricky sounds (ng, sh …)',
+      lees2:'Reading words with tricky sounds', schrijf2:'Writing words with tricky sounds', lees3:'Reading long words', schrijf3:'Writing long words',
+      te100:'Tens and ones', buur100:'Number line to 100', plus100a:'Adding to 100', min100a:'Taking away to 100', taf2:'2 times table', taf10:'10 times table', taf5:'5 times table',
+      plus100b:'Adding to 100 past a ten', min100b:'Taking away to 100 past a ten', taf3:'3 times table', taf4:'4 times table', verh4:'Story sums group 4',
+      taf6:'6 times table', taf7:'7 times table', taf8:'8 times table', taf9:'9 times table', deel1:'Dividing by 2, 5 and 10', deel2:'Dividing by 3, 4 and 6', deel3:'Dividing by 7, 8 and 9',
+      te1000:'Numbers to 1000', plus1000a:'Adding to 1000', min1000a:'Taking away to 1000', plus1000b:'Adding to 1000 past a hundred', min1000b:'Taking away to 1000 past a hundred',
+      keer10:'Multiplying with tens', verh5:'Story sums group 5', rest:'Division with remainder', groot:'Numbers to 10,000', keer6:'Big multiplications', deel6:'Big divisions',
+      breuk:'Fractions of a number', breukv:'Comparing fractions', komma:'Sums with money', meten:'Converting measures', omtrek:'Perimeter and area', verh6:'Story sums group 6'},
     whatToDo:'What do you want to do?', menuSums:'Sums', menuSumsSub:'Adding and taking away, level by level', menuFlash:'Flashcards', menuFlashSub:'Practise number splits', otherCards:'Choose other cards',
     who:"Who's playing?", whoSub:'Tap your own profile.', newProfile:'New profile', player:'Player {n}', hi:'Hi {name}!',
     nameLabel:'Name', namePh:'Type a name', avatarLabel:'Pick an animal', save:'Save', editProfile:'Edit profile',
@@ -749,6 +908,7 @@ let game = null;
 function renderChrome(){
   document.documentElement.lang = state.lang;
   $('#brandName').textContent = t('brand');
+  document.title = t('brand');
   $('#totalStars').textContent = totalStars();
   document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang===state.lang));
   $('#picLabel').textContent = t('pictures');
@@ -784,31 +944,44 @@ function renderProfileForm(id){
   const p = id ? state.profiles.find(x => x.id===id) : null;
   editing = { id, name: p ? p.name : '',
               avatar: p ? p.avatar : (AVATARS.find(a => !state.profiles.some(q => q.avatar===a)) || AVATARS[0]) };
+  editing.start = { math: (p && p.start && p.start.math) || 0, lang: (p && p.start && p.start.lang) || 0 };
   drawForm();
 }
 function drawForm(){
   const av = AVATARS.map(a => `<button class="av ${a===editing.avatar?'on':''}" data-avatar="${a}">${a}</button>`).join('');
+  const p = editing.id ? state.profiles.find(x => x.id===editing.id) : null;
   $('#main').innerHTML = `
-    <div class="topbar"><button class="back" data-action="who" aria-label="back">←</button></div>
-    <h1>${editing.id ? t('editProfile') : t('newProfile')}</h1>
-    <div class="form">
-      <label class="flabel" for="pname">${t('nameLabel')}</label>
-      <input id="pname" class="finput" maxlength="16" placeholder="${t('namePh')}" value="${esc(editing.name)}" autocomplete="off">
-      <div class="flabel">${t('avatarLabel')}</div>
-      <div class="avatars">${av}</div>
-      <button class="btn primary" data-action="saveProfile">${t('save')}</button>
-      ${editing.id ? `<div class="reset-row" id="resetRow"><button class="linkbtn" data-action="resetAsk">${t('reset')}</button></div>` : ''}
-      ${editing.id ? `<div class="reset-row" id="delRow"><button class="linkbtn" data-action="delAsk">${t('del')}</button></div>` : ''}
-    </div>`;
+    <div class="topbar"><button class="back" data-action="who" aria-label="back">←</button><h1 class="inline">${editing.id ? t('editProfile') : t('newProfile')}</h1></div>
+    <div class="formgrid">
+      <div class="form">
+        <h2 class="sec2">${t('formChild')}</h2>
+        <label class="flabel" for="pname">${t('nameLabel')}</label>
+        <input id="pname" class="finput" maxlength="16" placeholder="${t('namePh')}" value="${esc(editing.name)}" autocomplete="off">
+        <div class="flabel">${t('avatarLabel')}</div>
+        <div class="avatars">${av}</div>
+      </div>
+      <div class="form">
+        <h2 class="sec2">${t('formParents')}</h2>
+        <label class="flabel" for="start_math">${t('prStartMath')}</label>${startSelect('math', editing.start.math)}
+        <label class="flabel" for="start_lang">${t('prStartLang')}</label>${startSelect('lang', editing.start.lang)}
+        <div class="fhelp">${t('prStartHelp')}</div>
+      </div>
+    </div>
+    <button class="btn primary savebtn" data-action="saveProfile">${t('save')}</button>
+    ${p ? progressHTML(p) : ''}
+    ${p ? `<div class="danger">
+      <div class="reset-row" id="resetRow"><button class="linkbtn" data-action="resetAsk">${t('reset')}</button></div>
+      <div class="reset-row" id="delRow"><button class="linkbtn" data-action="delAsk">${t('del')}</button></div></div>` : ''}`;
   if(!editing.id) setTimeout(() => { const i = $('#pname'); if(i) i.focus(); }, 50);
 }
 function saveProfile(){
   const name = $('#pname').value.trim().slice(0,16);
+  const start = { math: +$('#start_math').value || 0, lang: +$('#start_lang').value || 0 };
   if(editing.id){
     const p = state.profiles.find(x => x.id===editing.id);
-    p.name = name; p.avatar = editing.avatar;
+    p.name = name; p.avatar = editing.avatar; p.start = start;
   } else {
-    state.profiles.push({ id:newId(), name, avatar:editing.avatar, stars:{}, pics:true });
+    state.profiles.push({ id:newId(), name, avatar:editing.avatar, stars:{}, pics:true, start });
   }
   persist(); renderWho();
 }
@@ -818,29 +991,31 @@ function chooseProfile(id){ state.current = id; persist(); renderMenu(); renderC
 function renderMenu(){
   screen = 'menu';
   const p = cur();
+  const brain = sec => brainInfo(brainPts(p, sec)).lvl;
+  const st = (n, max) => `★ ${n} / ${max}`;
+  const tile = (action, ico, name, meta, tc, tl) => `<button class="qt" data-action="${action}" style="--tc:${tc};--tl:${tl}">
+      <span class="qt-ico">${ico}</span><span><span class="qt-name">${name}</span><span class="qt-meta">${meta}</span></span></button>`;
   $('#main').innerHTML = `
-    <h1>${p.avatar} ${t('hi', {name: esc(displayName(p))})}</h1>
-    <p class="sub">${t('whatToDo')}</p>
+    <div class="hello">
+      <div class="hello-av">${p.avatar}</div>
+      <div><h1>${t('hi', {name: esc(displayName(p))})}</h1>
+        <div class="chips2">
+          <span class="chip2"><span class="star-on">★</span> ${totalStars(p)}</span>
+          <span class="chip2 b">🧠 ${t('menuMath')} ${brain('math')}</span>
+          <span class="chip2 b">🧠 ${t('menuRead')} ${brain('read')}</span>
+          <span class="chip2 b">🧠 ${t('menuWrite')} ${brain('write')}</span>
+        </div></div>
+    </div>
+    ${todayCard(p)}
     ${weekCard(p)}
-    <div class="tiles three">
-      <button class="tile" data-action="math" style="--tc:#5B5BD6;--tl:#EEEEFF">
-        <div class="tile-art"><span>3</span><span class="op">+</span><span>2</span></div>
-        <div class="tile-title">${t('menuMath')}</div>
-        <div class="tile-sub">${t('menuMathSub')}</div>
-        ${tileStats(p, 'math', sumStars(p.stars) + sumStars(sectionStars(p,'clock')) + sumStars(sectionStars(p,'measure')), (LEVELS.length + CLOCK_LEVELS.length + MEASURE_LEVELS.length)*3)}
-      </button>
-      <button class="tile" data-action="read" style="--tc:#E0569B;--tl:#FDECF4">
-        <div class="tile-art"><span class="tile-word">maan</span><span class="tile-emoji">🌙</span></div>
-        <div class="tile-title">${t('menuRead')}</div>
-        <div class="tile-sub">${t('menuReadSub')}</div>
-        ${tileStats(p, 'read', sumStars(sectionStars(p,'read')), READ_LEVELS.length*3)}
-      </button>
-      <button class="tile" data-action="write" style="--tc:#F29A2E;--tl:#FFF1DF">
-        <div class="tile-art letters-mini"><span>v</span><span>i</span><span class="q">?</span></div>
-        <div class="tile-title">${t('menuWrite')}</div>
-        <div class="tile-sub">${t('menuWriteSub')}</div>
-        ${tileStats(p, 'write', sumStars(sectionStars(p,'write')), WORD_LEVELS.length*3)}
-      </button>
+    <h2 class="sec">${t('prFree')}</h2>
+    <div class="grid6">
+      ${tile('levels',      '+',  t('menuSums'),    st(sumStars(p.stars), LEVELS.length*3), '#5B5BD6', '#EEEEFF')}
+      ${tile('flashPick',   '∧',  t('menuFlash'),   t('menuFlashSub'), '#1F9D6B', '#E6F6EE')}
+      ${tile('clockPick',   '🕒', t('menuClock'),   st(sumStars(sectionStars(p,'clock')), CLOCK_LEVELS.length*3), '#2FA4D8', '#E3F3FB')}
+      ${tile('measurePick', '📏', t('menuMeasure'), st(sumStars(sectionStars(p,'measure')), MEASURE_LEVELS.length*3), '#F29A2E', '#FFF1DF')}
+      ${tile('read',        '📖', t('menuRead'),    st(sumStars(sectionStars(p,'read')), READ_LEVELS.length*3), '#E0569B', '#FDECF4')}
+      ${tile('write',       '✏️', t('menuWrite'),   st(sumStars(sectionStars(p,'write')), WORD_LEVELS.length*3), '#B45BD6', '#F6ECFD')}
     </div>`;
 }
 
@@ -905,7 +1080,7 @@ function renderHome(){
     </button>`;
   });
   $('#main').innerHTML = `
-    <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">${t('pick')}</h1></div>
+    <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><h1 class="inline">${t('pick')}</h1></div>
     <p class="sub">${t('pickSub')}</p><div class="levels">${cards}</div>`;
 }
 
@@ -917,7 +1092,7 @@ function renderFlashPick(){
   chips += `<button class="chip wide" data-flash="mix">${t('mixAll')}</button>`;
   chips += `<button class="chip wide keep" data-flash="keep">💪 ${t('keepPractising')}</button>`;
   $('#main').innerHTML = `
-    <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">🃏 ${t('flashTitle')}</h1></div>
+    <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><h1 class="inline">🃏 ${t('flashTitle')}</h1></div>
     <p class="sub">${t('flashSub')}</p><div class="chips">${chips}</div>`;
 }
 
@@ -1165,6 +1340,7 @@ function check(){
     if(p.step < p.boxes.length){ fb.textContent = ''; fb.className = 'feedback'; renderSum(); return; }
     if(game.attempts===0) game.firstTry++;
     game.results[game.q] = p.revealed ? 'r' : (game.attempts===0 ? 'g' : 'o');
+    if(p.kind==='basic'){ record('m:'+p.a+(p.op==='add'?'+':'-')+p.b, game.attempts===0 && !p.revealed); persist(); }
     renderSum();
     fb.textContent = pick(T[state.lang].good); fb.className = 'feedback good';
     game.busy = true; setTimeout(nextQuestion, 1000);
@@ -1197,16 +1373,16 @@ function nextQuestion(){
   renderPlay();
 }
 
-function starsFor(correct, total = QUESTIONS_PER_LEVEL){
-  if(correct >= total) return 3;
-  if(correct >= total*0.8) return 2;
-  if(correct >= total*0.5) return 1;
-  return 0;
+function scoreOf(results){ return results.reduce((a, r) => a + (r==='g' ? 1 : r==='o' ? 0.5 : 0), 0); }
+function starsFor(score, total = QUESTIONS_PER_LEVEL){
+  if(score >= total) return 3;
+  if(score >= total*0.7) return 2;
+  return 1;   // finishing a round always earns a star
 }
 
 function finish(){
   screen = 'result';
-  const i = game.level, earned = starsFor(game.firstTry);
+  const i = game.level, earned = starsFor(scoreOf(game.results));
   const wasLocked = i+1 < LEVELS.length && !unlocked(i+1);
   addBrain('math', 1); game.gained = 1;   // one brain point per finished set
   cur().stars[i] = Math.max(starsOf(i), earned);
@@ -1431,6 +1607,8 @@ function chooseReading(btn){
     btn.classList.add('right');
     wgame.results[wgame.q] = wgame.mistakes===0 ? 'g' : 'o';
     if(wgame.mistakes===0) wgame.firstTry++;
+    record('r:'+state.lang+':'+wordOf(wgame.list[wgame.q]), wgame.mistakes===0); persist();
+
     wordFeedback(pick(T[state.lang].good), 'good');
     wgame.busy = true; setTimeout(nextWord, 1000);
   } else {
@@ -1454,6 +1632,8 @@ function typeSound(sd){
     wgame.pos++; wgame.wrongHere = 0;
     if(wgame.pos === snds.length){
       wgame.results[wgame.q] = wgame.mistakes===0 ? 'g' : (wgame.mistakes<=2 ? 'o' : 'r');
+      record('s:'+state.lang+':'+wordOf(wgame.list[wgame.q]), wgame.mistakes===0); persist();
+
       if(wgame.mistakes===0) wgame.firstTry++;
       renderWord(); wordFeedback(pick(T[state.lang].good), 'good');
       document.querySelectorAll('.slot').forEach(x => x.classList.add('good'));
@@ -1538,7 +1718,7 @@ function rateSound(knew){
 function finishWords(){
   screen = 'wordResult';
   const { mode, level } = wgame;
-  const earned = starsFor(wgame.firstTry, wgame.total || WORDS_PER_SET);
+  const earned = starsFor(wgame.results && wgame.results.length ? scoreOf(wgame.results) : wgame.firstTry, wgame.total || WORDS_PER_SET);
   const map = sectionStars(cur(), mode);
   const wasLocked = level+1 < levelsFor(mode).length && !wordUnlocked(mode, level+1);
   addBrain(mode, 1); wgame.gained = 1;
@@ -1642,7 +1822,7 @@ function renderClockLevels(){
     </button>`;
   });
   $('#main').innerHTML = `
-    <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">🕒 ${t('menuClock')}</h1></div>
+    <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><h1 class="inline">🕒 ${t('menuClock')}</h1></div>
     <p class="sub">${t('clockHint')}</p><div class="levels">${cards}</div>`;
 }
 
@@ -1721,7 +1901,7 @@ function nextClock(){
 }
 function finishClock(){
   screen = 'clockResult';
-  const i = cgame.level, earned = starsFor(cgame.firstTry, CLOCK_PER_SET), map = sectionStars(cur(), 'clock');
+  const i = cgame.level, earned = starsFor(scoreOf(cgame.results), CLOCK_PER_SET), map = sectionStars(cur(), 'clock');
   const wasLocked = i+1 < CLOCK_LEVELS.length && !clockUnlocked(i+1);
   addBrain('math', 1);
   map[i] = Math.max(map[i] || 0, earned);
@@ -1962,7 +2142,7 @@ function renderMeasureLevels(){
     </button>`;
   });
   $('#main').innerHTML = `
-    <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">📏 ${t('menuMeasure')}</h1></div>
+    <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><h1 class="inline">📏 ${t('menuMeasure')}</h1></div>
     <p class="sub">${t('menuMeasureSub')}</p><div class="levels">${cards}</div>`;
 }
 
@@ -2013,7 +2193,7 @@ function nextMeasure(){
 }
 function finishMeasure(){
   screen = 'measureResult';
-  const i = mgame.level, earned = starsFor(mgame.firstTry, MEASURE_PER_SET), map = sectionStars(cur(), 'measure');
+  const i = mgame.level, earned = starsFor(scoreOf(mgame.results), MEASURE_PER_SET), map = sectionStars(cur(), 'measure');
   addBrain('math', 1);
   map[i] = Math.max(map[i] || 0, earned);
   persist(); renderChrome();
@@ -2033,10 +2213,602 @@ function finishMeasure(){
   if(earned >= 2) confetti();
 }
 
+/* Original mascot: Buddy the owl */
+function buddySVG(size){
+  return `<svg class="buddy" width="${size||96}" height="${size||96}" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M22 32 L29 10 L44 26 Z" fill="#FF9A3D"/><path d="M78 32 L71 10 L56 26 Z" fill="#FF9A3D"/>
+    <ellipse cx="50" cy="57" rx="35" ry="36" fill="#FF9A3D"/>
+    <ellipse cx="50" cy="70" rx="21" ry="19" fill="#FFE3C2"/>
+    <ellipse cx="17" cy="62" rx="7" ry="15" fill="#F07F1E"/><ellipse cx="83" cy="62" rx="7" ry="15" fill="#F07F1E"/>
+    <circle cx="37" cy="45" r="13" fill="#fff"/><circle cx="63" cy="45" r="13" fill="#fff"/>
+    <circle cx="39" cy="46" r="6" fill="#22304F"/><circle cx="61" cy="46" r="6" fill="#22304F"/>
+    <circle cx="41" cy="44" r="2" fill="#fff"/><circle cx="63" cy="44" r="2" fill="#fff"/>
+    <path d="M44 55 L56 55 L50 64 Z" fill="#F2B134"/>
+  </svg>`;
+}
+
+/* ============================================================
+   MEMORY — the app remembers every sum, split, klank and word
+   per child. Boxes 0–4: wrong → box 0 (comes back soon);
+   right → one box up (comes back after 0, 0, 1, 3, 7 days).
+   An item counts as "known" from box 2.
+   ============================================================ */
+const BOX_DAYS = [0, 0, 1, 3, 7];
+function dayNum(){ const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset()*60000) / 864e5); }
+function memOf(p, key){ return (p && p.mem && p.mem[key]) || null; }
+function record(key, ok, p){
+  p = p || cur(); if(!p) return;
+  p.mem = p.mem || {};
+  const m = p.mem[key] || (p.mem[key] = { b:0, r:0, w:0, d:0 });
+  const first = m.r + m.w === 0;
+  if(ok){ m.r++; m.b = first ? 2 : Math.min(4, m.b + 1); } else { m.w++; m.b = 0; }
+  m.d = dayNum() + BOX_DAYS[m.b];
+}
+
+/* ---------- Learning steps (leerlijn), in the order school teaches them ---------- */
+const _mathSkills = {}; const _langSkills = {};
+function mathSkills(){
+  if(_mathSkills[state.lang]) return _mathSkills[state.lang];
+  const S = [], add = (id, items, g) => S.push({ id, items, g: g || (['tel5','tel10','plus5','min5'].includes(id) ? 2 : 3) });
+  const cnt = (a, b) => { const o = []; for(let n=a;n<=b;n++) o.push({ key:'c:'+n, type:'count', n }); return o; };
+  const sums = (op, test) => { const o = [];
+    for(let a=1;a<=20;a++) for(let b=1;b<=20;b++){
+      const ans = op==='add' ? a+b : a-b;
+      if(ans >= 0 && test(a, b, ans)) o.push({ key:'m:'+a+(op==='add'?'+':'-')+b, type:'sum', op, a, b, ans });
+    } return o; };
+  const split = ns => { const o = []; ns.forEach(n => { for(let k=1;k<n;k++) o.push({ key:'p:'+n+':'+k, type:'split', n, k }); }); return o; };
+  add('tel5',   cnt(1,5));
+  add('tel10',  cnt(6,10));
+  add('plus5',  sums('add', (a,b,s) => s <= 5));
+  add('min5',   sums('sub', (a,b,s) => a <= 5 && s >= 1));
+  add('split5', split([2,3,4,5]));
+  add('split7', split([6,7]));
+  add('split9', split([8,9]));
+  add('split10',split([10]));
+  add('plus10', sums('add', (a,b,s) => s >= 6 && s <= 10));
+  add('min10',  sums('sub', (a,b,s) => a >= 6 && a <= 10 && s >= 1));
+  add('dubbel', sums('add', (a,b,s) => a === b && a <= 10));
+  add('plus20', sums('add', (a,b,s) => a >= 10 && s <= 20 && b <= 10));
+  add('min20',  sums('sub', (a,b,s) => a >= 11 && a <= 20 && s >= 10));
+  add('brugp',  sums('add', (a,b,s) => a <= 9 && b <= 9 && s >= 11));
+  add('brugm',  sums('sub', (a,b,s) => a >= 11 && a <= 18 && b <= 9 && s <= 9));
+  /* ---------- Groep 4, 5 and 6 (added after the groep 3 steps, so saved start steps keep their place) ---------- */
+  const N = (q, ans, unit) => ({ key:'n:'+q, type:'num', q, ans, unit });
+  const D = t('divSym');
+  // fixed, repeatable sample of a big family of sums, so every sum keeps its own place in the child's memory
+  const gen = (id, n, make) => {
+    let s = 7; for(const ch of id) s = (s * 31 + ch.charCodeAt(0)) >>> 0;
+    const r = () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296;
+    const ri = (a, b) => a + Math.floor(r() * (b - a + 1)), pk = arr => arr[Math.floor(r() * arr.length)];
+    const out = [], seen = new Set(); let guard = 0;
+    while(out.length < n && guard++ < n * 60){ const it = make(ri, pk); if(it && (it.type !== 'num' || (Number.isInteger(it.ans) && it.ans >= 0)) && !seen.has(it.key)){ seen.add(it.key); out.push(it); } }
+    return out;
+  };
+  const taf = n => { const o = []; for(let k=1;k<=10;k++) o.push(N(`${k} × ${n} =`, k*n)); return o; };
+  const deel = ns => { const o = []; ns.forEach(n => { for(let k=1;k<=10;k++) o.push(N(`${k*n} ${D} ${n} =`, k)); }); return o; };
+  const story = (list, unit) => list.map(x => N(x[0], x[1], x[2]));
+
+  // ----- groep 4: getallen tot 100, eerste tafels -----
+  add('te100', gen('te100', 20, (ri) => { const T10 = ri(2,9)*10, e = ri(1,9), f = ri(0,2);
+    return f===0 ? N(`${T10+e} = ${T10} +`, e) : f===1 ? N(`${T10} + ${e} =`, T10+e) : N(`${T10+e} − ${e} =`, T10); }), 4);
+  add('buur100', gen('buur100', 20, (ri) => { const n = ri(12,88), f = ri(0,3);
+    return f===0 ? N(t('qAfter',{n}), n+1) : f===1 ? N(t('qBefore',{n}), n-1) : f===2 ? N(`${n} + 10 =`, n+10) : N(`${n} − 10 =`, n-10); }), 4);
+  add('plus100a', gen('plus100a', 24, (ri) => { const f = ri(0,2);
+    if(f===0){ const a = ri(1,8)*10, b = ri(1,9-a/10)*10; return N(`${a} + ${b} =`, a+b); }
+    if(f===1){ const a = ri(2,9)*10 + ri(1,8), b = ri(1, 9 - a%10); return N(`${a} + ${b} =`, a+b); }
+    const a = ri(11,69), b = ri(1, Math.floor((99-a)/10))*10; return N(`${a} + ${b} =`, a+b); }), 4);
+  add('min100a', gen('min100a', 24, (ri) => { const f = ri(0,2);
+    if(f===0){ const a = ri(2,9)*10, b = ri(1,a/10-1)*10; return N(`${a} − ${b} =`, a-b); }
+    if(f===1){ const a = ri(2,9)*10 + ri(2,9), b = ri(1, a%10 - 1); return N(`${a} − ${b} =`, a-b); }
+    const a = ri(31,99), b = ri(1, Math.floor(a/10)-1)*10; return N(`${a} − ${b} =`, a-b); }), 4);
+  add('taf2', taf(2), 4); add('taf10', taf(10), 4); add('taf5', taf(5), 4);
+  add('plus100b', gen('plus100b', 24, (ri) => { if(ri(0,1)===0){ const e = ri(3,9), a = ri(1,8)*10 + e, b = ri(11-e, 9); return N(`${a} + ${b} =`, a+b); }
+    const a = ri(15,59), b = ri(15,39); return (a%10 + b%10 >= 10 && a+b <= 99) ? N(`${a} + ${b} =`, a+b) : null; }), 4);
+  add('min100b', gen('min100b', 24, (ri) => { if(ri(0,1)===0){ const e = ri(1,7), a = ri(2,9)*10 + e, b = ri(e+1, 9); return N(`${a} − ${b} =`, a-b); }
+    const a = ri(41,95), b = ri(13,38); return (a%10 < b%10 && a-b > 0) ? N(`${a} − ${b} =`, a-b) : null; }), 4);
+  add('taf3', taf(3), 4); add('taf4', taf(4), 4);
+  add('verh4', story([
+    ['Sem heeft 24 knikkers. Hij wint er 13 bij. Hoeveel knikkers heeft hij nu?', 37],
+    ['In de bus zitten 45 mensen. Bij de halte stappen 12 mensen uit. Hoeveel mensen zitten er nog in de bus?', 33],
+    ['Een boek kost € 8 en een pen kost € 3. Hoeveel euro kost het samen?', 11, '€'],
+    ['Juf heeft 5 doosjes met elk 10 potloden. Hoeveel potloden zijn dat?', 50],
+    ['Noor is 8 jaar. Haar broer is 5 jaar ouder. Hoe oud is haar broer?', 13],
+    ['Er liggen 30 appels in de kist. Mama haalt er 9 uit. Hoeveel appels liggen er nog?', 21],
+    ['Op het plein spelen 17 jongens en 18 meisjes. Hoeveel kinderen zijn dat samen?', 35],
+    ['In een zak zitten 4 rijen met elk 5 koekjes. Hoeveel koekjes zitten er in de zak?', 20],
+    ['Tim heeft € 50. Hij koopt een spel van € 28. Hoeveel euro houdt hij over?', 22, '€'],
+    ['Oma is 68 jaar en opa is 72 jaar. Hoeveel jaar is opa ouder dan oma?', 4],
+    ['In de klas zitten 26 kinderen. Vandaag zijn er 4 ziek. Hoeveel kinderen zijn er op school?', 22],
+    ['Lisa leest 10 bladzijden per dag. Hoeveel bladzijden leest zij in 6 dagen?', 60]]), 4);
+
+  // ----- groep 5: tafels, delen, getallen tot 1000 -----
+  add('taf6', taf(6), 5); add('taf7', taf(7), 5); add('taf8', taf(8), 5); add('taf9', taf(9), 5);
+  add('deel1', deel([2,5,10]), 5); add('deel2', deel([3,4,6]), 5); add('deel3', deel([7,8,9]), 5);
+  add('te1000', gen('te1000', 20, (ri) => { const h = ri(1,9)*100, T10 = ri(1,9)*10, e = ri(1,9), f = ri(0,3), n = h+T10+e;
+    return f===0 ? N(`${n} = ${h} + ${T10} +`, e) : f===1 ? N(`${h} + ${T10} + ${e} =`, n) : f===2 ? N(t('qAfter',{n}), n+1) : N(t('qBefore',{n}), n-1); }), 5);
+  add('plus1000a', gen('plus1000a', 24, (ri) => { const f = ri(0,2);
+    if(f===0){ const a = ri(1,8)*100, b = ri(1,9-a/100)*100; return N(`${a} + ${b} =`, a+b); }
+    if(f===1){ const a = ri(11,79)*10, b = ri(1, 9 - Math.floor(a/100))*100; return a+b < 1000 ? N(`${a} + ${b} =`, a+b) : null; }
+    const T10 = ri(1,7)*10, a = ri(1,9)*100 + T10, b = ri(1, (90-T10)/10)*10; return N(`${a} + ${b} =`, a+b); }), 5);
+  add('min1000a', gen('min1000a', 24, (ri) => { const f = ri(0,2);
+    if(f===0){ const a = ri(2,9)*100, b = ri(1,a/100-1)*100; return N(`${a} − ${b} =`, a-b); }
+    if(f===1){ const a = ri(21,99)*10, b = ri(1, Math.floor(a/100))*100; return N(`${a} − ${b} =`, a-b); }
+    const T10 = ri(2,9)*10, a = ri(1,9)*100 + T10, b = ri(1, T10/10-1)*10; return N(`${a} − ${b} =`, a-b); }), 5);
+  add('plus1000b', gen('plus1000b', 24, (ri) => { if(ri(0,1)===0){ const d = ri(2,9), a = ri(1,8)*100 + d*10, b = ri(10-d, 9)*10; return N(`${a} + ${b} =`, a+b); }
+    const a = ri(125,589), b = ri(115,389); return a+b < 1000 ? N(`${a} + ${b} =`, a+b) : null; }), 5);
+  add('min1000b', gen('min1000b', 24, (ri) => { if(ri(0,1)===0){ const d = ri(0,7), a = ri(2,9)*100 + d*10, b = ri(d+1, 9)*10; return N(`${a} − ${b} =`, a-b); }
+    const a = ri(300,950), b = ri(115, a-50); return N(`${a} − ${b} =`, a-b); }), 5);
+  add('keer10', gen('keer10', 24, (ri) => { const f = ri(0,2);
+    return f===0 ? (a => N(`${a[0]} × ${a[1]} =`, a[0]*a[1]))([ri(2,9), ri(2,9)*10]) : f===1 ? (n => N(`10 × ${n} =`, 10*n))(ri(11,99))
+      : (a => N(`${a[0]} × ${a[1]} =`, a[0]*a[1]))([ri(3,8), ri(11,19)]); }), 5);
+  add('verh5', story([
+    ['In een doos zitten 8 pakken sap. Hoeveel pakken zitten er in 7 dozen?', 56],
+    ['De meester verdeelt 48 stickers eerlijk over 6 kinderen. Hoeveel stickers krijgt elk kind?', 8],
+    ['Een fiets kost € 345. De bel erbij kost € 12. Hoeveel euro is dat samen?', 357, '€'],
+    ['In het theater zijn 500 stoelen. Er zijn 380 stoelen bezet. Hoeveel stoelen zijn nog vrij?', 120],
+    ['Een les duurt 45 minuten. Hoeveel minuten duren 2 lessen?', 90],
+    ['Sara spaart elke week € 5. Hoeveel euro heeft zij na 9 weken?', 45, '€'],
+    ['Er staan 9 rijen stoelen met in elke rij 12 stoelen. Hoeveel stoelen staan er?', 108],
+    ['Een kaartje voor het zwembad kost € 4. Hoeveel kaartjes kun je kopen voor € 36?', 9],
+    ['Op school zitten 240 kinderen. De helft is een meisje. Hoeveel meisjes zijn er?', 120],
+    ['Een boek heeft 250 bladzijden. Daan heeft er al 175 gelezen. Hoeveel bladzijden moet hij nog lezen?', 75],
+    ['In een krat passen 24 flessen. Hoeveel flessen passen er in 3 kratten?', 72],
+    ['Mila koopt 3 ijsjes van € 2 en 1 fles water van € 1. Hoeveel euro betaalt zij?', 7, '€']]), 5);
+
+  // ----- groep 6: grote getallen, delen met rest, breuken, geld, meten -----
+  add('rest', gen('rest', 20, (ri) => { const b = ri(2,9), q = ri(2,9), r = ri(1,b-1); return N(`${b*q+r} ${D} ${b} = ${q} ${t('wRest')}`, r); }), 6);
+  add('groot', gen('groot', 24, (ri) => { const f = ri(0,3);
+    if(f===0){ const a = ri(1,9)*1000, b = ri(1,9)*100; return N(`${a} + ${b} =`, a+b); }
+    if(f===1){ const a = ri(2,9)*1000, b = ri(1,9)*100; return N(`${a} − ${b} =`, a-b); }
+    if(f===2){ const n = ri(1001,9998); return ri(0,1) ? N(t('qAfter',{n}), n+1) : N(t('qBefore',{n}), n-1); }
+    const n = ri(1100,9890); return n%100===50 ? null : N(t('qRound',{n}), Math.round(n/100)*100); }), 6);
+  add('keer6', gen('keer6', 24, (ri) => ri(0,1) ? (a => N(`${a[0]} × ${a[1]} =`, a[0]*a[1]))([ri(2,9), ri(2,9)*100]) : (a => N(`${a[0]} × ${a[1]} =`, a[0]*a[1]))([ri(3,9), ri(12,49)])), 6);
+  add('deel6', gen('deel6', 20, (ri) => { const b = ri(2,9), q = ri(0,1) ? ri(2,9)*10 : ri(11,24); return N(`${b*q} ${D} ${b} =`, q); }), 6);
+  add('breuk', gen('breuk', 20, (ri, pk) => { const den = pk([2,3,4,5,10]), num = den > 2 ? pk([1,1,den-1]) : 1, n = den*ri(2,10); return N(`${num}/${den} ${t('wOf')} ${n} =`, n/den*num); }), 6);
+  add('breukv', [['1/2','1/3',0],['1/4','1/2',1],['1/3','1/5',0],['3/4','1/2',0],['2/3','1/3',0],['1/8','1/4',1],['1/10','1/5',1],['2/4','3/4',1],
+      ['1/6','1/3',1],['4/5','2/5',0],['1/2','1/10',0],['3/8','5/8',1],['1/2','2/4',2],['2/6','1/3',2]]
+    .map(x => ({ key:'bv:'+x[0]+x[1], type:'mc', q: t('qFracMore', {a:x[0], b:x[1]}), opts:[x[0], x[1], t('wEqual')], ans: x[2]===2 ? t('wEqual') : x[x[2]] })), 6);
+  const eur = c => '€ ' + (c/100).toFixed(2).replace('.', ',');
+  add('komma', gen('komma', 16, (ri) => { const a = ri(3,19)*25, b = ri(3,19)*25, plus = ri(0,1)===0 || a <= b, c = plus ? a+b : a-b;
+    if(c < 50) return null;
+    return { key:'km:'+a+(plus?'+':'-')+b, type:'mc', q:`${eur(a)} ${plus?'+':'−'} ${eur(b)} =`, opts:[eur(c), eur(c+100), eur(c-25)], ans: eur(c) }; }).map(it => it), 6);
+  const U = t('units');
+  add('meten', gen('meten', 24, (ri, pk) => { const c = pk([['m','cm',100,9],['km','m',1000,9],['kg','g',1000,9],['l','ml',1000,9],['cm','mm',10,20],['€','cent',100,9],
+      [U.h,U.min,60,5],[U.minute,U.sec,60,5],[U.week,U.day,7,8],['cm','m',-100,9],['g','kg',-1000,9],['ml','l',-1000,9]]), n = ri(1,c[3]);
+    return c[2] > 0 ? N(`${n} ${c[0]} =`, n*c[2], c[1]) : N(`${n*-c[2]} ${c[0]} =`, n, c[1]); }), 6);
+  add('omtrek', gen('omtrek', 16, (ri) => { const l = ri(3,12), b = ri(2,l-1); return ri(0,1) ? N(t('qPerim',{l,b}), 2*(l+b), 'm') : N(t('qArea',{l,b}), l*b, 'm²'); }), 6);
+  add('verh6', story([
+    ['Een school bestelt 25 dozen met elk 40 schriften. Hoeveel schriften zijn dat?', 1000],
+    ['Een voetbalstadion heeft 8500 plaatsen. Er zijn 6200 kaartjes verkocht. Hoeveel plaatsen zijn nog vrij?', 2300],
+    ['Vier vrienden delen de rekening van € 60 eerlijk. Hoeveel euro betaalt ieder?', 15, '€'],
+    ['Een taart wordt in 8 gelijke stukken gesneden. Er worden 6 stukken opgegeten. Hoeveel stukken blijven er over?', 2],
+    ['Een trein rijdt 120 kilometer per uur. Hoeveel kilometer rijdt hij in 3 uur?', 360, 'km'],
+    ['Er gaan 130 kinderen op schoolreis. In één bus passen 50 kinderen. Hoeveel bussen zijn er nodig?', 3],
+    ['Een kwart van de 36 kinderen komt op de fiets. Hoeveel kinderen komen op de fiets?', 9],
+    ['Een tuin is 12 meter lang en 5 meter breed. Hoeveel vierkante meter is de tuin?', 60, 'm²'],
+    ['In een fles zit 1500 milliliter water. Hoeveel glazen van 250 milliliter kun je vullen?', 6],
+    ['Papa koopt 4 broden van € 2,50. Hoeveel euro betaalt hij?', 10, '€'],
+    ['Een winkel verkoopt op maandag 245 kranten en op dinsdag 318 kranten. Hoeveel kranten zijn dat samen?', 563],
+    ['In een pak zitten 500 vellen papier. De juf gebruikt 35 vellen per dag. Hoeveel vellen zijn er na 10 dagen nog over?', 150]]), 6);
+  return _mathSkills[state.lang] = S;
+}
+function langSkills(){
+  const L = state.lang; if(_langSkills[L]) return _langSkills[L];
+  const W = WORDS[L], freq = {};
+  W.flat().forEach(w => soundsOf(w).forEach(s => freq[s] = (freq[s] || 0) + 1));
+  const by = (a, b) => freq[b] - freq[a];
+  const singles = Object.keys(freq).filter(s => s.length === 1).sort(by);
+  const multiV = Object.keys(freq).filter(s => s.length > 1 && VOWELISH.test(s)).sort(by);
+  const multiC = Object.keys(freq).filter(s => s.length > 1 && !VOWELISH.test(s)).sort(by);
+  const kl = arr => arr.map(k => ({ key:'k:'+L+':'+k, type:'klank', k }));
+  const rd = lv => W[lv].map(w => ({ key:'r:'+L+':'+wordOf(w), type:'read', w, lv }));
+  const bd = lv => W[lv].map(w => ({ key:'s:'+L+':'+wordOf(w), type:'build', w, lv }));
+  const S = [], add = (id, items) => { if(items.length) S.push({ id, items, g:3 }); };
+  add('klank1', kl(singles.slice(0,10)));
+  add('klank2', kl(singles.slice(10)));
+  add('lees1', rd(0)); add('schrijf1', bd(0));
+  add('klank3', kl(multiV));
+  add('klank4', kl(multiC));
+  add('lees2', rd(1)); add('schrijf2', bd(1));
+  add('lees3', rd(2)); add('schrijf3', bd(2));
+  /* ---------- Spelling and grammar for groep 4, 5 and 6 (Dutch only) ---------- */
+  if(L === 'nl'){
+    const SQ = 'Welk woord is goed geschreven?';
+    const sp = (g, id, rows) => { S.push({ id, g, items: rows.map(r => ({ key:'sp:'+r[0], type:'mc', q:SQ, opts:r, ans:r[0] })) }); };
+    const gap = (g, id, rows) => { S.push({ id, g, items: rows.map(r => ({ key:'ww:'+r[0]+r[1], type:'mc', q:r[0], opts:r.slice(1), ans:r[1] })) }); };
+    sp(4, 'sp_sch', [['school','sgool','shool'],['schaap','sgaap','shaap'],['schip','sgip','ship'],['schoen','sgoen','shoen'],['schrijven','sgrijven','srijven'],['schrift','sgrift','srift'],
+      ['schroef','sgroef','sroef'],['schreeuw','sgreeuw','sreeuw'],['schrikken','sgrikken','srikken'],['schuur','sguur','shuur'],['schoon','sgoon','shoon'],['schrap','sgrap','srap']]);
+    sp(4, 'sp_ng', [['bank','bangk','bannk'],['plank','plangk','plannk'],['drinken','dringken','drinkken'],['denken','dengken','dennken'],['koning','konink','koningk'],['ring','rink','ringk'],
+      ['vinger','vinker','vingker'],['tong','tonk','tongk'],['anker','angker','annker'],['jongen','jonken','jongken'],['lang','lank','langk'],['dank','dangk','dannk']]);
+    sp(4, 'sp_cht', [['lucht','lugt','luchd'],['nacht','nagt','nachd'],['bocht','bogt','bochd'],['vracht','vragt','vrachd'],['gracht','gragt','grachd'],['zacht','zagt','zachd'],
+      ['recht','regt','rechd'],['knecht','knegt','knechd'],['tocht','togt','tochd'],['dicht','digt','dichd'],['echt','egt','echd'],['vlucht','vlugt','vluchd']]);
+    sp(4, 'sp_vz', [['vogel','fogel'],['zomer','somer'],['fiets','viets'],['zeven','seven'],['vis','fis'],['zon','son'],['feest','veest'],['zwemmen','swemmen'],
+      ['vriend','friend'],['suiker','zuiker'],['fluit','vluit'],['zes','ses'],['vijf','fijf'],['soep','zoep'],['fabriek','vabriek'],['zacht','sacht']]);
+    sp(4, 'sp_ei', [['trein','trijn'],['klein','klijn'],['tijd','teid'],['prijs','preis'],['geit','gijt'],['wijn','wein'],['pijn','pein'],['plein','plijn'],
+      ['kijken','keiken'],['eiland','ijland'],['fijn','fein'],['seizoen','sijzoen'],['blij','blei'],['paleis','palijs'],['schrijven','schreiven'],['konijn','konein']]);
+    sp(4, 'sp_au', [['blauw','blouw'],['vrouw','vrauw'],['hout','haut'],['koud','kaud'],['pauw','pouw'],['goud','gaud'],['saus','sous'],['auto','outo'],
+      ['oud','aud'],['fout','faut'],['paus','pous'],['zout','zaut'],['bouwen','bauwen'],['augurk','ougurk']]);
+    sp(4, 'sp_dt', [['hond','hont'],['paard','paart'],['hand','hant'],['brood','broot'],['geld','gelt'],['kast','kasd'],['tent','tend'],['strand','strant'],
+      ['mond','mont'],['feest','feesd'],['vriend','vrient'],['kind','kint'],['rond','ront'],['hoofd','hooft'],['woord','woort'],['krant','krand']]);
+    sp(4, 'sp_aai', [['haai','haaj','hai'],['mooi','mooj','moi'],['kraai','kraaj','krai'],['gooien','goojen','goien'],['groeien','groejen','groeijen'],['leeuw','leuw','leeuuw'],
+      ['nieuw','niew','niuw'],['sneeuw','sneuw','sneew'],['draaien','draajen','draien'],['schreeuw','schreuw','schreew'],['fooi','fooj','foi'],['kieuw','kiew','kiuw']]);
+    sp(5, 'sp_open', [['bomen','boomen'],['bakker','baker','baakker'],['lopen','loopen','loppen'],['zitten','ziten','zieten'],['pannen','panen','paannen'],['ramen','raamen'],
+      ['bessen','besen','beesen'],['muren','muuren','murren'],['katten','katen','kaaten'],['vuren','vuuren','vurren'],['petten','peten','peeten'],['benen','beenen','bennen'],
+      ['bussen','busen','buusen'],['koken','kooken','kokken'],['stappen','stapen','staapen'],['spelen','speelen'],['bellen','belen','beelen'],['jarig','jaarig','jarrig']]);
+    sp(5, 'sp_ig', [['aardig','aardug','aardich'],['gelukkig','gelukkug','gelukkich'],['moeilijk','moeilik','moeiluk'],['eerlijk','eerlik','eerluk'],['zonnig','zonnug','zonnich'],
+      ['vrolijk','vrolik','vroluk'],['handig','handug','handich'],['duidelijk','duidelik','duideluk'],['heerlijk','heerlik','heerluk'],['nodig','nodug','nodich'],
+      ['gevaarlijk','gevaarlik','gevaarluk'],['rustig','rustug','rustich']]);
+    sp(5, 'sp_mv', [["auto's",'autos','autoos'],["baby's",'babys','babies'],["foto's",'fotos','fotoos'],["opa's",'opas','opaas'],['cafés',"café's",'cafees'],["menu's",'menus','menuus'],
+      ["taxi's",'taxis','taxies'],['tantes',"tante's",'tantees'],['tafels',"tafel's"],["oma's",'omas','omaas'],["paraplu's",'paraplus','parapluus'],
+      ['meisjes',"meisje's",'meisjees'],['jongens',"jongen's",'jongenen'],["radio's",'radios','radioos']]);
+    sp(5, 'sp_c', [['circus','sirkus','cirkus'],['cent','sent','zent'],['politie','politsie','polietie'],['vakantie','vakansie','vakantsie'],['cijfer','sijfer','ceifer'],
+      ['computer','komputer','compjoeter'],['citroen','sitroen','citroon'],['actie','aksie','acsie'],['station','stasion','statsion'],['december','desember','decembur'],
+      ['camera','kamera','camerra'],['concert','konsert','consert'],['informatie','informasie','informatsie'],['traditie','tradisie','traditsie']]);
+    gap(6, 'ww_tt', [['Ik ___ een boek. (lezen)','lees','leest','leez'],['Mila ___ een brief. (schrijven)','schrijft','schrijf','schrijfd'],['Jij ___ hard. (werken)','werkt','werk','werkd'],
+      ['Hij ___ de bal. (vinden)','vindt','vind','vint'],['Ik ___ de bal. (vinden)','vind','vindt','vint'],['Het ___ koud. (worden)','wordt','word','wort'],
+      ['Ik ___ moe. (worden)','word','wordt','wort'],['Sara ___ op de bus. (wachten)','wacht','wachtt','wachd'],['___ jij mee? (lopen)','Loop','Loopt','Loopd'],
+      ['___ jij het antwoord? (vinden)','Vind','Vindt','Vint'],['Mijn opa ___ de krant. (lezen)','leest','lees','leesd'],['De hond ___ in de tuin. (rennen)','rent','ren','rend'],
+      ['Wij ___ naar het park. (fietsen)','fietsen','fietst','fiets'],['Papa ___ de auto. (rijden)','rijdt','rijd','rijt'],['Ik ___ op mijn fiets. (rijden)','rijd','rijdt','rijt'],
+      ['Noor ___ haar jas. (pakken)','pakt','pak','pakd']]);
+    gap(6, 'ww_vt', [['Gisteren ___ ik hard. (werken)','werkte','werkde','werkten'],['Hij ___ de bal weg. (gooien)','gooide','gooite','gooiden'],
+      ['Wij ___ in de tuin. (spelen)','speelden','speelde','speelten'],['Mama ___ de deur dicht. (maken)','maakte','maakde','maakten'],
+      ['Ik ___ naar huis. (fietsen)','fietste','fietsde','fietsten'],['De kinderen ___ op het plein. (rennen)','renden','rende','renten'],
+      ['Opa ___ een verhaal. (vertellen)','vertelde','vertelte','vertelden'],['Ik ___ op de bus. (wachten)','wachtte','wachte','wachtde'],
+      ['Sara ___ de hond. (aaien)','aaide','aaite','aaiden'],['Wij ___ naar muziek. (luisteren)','luisterden','luisterde','luisterten'],
+      ['De juf ___ het bord schoon. (vegen)','veegde','veegte','veegden'],['Tom ___ het antwoord. (raden)','raadde','raade','raadte'],
+      ['Ik ___ een taart. (bakken)','bakte','bakde','bakten'],['Het ___ de hele dag. (regenen)','regende','regente','regenden']]);
+    gap(6, 'gr_woord', [['Welk woord is het werkwoord? "De hond rent door de tuin."','rent','hond','tuin'],['Welk woord is het werkwoord? "Mijn zus leest een dik boek."','leest','zus','dik'],
+      ['Welk woord is een zelfstandig naamwoord? "De kleine kat slaapt."','kat','kleine','slaapt'],['Welk woord is een zelfstandig naamwoord? "Wij fietsen naar het strand."','strand','fietsen','naar'],
+      ['Welk woord is een bijvoeglijk naamwoord? "De rode bal rolt weg."','rode','bal','rolt'],['Welk woord is een bijvoeglijk naamwoord? "Oma bakt een lekkere taart."','lekkere','bakt','taart'],
+      ['Welk woord is het lidwoord? "Het meisje lacht."','Het','meisje','lacht'],['Welk woord is het werkwoord? "De kinderen zingen een liedje."','zingen','kinderen','liedje'],
+      ['Welk woord is een bijvoeglijk naamwoord? "Het is een koude dag."','koude','dag','is'],['Welk woord is een zelfstandig naamwoord? "De juf schrijft snel."','juf','schrijft','snel'],
+      ['Welk woord is het werkwoord? "Morgen koop ik nieuwe schoenen."','koop','nieuwe','schoenen'],['Welk woord is een bijvoeglijk naamwoord? "De oude man loopt langzaam."','oude','man','loopt']]);
+    gap(6, 'gr_zin', [['Wat is de persoonsvorm? "De hond blaft hard."','blaft','De hond','hard'],['Wat is het onderwerp? "De hond blaft hard."','De hond','blaft','hard'],
+      ['Wat is de persoonsvorm? "Morgen gaan wij naar oma."','gaan','wij','Morgen'],['Wat is het onderwerp? "Morgen gaan wij naar oma."','wij','gaan','Morgen'],
+      ['Wat is de persoonsvorm? "Mijn broer speelt gitaar."','speelt','Mijn broer','gitaar'],['Wat is het onderwerp? "Mijn broer speelt gitaar."','Mijn broer','speelt','gitaar'],
+      ['Wat is het onderwerp? "In de tuin zingt een vogel."','een vogel','zingt','In de tuin'],['Wat is de persoonsvorm? "In de tuin zingt een vogel."','zingt','een vogel','In de tuin'],
+      ['Wat is het onderwerp? "Gisteren kocht mama een jas."','mama','kocht','een jas'],['Wat is de persoonsvorm? "De kinderen eten een appel."','eten','De kinderen','een appel']]);
+  }
+  return _langSkills[L] = S;
+}
+function skillsFor(subj){ return subj==='math' ? mathSkills() : langSkills(); }
+function skillName(sk){ return t('skill')[sk.id] || sk.id; }
+function skillStat(p, sk){
+  let seen = 0, ok = 0;
+  sk.items.forEach(it => { const m = memOf(p, it.key); if(m){ seen++; if(m.b >= 2) ok++; } });
+  return { seen, ok, total: sk.items.length, done: ok >= Math.ceil(sk.items.length * 0.8) };
+}
+function startIdx(p, subj){ return Math.min((p.start && p.start[subj]) || 0, skillsFor(subj).length - 1); }
+function curSkillIdx(p, subj){
+  const S = skillsFor(subj); let i = startIdx(p, subj);
+  while(i < S.length - 1 && skillStat(p, S[i]).done) i++;
+  return i;
+}
+function itemLabel(it){
+  if(it.type==='count') return String(it.n);
+  if(it.type==='sum') return `${it.a} ${it.op==='add'?'+':'−'} ${it.b}`;
+  if(it.type==='split') return `${it.n} → ${it.k} + ${it.n - it.k}`;
+  if(it.type==='klank') return it.k;
+  if(it.type==='num' || it.type==='mc') return it.q;
+  return wordOf(it.w);
+}
+
+/* ============================================================
+   DAILY PRACTICE — 10 questions, chosen for this child:
+   1. something missed a moment ago comes back,
+   2. then things that are due for review (weakest first),
+   3. then new things from the current step (fewer when it is hard),
+   4. otherwise things already known, for confidence.
+   ============================================================ */
+const PR_TOTAL = 10;
+let pr = null;
+
+function prStart(subj, test){
+  const p = cur();
+  pr = { test: !!test, total: test ? 20 : PR_TOTAL, log: [], subj, q:0, results:[], newCount:0, reviews:0, wrongs:0, retry:[], shown:[], first:0, skill0: curSkillIdx(p, subj) };
+  screen = 'practice';
+  prSetup(prPick());
+}
+function prPick(){
+  const p = cur(), S = skillsFor(pr.subj), ci = curSkillIdx(p, pr.subj), si = startIdx(p, pr.subj), today = dayNum();
+  if(pr.test){   // a mix of everything up to the current step, mostly things practised before
+    const all = []; S.forEach((sk, i) => { if(i <= ci && sk.g >= S[ci].g - 1) sk.items.forEach(it => all.push(it)); });   // this groep and the one before
+    const un = shuffle(all.filter(it => !pr.shown.includes(it.key))), seen = un.filter(it => memOf(p, it.key));
+    return (Math.random() < .7 && seen.length ? seen[0] : un[0]) || all[0];
+  }
+  const ri = pr.retry.findIndex(r => pr.q - r.at >= 2);
+  if(ri >= 0) return pr.retry.splice(ri, 1)[0].it;
+  const pool = []; for(let i=si;i<=ci;i++) S[i].items.forEach(it => pool.push(it));
+  const used = k => pr.shown.includes(k);
+  const due = shuffle(pool.filter(it => { const m = memOf(p, it.key); return m && m.d <= today && !used(it.key); }))
+              .sort((a, b) => memOf(p, a.key).b - memOf(p, b.key).b);
+  if(due.length && pr.reviews < 5){ pr.reviews++; return due[0]; }
+  let fresh = shuffle(S[ci].items.filter(it => !memOf(p, it.key) && !used(it.key)));
+  if(!fresh.length) fresh = shuffle(pool.filter(it => !memOf(p, it.key) && !used(it.key)));   // leftovers from earlier steps
+  if(fresh.length && pr.newCount < (pr.wrongs >= 3 ? 3 : 10)){ pr.newCount++; return fresh[0]; }
+  if(due.length) return due[0];
+  const recent = pr.shown.slice(-3);
+  const rest = shuffle(pool.filter(it => !recent.includes(it.key))).sort((a, b) => (memOf(p, a.key)||{b:0}).b - (memOf(p, b.key)||{b:0}).b);
+  return rest[0] || pool[0];
+}
+function prSetup(it){
+  const p = cur(), m = memOf(p, it.key), L = state.lang;
+  Object.assign(pr, { item:it, attempts:0, input:'', boxCls:'', busy:false, revealed:false, pos:0, mist:0, wrongHere:0, buf:'',
+                      choices:null, answer:null, word:null, tiles:null });
+  pr.scaffold = (it.type==='sum' || it.type==='count') && (!m || m.b < 1);   // picture first, then the bare sum
+  if(it.type==='count') pr.answer = it.n;
+  if(it.type==='sum')   pr.answer = it.ans;
+  if(it.type==='split'){ pr.blank = Math.random() < .5 ? 'l' : 'r'; pr.answer = pr.blank==='l' ? it.k : it.n - it.k; }
+  if(it.type==='klank'){
+    const cands = WORDS[L].flat().filter(w => soundsOf(w).includes(it.k));
+    pr.word = pick(cands); pr.pos = soundsOf(pr.word).indexOf(it.k);
+    const all = [...new Set(WORDS[L].flat().flatMap(soundsOf))], sameKind = all.filter(s => VOWELISH.test(s) === VOWELISH.test(it.k) && s !== it.k);
+    const ds = [...new Set([...(LOOKALIKE[it.k] || []).filter(x => all.includes(x)), ...shuffle(sameKind)])].filter(x => x !== it.k).slice(0, 3);
+    pr.choices = shuffle([it.k, ...ds]); pr.answer = it.k;
+  }
+  if(it.type==='read'){
+    pr.word = it.w;
+    const others = shuffle(WORDS[L].flat().filter(w => w[1] !== it.w[1])).map(w => w[1]);
+    pr.choices = shuffle([it.w[1], ...[...new Set(others)].slice(0, 3)]); pr.answer = it.w[1];
+  }
+  if(it.type==='build'){ pr.word = it.w; pr.tiles = soundTiles(it.w, it.lv); }
+  if(it.type==='num') pr.answer = it.ans;
+  if(it.type==='mc'){ pr.choices = shuffle(it.opts.slice()); pr.answer = it.ans; }
+  if(pr.test) pr.scaffold = false;
+  prRender();
+}
+function prRender(){
+  const it = pr.item, sk = skillsFor(pr.subj).find(s => s.items.includes(it));
+  let dots = '';
+  for(let k=0;k<pr.total;k++){ const r = pr.results[k]; dots += `<div class="dot ${r||''} ${k===pr.q && !r?'cur':''}"></div>`; }
+  const ansBox = `<div class="answer ${pr.input!==''?'filled':''} ${pr.boxCls} ${String(pr.answer).length > 2 ? 'long' : ''}" id="panswer">${pr.input}</div>`;
+  const pad = () => { let k = ''; [1,2,3,4,5,6,7,8,9].forEach(n => k += `<button class="key" data-pkey="${n}">${n}</button>`);
+    return `<div class="pad">${k}<button class="key del" data-pkey="del" aria-label="delete">⌫</button><button class="key" data-pkey="0">0</button><button class="key go" data-pkey="ok" aria-label="check">✓</button></div>`; };
+  let art = '', body = '', below = '', hint = '';
+  if(it.type==='count'){
+    art = `<div class="pics">${cartonsHTML(Array(it.n).fill('a'))}</div>`;
+    body = `<div class="sum text"><span>${t('prHowMany')}</span>${ansBox}</div>`; below = pad();
+  } else if(it.type==='sum'){
+    if(pr.scaffold && picsOn()){
+      const eggs = [];
+      if(it.op==='add'){ for(let k=0;k<it.a;k++) eggs.push('a'); for(let k=0;k<it.b;k++) eggs.push('b'); }
+      else { for(let k=0;k<it.a;k++) eggs.push(k < it.a - it.b ? 'a' : 'a gone'); }
+      art = `<div class="pics">${cartonsHTML(eggs)}</div>`;
+    }
+    body = `<div class="sum"><span>${it.a}</span><span>${it.op==='add'?'+':'−'}</span><span>${it.b}</span><span>=</span>${ansBox}</div>`; below = pad();
+  } else if(it.type==='split'){
+    if(pr.scaffold && picsOn()){ const eggs = []; for(let k=0;k<it.n;k++) eggs.push(k < it.k ? 'a' : 'b'); art = `<div class="pics">${cartonsHTML(eggs)}</div>`; }
+    const box = side => side === pr.blank ? `<div class="sbox q ${pr.boxCls}" id="panswer">${pr.input}</div>` : `<div class="sbox">${side==='l' ? it.k : it.n - it.k}</div>`;
+    body = `<div class="split" style="margin:6px auto">
+      <div class="split-top">${it.n}</div>
+      <svg class="split-lines" viewBox="0 0 200 44"><line x1="100" y1="4" x2="46" y2="40"/><line x1="100" y1="4" x2="154" y2="40"/></svg>
+      <div class="split-bottom">${box('l')}${box('r')}</div></div>`; below = pad();
+  } else if(it.type==='num'){
+    const unit = it.unit ? `<span class="unit">${it.unit}</span>` : '';
+    body = it.q.length <= 18 ? `<div class="sum mid"><span>${it.q}</span>${ansBox}${unit}</div>`
+                             : `<p class="story">${it.q}</p><div class="sum mid">${ansBox}${unit}</div>`;
+    below = pad();
+  } else if(it.type==='mc'){
+    body = `<p class="story ${it.q.length <= 24 ? 'big' : ''}">${it.q}</p>`;
+    below = `<div class="tchoices">${pr.choices.map((c, i) => `<button class="tchoice" data-pchoice="${i}">${c}</button>`).join('')}</div>`;
+  } else if(it.type==='klank'){
+    art = `<div class="picbtn">${pr.word[1]}</div>`;
+    body = `<div class="slots">${soundsOf(pr.word).map((sd, i) => i===pr.pos
+      ? `<div class="slot cur" id="pslot" style="min-width:${30+22*sd.length}px"></div>` : `<div class="slot done" style="min-width:${30+22*sd.length}px">${sd}</div>`).join('')}</div>`;
+    hint = t('prKlankQ');
+    below = `<div class="letters">${pr.choices.map((c, i) => `<button class="ltile big ${c.length>1?'wide':''}" data-pchoice="${i}">${c}</button>`).join('')}</div>`;
+  } else if(it.type==='read'){
+    body = `<div class="readword">${klankOn() ? klankHTML(pr.word) : wordOf(pr.word)}</div>`; hint = t('readQ');
+    below = `<div class="choices four">${pr.choices.map((c, i) => `<button class="choice" data-pchoice="${i}">${c}</button>`).join('')}</div>`;
+  } else {
+    const snds = soundsOf(pr.word);
+    art = `<div class="picbtn">${pr.word[1]}</div>`;
+    body = `<div class="slots">${snds.map((sd, k) => `<div class="slot ${k<pr.pos?'done':''} ${k===pr.pos?'cur':''}" style="min-width:${30+22*sd.length}px">${k<pr.pos ? sd : (k===pr.pos ? pr.buf : '')}</div>`).join('')}</div>`;
+    hint = t('writeQ');
+    below = `<div class="letters">${pr.tiles.map(x => `<button class="ltile ${x.length>1?'wide':''}" data-ptile="${x}">${x}</button>`).join('')}</div>`;
+  }
+  $('#main').innerHTML = `
+    <div class="topbar"><button class="back" data-action="menu" aria-label="back">←</button><div class="dots">${dots}</div></div>
+    <p class="levelname">${sk ? skillName(sk) : ''}</p>
+    <div class="card">
+      ${art}${body}
+      <div class="hint">${hint}</div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    ${below}`;
+}
+function prFb(text, cls){ const fb = $('#feedback'); if(fb){ fb.textContent = text; fb.className = 'feedback ' + cls; } }
+
+/* a question is finished: remember it, and plan a retry when it was not right first time */
+function prDone(firstTry){
+  if(pr.test) return prTestAnswer(firstTry, '');
+  const it = pr.item;
+  record(it.key, firstTry); persist();
+  pr.results[pr.q] = firstTry ? 'g' : (pr.revealed ? 'r' : 'o');
+  if(firstTry) pr.first++; else { pr.wrongs++; pr.retry.push({ it, at: pr.q }); }
+  pr.shown.push(it.key); pr.busy = true;
+  setTimeout(prAdvance, pr.revealed ? 2300 : 1100);
+}
+function prTestAnswer(ok, given){
+  const it = pr.item;
+  record(it.key, ok); persist();
+  pr.log.push({ it, ok, given });
+  pr.results[pr.q] = 't'; if(ok) pr.first++;
+  pr.shown.push(it.key); pr.busy = true;
+  setTimeout(prAdvance, 350);
+}
+function itemAnswer(it){
+  if(it.type==='count') return it.n;
+  if(it.type==='split') return `${it.k} + ${it.n - it.k}`;
+  if(it.type==='klank') return it.k;
+  if(it.type==='read' || it.type==='build') return wordOf(it.w);
+  return it.ans;
+}
+function prTestReport(){
+  const p = cur(), subj = pr.subj, S = skillsFor(subj), by = new Map();
+  pr.log.forEach(l => { const sk = S.find(x => x.items.includes(l.it)); const e = by.get(sk) || { ok:0, n:0 }; e.n++; if(l.ok) e.ok++; by.set(sk, e); });
+  let rows = ''; by.forEach((e, sk) => { rows += `<div class="prow"><span class="pn">${e.ok === e.n ? '✅' : '👉'} ${skillName(sk)}</span>
+    <span class="pbar"><i style="width:${Math.round(e.ok / e.n * 100)}%"></i></span><span class="pc">${e.ok}/${e.n}</span></div>`; });
+  const wrong = pr.log.filter(l => !l.ok);
+  const list = wrong.map(l => `<li><span>${itemLabel(l.it)}</span> <b>${itemAnswer(l.it)}</b>${l.given !== '' ? ` <em>${t('testYours', { a: esc(l.given) })}</em>` : ''}</li>`).join('');
+  $('#main').innerHTML = `
+    <div class="result">
+      ${buddySVG(110)}
+      <h2>${t('testDone')}</h2>
+      <p>${t('testScore', { c: pr.first, n: pr.total })}</p>
+      <div class="report">${rows}</div>
+      ${wrong.length ? `<div class="report"><h3>${t('testLook')}</h3><ul class="wronglist">${list}</ul></div>` : ''}
+      ${gainHTML(1)}
+      <div class="btns">
+        <button class="btn primary" data-action="${subj==='math' ? 'prMath' : 'prLang'}">${t('testPractise')}</button>
+        <button class="btn" data-action="menu">${t('prHome')}</button>
+      </div>
+    </div>`;
+  confetti();
+}
+function prAdvance(){
+  if(screen !== 'practice') return;
+  pr.q++;
+  if(pr.q >= pr.total) return prFinish();
+  prSetup(prPick());
+}
+function prKey(k){
+  if(screen !== 'practice' || pr.busy || !['count','sum','split','num'].includes(pr.item.type)) return;
+  if(k==='del') pr.input = pr.input.slice(0, -1);
+  else if(k==='ok'){
+    if(pr.input==='') return;
+    if(pr.test) return prTestAnswer(pr.input === String(pr.answer), pr.input);
+    if(pr.input === String(pr.answer)){ pr.boxCls = 'good'; prRender(); prFb(pick(T[state.lang].good), 'good'); return prDone(pr.attempts===0); }
+    pr.attempts++;
+    if(pr.attempts >= 2){
+      pr.input = String(pr.answer); pr.boxCls = 'bad'; pr.revealed = true; pr.scaffold = true; prRender();
+      prFb(t('answerIs', { n: pr.answer }), 'bad'); return prDone(false);
+    }
+    pr.boxCls = 'bad shake'; pr.scaffold = true; prRender(); prFb(t(picsOn() ? 'prLook' : 'tryAgain'), 'bad');
+    pr.input = ''; pr.boxCls = ''; return;
+  }
+  else if(/^[0-9]$/.test(k) && pr.input.length < Math.max(2, String(pr.answer).length + 1)) pr.input = (pr.input==='0' ? '' : pr.input) + k;
+  else return;
+  prRender();
+}
+function prChoose(btn){
+  if(screen !== 'practice' || pr.busy || btn.disabled) return;
+  const val = pr.choices[+btn.dataset.pchoice];
+  if(pr.test){ btn.classList.add('picked'); return prTestAnswer(val === pr.answer, val); }
+  if(val === pr.answer){
+    btn.classList.add('right');
+    const sl = $('#pslot'); if(sl){ sl.textContent = pr.answer; sl.classList.add('good'); }
+    prFb(pick(T[state.lang].good), 'good');
+    return prDone(pr.attempts===0);
+  }
+  pr.attempts++; btn.classList.add('wrong'); btn.disabled = true;
+  if(pr.attempts >= 2){
+    pr.revealed = true;
+    document.querySelectorAll('[data-pchoice]').forEach(b => { if(pr.choices[+b.dataset.pchoice] === pr.answer) b.classList.add('right'); });
+    const sl = $('#pslot'); if(sl){ sl.textContent = pr.answer; sl.classList.add('bad'); }
+    prFb(pr.item.type==='read' ? t('wordWas', { w: wordOf(pr.word) }) : (pr.item.type==='mc' ? t('measureShown') : t('answerIs', { n: pr.answer })), 'bad');
+
+    return prDone(false);
+  }
+  prFb(t('tryAgain'), 'bad');
+}
+function prTile(sd){
+  if(screen !== 'practice' || pr.busy || pr.item.type !== 'build') return;
+  const snds = soundsOf(pr.word), need = snds[pr.pos];
+  pr.buf = '';
+  if(sd === need){
+    pr.pos++; pr.wrongHere = 0;
+    if(pr.pos === snds.length){
+      prRender(); document.querySelectorAll('.slot').forEach(x => x.classList.add('good'));
+      prFb(pick(T[state.lang].good), 'good');
+      return prDone(pr.mist===0);
+    }
+    return prRender();
+  }
+  pr.mist++; pr.wrongHere++; prRender();
+  const slot = document.querySelectorAll('.slot')[pr.pos]; if(slot) slot.classList.add('shake','bad');
+  if(need.length > sd.length && need.startsWith(sd)) prFb(t('moreLetters', { n: need.length }), 'bad');
+  else if(sd.length > need.length && sd.startsWith(need)) prFb(t('fewerLetters'), 'bad');
+  else prFb(t('tryAgain'), 'bad');
+  if(pr.wrongHere >= 2) document.querySelectorAll('[data-ptile]').forEach(b => { if(b.dataset.ptile === need) b.classList.add('glow'); });
+}
+function prTypeLetter(l){
+  if(pr.busy || pr.item.type !== 'build') return;
+  const need = soundsOf(pr.word)[pr.pos], buf = pr.buf + l;
+  if(buf === need) return prTile(buf);
+  if(need.startsWith(buf)){ pr.buf = buf; return prRender(); }
+  prTile(buf);
+}
+function skillBar(p, subj){
+  const S = skillsFor(subj), i = curSkillIdx(p, subj), st = skillStat(p, S[i]);
+  return `<div class="sbar"><div class="sbar-top"><b>${skillName(S[i])}</b><span>${st.ok} / ${st.total}</span></div>
+    <div class="bar"><div style="width:${Math.round(st.ok / st.total * 100)}%"></div></div></div>`;
+}
+function prFinish(){
+  screen = 'practiceResult';
+  const p = cur(), subj = pr.subj, now = curSkillIdx(p, subj), S = skillsFor(subj);
+  addBrain(subj==='math' ? 'math' : 'read', 1);
+  if(pr.test) return prTestReport();
+  const stepUp = now > pr.skill0;
+  $('#main').innerHTML = `
+    <div class="result">
+      ${buddySVG(120)}
+      <h2>${t('prDone')}</h2>
+      <p>${t('prScore', { c: pr.first, n: pr.total })}</p>
+      ${stepUp ? `<p class="stepup">🎉 ${t('prStepUp', { s: skillName(S[now]) })}</p>` : ''}
+      <div class="result-bar">${skillBar(p, subj)}</div>
+      ${gainHTML(1)}
+      <div class="btns">
+        <button class="btn primary" data-action="${subj==='math' ? 'prMath' : 'prLang'}">${t('prMore')}</button>
+        <button class="btn" data-action="${subj==='math' ? 'prLang' : 'prMath'}">${subj==='math' ? '📖 ' + t('prLangBtn') : '🔢 ' + t('prMathBtn')}</button>
+        <button class="btn" data-action="menu">${t('prHome')}</button>
+      </div>
+    </div>`;
+  confetti();
+}
+function todayCard(p){
+  return `<div class="todaycard">
+    <div class="today-head">${buddySVG(84)}<div><h2>${t('prTitle')}</h2><p>${t('prSub')}</p></div></div>
+    <div class="today-btns">
+      <button class="tbtn" data-action="prMath"><span class="tbtn-t">🔢 ${t('prMathBtn')}</span>${skillBar(p, 'math')}</button>
+      <button class="tbtn" data-action="prLang"><span class="tbtn-t">📖 ${t('prLangBtn')}</span>${skillBar(p, 'lang')}</button>
+    </div>
+    <div class="testrow"><span>📝 ${t('testTitle')}</span>
+      <button class="chipbtn" data-action="testMath">${t('prMathBtn')}</button><button class="chipbtn" data-action="testLang">${t('prLangBtn')}</button></div>
+  </div>`;
+}
+
+/* ---------- For parents: starting step and progress, on the profile settings page ---------- */
+function startSelect(subj, val){
+  const S = skillsFor(subj), groups = [...new Set(S.map(sk => sk.g))];
+  return `<select class="fselect" id="start_${subj}">${groups.map(g => `<optgroup label="${t('groep')} ${g === 2 ? '1–2' : g}">${
+    S.map((sk, i) => sk.g === g ? `<option value="${i}" ${i===val?'selected':''}>${skillName(sk)}</option>` : '').join('')}</optgroup>`).join('')}</select>`;
+}
+function progressHTML(p){
+  const part = subj => {
+    const S = skillsFor(subj), ci = curSkillIdx(p, subj), si = startIdx(p, subj);
+    let rows = '', hard = [];
+    S.forEach((sk, i) => {
+      const st = skillStat(p, sk);
+      if((i < si && !st.seen) || i > ci + 4) return;
+      rows += `<div class="prow ${i===ci?'now':''}"><span class="pn">${st.done ? '✅' : (i===ci ? '👉' : '▫️')} ${skillName(sk)}</span>
+        <span class="pbar"><i style="width:${Math.round(st.ok / st.total * 100)}%"></i></span><span class="pc">${st.ok}/${st.total}</span></div>`;
+      sk.items.forEach(it => { const m = memOf(p, it.key); if(m && m.w >= 2 && m.b < 2) hard.push(itemLabel(it)); });
+    });
+    hard = [...new Set(hard)].slice(0, 14);
+    return `<div class="flabel">${subj==='math' ? '🔢 ' + t('prMathBtn') : '📖 ' + t('prLangBtn')}</div>${rows}
+      ${hard.length ? `<div class="hardrow"><span>${t('prHard')}</span>${hard.map(h => `<em>${h}</em>`).join('')}</div>` : ''}`;
+  };
+  return `<div class="progress"><h2 class="sec2">${t('prProgress')}</h2><div class="pgrid"><div>${part('math')}</div><div>${part('lang')}</div></div></div>`;
+}
+
 /* ============================================================
    EVENTS
    ============================================================ */
 document.addEventListener('click', e => {
+  const pk = e.target.closest('[data-pkey]');    if(pk){ prKey(pk.dataset.pkey); return; }
+  const pc = e.target.closest('[data-pchoice]'); if(pc){ prChoose(pc); return; }
+  const pt = e.target.closest('[data-ptile]');   if(pt){ prTile(pt.dataset.ptile); return; }
   const langBtn = e.target.closest('[data-lang]');
   if(langBtn){ state.lang = langBtn.dataset.lang; persist(); renderChrome(); rerender(); return; }
   const lvl = e.target.closest('[data-level]');
@@ -2087,7 +2859,7 @@ document.addEventListener('click', e => {
         <button class="btn danger" data-action="resetYes">${t('resetYes')}</button></div>`;
     if(a==='resetYes'){
       const ep = state.profiles.find(x => x.id===editing.id);
-      ep.stars = {}; ep.starsRead = {}; ep.starsWrite = {}; ep.starsClock = {}; ep.starsMeasure = {}; ep.brainBy = {math:0, read:0, write:0}; ep.days = []; delete ep.brain; persist();
+      ep.stars = {}; ep.starsRead = {}; ep.starsWrite = {}; ep.starsClock = {}; ep.starsMeasure = {}; ep.mem = {}; ep.brainBy = {math:0, read:0, write:0}; ep.days = []; delete ep.brain; persist();
       editing.name = $('#pname').value; drawForm(); toast(t('resetDone'));
     }
     if(a==='flip') flipCard();
@@ -2101,6 +2873,10 @@ document.addEventListener('click', e => {
     if(a==='menu' && cur()) renderMenu();
     if(a==='klank'){ const p = cur(); if(p){ p.klank = !klankOn(); persist(); renderWordLevels('read'); } }
     if(a==='math') renderMathMenu();
+    if(a==='prMath') prStart('math');
+    if(a==='prLang') prStart('lang');
+    if(a==='testMath') prStart('math', true);
+    if(a==='testLang') prStart('lang', true);
     if(a==='clockPick' || a==='clockLevels') renderClockLevels();
     if(a==='measurePick' || a==='measureLevels') renderMeasureLevels();
     if(a==='measureAgain') startMeasure(mgame.level);
@@ -2117,6 +2893,11 @@ document.addEventListener('click', e => {
   }
 });
 document.addEventListener('keydown', e => {
+  if(screen==='practice'){
+    if(/^[0-9]$/.test(e.key)) prKey(e.key); else if(e.key==='Backspace') prKey('del'); else if(e.key==='Enter') prKey('ok');
+    else if(/^[a-z]$/i.test(e.key)) prTypeLetter(e.key.toLowerCase());
+    return;
+  }
   if(screen==='profileForm'){ if(e.key==='Enter') saveProfile(); return; }
   if(screen==='word' && wgame.mode==='write'){ if(/^[a-z]$/i.test(e.key)) typeKey(e.key.toLowerCase()); return; }
   if(screen==='flash'){
@@ -2135,7 +2916,7 @@ document.addEventListener('keydown', e => {
 });
 function rerender(){
   if(screen==='home') renderHome();
-  else if(screen==='menu') renderMenu();
+  else if(screen==='menu' || screen==='practice' || screen==='practiceResult') renderMenu();
   else if(screen==='math') renderMathMenu();
   else if(screen==='clockLevels' || screen==='clock' || screen==='clockResult') renderClockLevels();
   else if(screen==='measureLevels' || screen==='measure' || screen==='measureResult') renderMeasureLevels();
@@ -2148,6 +2929,8 @@ function rerender(){
   else renderHome();
   renderChrome();
 }
+
+new MutationObserver(() => { document.body.dataset.screen = screen; }).observe($('#main'), { childList:true });
 
 // Offline support when installed as an app (ignored where not allowed, e.g. inside Claude)
 try{
