@@ -124,11 +124,6 @@
   .chip{width:64px;height:64px;border-radius:18px;background:#fff;border:3px solid var(--line);box-shadow:0 5px 0 var(--line);font-size:28px;font-weight:700}
   .chip.wide{width:auto;padding:0 18px;font-size:19px;font-weight:600}
   .chip:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
-  .fsum{display:flex;align-items:center;gap:12px;font-size:56px;font-weight:700}
-  .fsum .sbox{width:84px;height:76px;font-size:44px}
-  .fsum.small{font-size:30px;color:var(--good);gap:8px;margin-top:4px}
-  .eggsq{font-size:20px;font-weight:600;text-align:center;max-width:300px}
-  .chip.star{width:auto;padding:0 16px;border-color:#FFC233;background:#FFF8E1}
   .count{font-weight:600;font-size:18px;color:var(--muted);margin-left:auto}
   .flip{perspective:1200px;cursor:pointer;max-width:440px;margin:0 auto;width:100%}
   .flip-inner{display:grid;transition:transform .5s;transform-style:preserve-3d}
@@ -425,7 +420,7 @@ const T = {
     score:'{c} van de {n} sommen meteen goed',
     again:'Nog een keer', next:'Volgende level ➜', home:'Naar de levels',
     newLevel:'Nieuw level vrijgespeeld! 🎉',
-    flashTitle:'Flitskaarten: splitsingen', flashSub:'Kies een getal om te splitsen. Bij 10 ⭐ zijn er extra veel kaarten.', eggsQ:'Hoeveel eieren erbij om de doos vol te maken?',
+    flashTitle:'Flitskaarten: splitsingen', flashSub:'Kies een getal om te splitsen.',
     splitsOf:'Splitsingen van {n}', mixAll:'Alles door elkaar', mixTitle:'Splitsingen door elkaar',
     tapFlip:'Weet je het? Tik om de kaart om te draaien.', knew:'✓ Wist ik!', practise:'↻ Nog oefenen',
     flashDone:'Alle kaarten gedaan!', flashPerfect:'Je wist ze allemaal meteen!',
@@ -482,7 +477,7 @@ const T = {
     score:'{c} of {n} right on the first try',
     again:'Play again', next:'Next level ➜', home:'Back to levels',
     newLevel:'New level unlocked! 🎉',
-    flashTitle:'Flashcards: number splits', flashSub:'Pick a number to split. 10 ⭐ has lots of extra cards.', eggsQ:'How many more eggs to fill the box?',
+    flashTitle:'Flashcards: number splits', flashSub:'Pick a number to split.',
     splitsOf:'Splits of {n}', mixAll:'Mix them up', mixTitle:'Number splits mixed',
     tapFlip:'Do you know it? Tap to flip the card.', knew:'✓ I knew it!', practise:'↻ Practise again',
     flashDone:'All cards done!', flashPerfect:'You knew them all straight away!',
@@ -917,7 +912,7 @@ function renderHome(){
 function renderFlashPick(){
   screen = 'flashPick';
   let chips = '';
-  for(let n=2;n<=10;n++) chips += `<button class="chip ${n===10?'star':''}" data-flash="${n}">${n}${n===10?' ⭐':''}</button>`;
+  for(let n=2;n<=10;n++) chips += `<button class="chip" data-flash="${n}">${n}</button>`;
   chips += `<button class="chip wide" data-flash="mix">${t('mixAll')}</button>`;
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">🃏 ${t('flashTitle')}</h1></div>
@@ -938,12 +933,9 @@ function startFlash(which){
   let deck = [];
   const add = n => { for(let k=1;k<n;k++) deck.push({ n, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' }); };
   if(which==='mix'){ for(let n=5;n<=10;n++) add(n); deck = shuffle(deck).slice(0,10); }
-  else if(+which===10){
-    // The splits of 10 matter most, so 10 gets a bigger, varied pile: 15 cards drawn from
-    // 0–10 in four forms: split diagram, 3 + ? = 10, 10 − 3 = ?, and an egg carton to fill.
-    for(let k=0;k<=10;k++) for(const fmt of ['split','plus','minus','eggs'])
-      deck.push({ n:10, k, blank: fmt==='split' ? (Math.random()<.5 ? 'l' : 'r') : 'r', fmt });   // the answer is always 10 − k
-    deck = shuffle(deck).slice(0,15);
+  else if(+which===10){   // 10 also gets 0 + 10 and 10 + 0
+    for(let k=0;k<=10;k++) deck.push({ n:10, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' });
+    shuffle(deck);
   }
   else { add(+which); shuffle(deck); }
   flash = { which, deck, total:deck.length, missed:new Set(), flipped:false, gained:0 };
@@ -954,7 +946,7 @@ function startFlash(which){
 function splitHTML(c, show){
   const box = (side, val) => {
     if(c.blank!==side) return `<div class="sbox">${val}</div>`;
-    return show ? `<div class="sbox ans">${val}</div>` : `<div class="sbox q">?</div>`;
+    return show ? `<div class="sbox ans">${val}</div>` : `<div class="sbox q"></div>`;
   };
   return `<div class="split">
     <div class="split-top">${c.n}</div>
@@ -966,11 +958,6 @@ function splitHTML(c, show){
 function renderFlash(){
   const c = flash.deck[0];
   const title = flash.which==='mix' ? t('mixTitle') : t('splitsOf', {n:flash.which});
-  let eggs = '';
-  if(picsOn() && c.n===10){   // egg carton only for splits of 10 (a full carton)
-    const arr = []; for(let k=0;k<c.n;k++) arr.push(k < c.k ? 'a' : 'b');
-    eggs = cartonsHTML(arr);
-  }
   $('#main').innerHTML = `
     <div class="topbar">
       <button class="back" data-action="flashPick" aria-label="back">←</button>
@@ -979,8 +966,8 @@ function renderFlash(){
     <p class="levelname">${title}</p>
     <div class="flip ${flash.flipped?'on':''}" data-action="flip">
       <div class="flip-inner">
-        <div class="face front">${flashFront(c)}<div class="hint">${t('tapFlip')}</div></div>
-        <div class="face rear">${splitHTML(c,true)}${c.fmt!=='split' ? `<div class="fsum small">${c.k} + ${c.n-c.k} = ${c.n}</div>` : ''}${eggs}</div>
+        <div class="face front">${splitHTML(c,false)}<div class="hint">${t('tapFlip')}</div></div>
+        <div class="face rear">${splitHTML(c,true)}</div>
       </div>
     </div>
     <div class="rate" style="visibility:${flash.flipped?'visible':'hidden'}">
@@ -989,16 +976,6 @@ function renderFlash(){
     </div>`;
 }
 
-function flashFront(c){
-  const q = `<span class="sbox q">?</span>`;
-  if(c.fmt==='plus')  return `<div class="fsum"><span>${c.k}</span><span>+</span>${q}<span>=</span><span>${c.n}</span></div>`;
-  if(c.fmt==='minus') return `<div class="fsum"><span>${c.n}</span><span>−</span><span>${c.k}</span><span>=</span>${q}</div>`;
-  if(c.fmt==='eggs'){
-    const arr = []; for(let k=0;k<c.k;k++) arr.push('a');
-    return `${cartonsHTML(arr)}<div class="eggsq">${t('eggsQ')}</div>`;
-  }
-  return splitHTML(c, false);
-}
 
 function flipCard(){
   flash.flipped = !flash.flipped;
