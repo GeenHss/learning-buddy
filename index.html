@@ -411,7 +411,14 @@
   .brand{font-size:22px} .brand .logo{width:36px;height:36px;font-size:20px;border-radius:11px}
   h1,h2{text-wrap:balance}
   :focus-visible{outline:3px solid var(--primary);outline-offset:2px}
-  #starPill,#brainPill{display:none!important}
+  #starPill{display:none!important}
+  body:not([data-screen=menu]) #brainPill{display:none!important}
+  /* streak: a small chip at the top that opens the week overview on hover, tap or keyboard focus */
+  header .right{position:relative}
+  #brainPill{cursor:pointer;font-size:16px;padding:5px 12px;gap:4px;border-color:#FFD3A6;background:#FFF4E8;color:#B2460E}
+  .streakpop{display:none;position:absolute;right:0;top:100%;padding-top:8px;width:min(460px,calc(100vw - 36px));z-index:10;cursor:default;font-weight:400;color:var(--ink)}
+  #brainPill:hover .streakpop,#brainPill.open .streakpop,#brainPill:focus-visible .streakpop{display:block}
+  .streakpop .week{margin:0;box-shadow:0 10px 28px rgba(31,58,95,.18)}
   body:not([data-screen=who]):not([data-screen=profileForm]) .lang{display:none}
   body:not([data-screen=play]):not([data-screen=practice]) #picToggle{display:none!important}
   body:is([data-screen=play],[data-screen=flash],[data-screen=word],[data-screen=sound],[data-screen=clock],[data-screen=measure],[data-screen=practice]) :is(.brand,#whoBtn){display:none!important}
@@ -482,7 +489,7 @@
     <div class="right">
       <button class="toggle who" id="whoBtn" data-action="who" aria-label="switch player"></button>
       <button class="toggle" id="picToggle" data-action="pics" role="switch"><span>🥚</span><span id="picLabel"></span><span class="switch"></span></button>
-      <div class="pill" id="brainPill">🔥<span id="brainLvl">0</span></div>
+      <div class="pill" id="brainPill" data-action="streakToggle" role="button" tabindex="0" aria-expanded="false">🔥<span id="brainLvl">0</span><div class="streakpop" id="streakPop"></div></div>
       <div class="pill" id="starPill"><span class="star-on">★</span><span id="totalStars">0</span></div>
       <div class="lang">
         <button data-lang="nl">NL</button>
@@ -915,7 +922,7 @@ function renderChrome(){
   $('#picToggle').classList.toggle('on', picsOn());
   $('#picToggle').setAttribute('aria-checked', picsOn());
   const p = cur();
-  if(p) $('#brainLvl').textContent = streak(p);
+  if(p){ $('#brainLvl').textContent = streak(p); $('#streakPop').innerHTML = weekCard(p); }
   const inGame = p && screen!=='who' && screen!=='profileForm';
   ['#whoBtn','#picToggle','#starPill','#brainPill'].forEach(s => $(s).style.display = inGame ? '' : 'none');
   if(p) $('#whoBtn').innerHTML = `<span class="who-av">${p.avatar}</span><span>${esc(displayName(p))}</span>`;
@@ -1007,7 +1014,6 @@ function renderMenu(){
         </div></div>
     </div>
     ${todayCard(p)}
-    ${weekCard(p)}
     <h2 class="sec">${t('prFree')}</h2>
     <div class="grid6">
       ${tile('levels',      '+',  t('menuSums'),    st(sumStars(p.stars), LEVELS.length*3), '#5B5BD6', '#EEEEFF')}
@@ -2806,6 +2812,7 @@ function progressHTML(p){
    EVENTS
    ============================================================ */
 document.addEventListener('click', e => {
+  if(!e.target.closest('#brainPill')){ const sp = $('#brainPill'); sp.classList.remove('open'); sp.setAttribute('aria-expanded', 'false'); }
   const pk = e.target.closest('[data-pkey]');    if(pk){ prKey(pk.dataset.pkey); return; }
   const pc = e.target.closest('[data-pchoice]'); if(pc){ prChoose(pc); return; }
   const pt = e.target.closest('[data-ptile]');   if(pt){ prTile(pt.dataset.ptile); return; }
@@ -2873,6 +2880,7 @@ document.addEventListener('click', e => {
     if(a==='menu' && cur()) renderMenu();
     if(a==='klank'){ const p = cur(); if(p){ p.klank = !klankOn(); persist(); renderWordLevels('read'); } }
     if(a==='math') renderMathMenu();
+    if(a==='streakToggle'){ const sp = $('#brainPill'); sp.classList.toggle('open'); sp.setAttribute('aria-expanded', sp.classList.contains('open')); }
     if(a==='prMath') prStart('math');
     if(a==='prLang') prStart('lang');
     if(a==='testMath') prStart('math', true);
