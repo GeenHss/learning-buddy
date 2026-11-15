@@ -124,6 +124,7 @@
   .chip{width:64px;height:64px;border-radius:18px;background:#fff;border:3px solid var(--line);box-shadow:0 5px 0 var(--line);font-size:28px;font-weight:700}
   .chip.wide{width:auto;padding:0 18px;font-size:19px;font-weight:600}
   .chip:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+  .chip.keep{border-color:#24A86E;background:#E8F7EF;color:#1A7E52}
   .count{font-weight:600;font-size:18px;color:var(--muted);margin-left:auto}
   .flip{perspective:1200px;cursor:pointer;max-width:440px;margin:0 auto;width:100%}
   .flip-inner{display:grid;transition:transform .5s;transform-style:preserve-3d}
@@ -421,7 +422,7 @@ const T = {
     again:'Nog een keer', next:'Volgende level ➜', home:'Naar de levels',
     newLevel:'Nieuw level vrijgespeeld! 🎉',
     flashTitle:'Flitskaarten: splitsingen', flashSub:'Kies een getal om te splitsen.',
-    splitsOf:'Splitsingen van {n}', mixAll:'Alles door elkaar', mixTitle:'Splitsingen door elkaar',
+    splitsOf:'Splitsingen van {n}', mixAll:'Alles door elkaar', mixTitle:'Splitsingen door elkaar', keepPractising:'Blijven oefenen (20 kaarten)', keepTitle:'Blijven oefenen: vooral 10',
     tapFlip:'Weet je het? Tik om de kaart om te draaien.', knew:'✓ Wist ik!', practise:'↻ Nog oefenen',
     flashDone:'Alle kaarten gedaan!', flashPerfect:'Je wist ze allemaal meteen!',
     flashScore:'{c} van de {n} kaarten wist je meteen', cardsLeft:'{n} kaarten',
@@ -478,7 +479,7 @@ const T = {
     again:'Play again', next:'Next level ➜', home:'Back to levels',
     newLevel:'New level unlocked! 🎉',
     flashTitle:'Flashcards: number splits', flashSub:'Pick a number to split.',
-    splitsOf:'Splits of {n}', mixAll:'Mix them up', mixTitle:'Number splits mixed',
+    splitsOf:'Splits of {n}', mixAll:'Mix them up', mixTitle:'Number splits mixed', keepPractising:'Keep practising (20 cards)', keepTitle:'Keep practising: mostly 10',
     tapFlip:'Do you know it? Tap to flip the card.', knew:'✓ I knew it!', practise:'↻ Practise again',
     flashDone:'All cards done!', flashPerfect:'You knew them all straight away!',
     flashScore:'You knew {c} of {n} cards straight away', cardsLeft:'{n} cards',
@@ -914,6 +915,7 @@ function renderFlashPick(){
   let chips = '';
   for(let n=2;n<=10;n++) chips += `<button class="chip" data-flash="${n}">${n}</button>`;
   chips += `<button class="chip wide" data-flash="mix">${t('mixAll')}</button>`;
+  chips += `<button class="chip wide keep" data-flash="keep">💪 ${t('keepPractising')}</button>`;
   $('#main').innerHTML = `
     <div class="topbar"><button class="back" data-action="math" aria-label="back">←</button><h1 class="inline">🃏 ${t('flashTitle')}</h1></div>
     <p class="sub">${t('flashSub')}</p><div class="chips">${chips}</div>`;
@@ -933,6 +935,12 @@ function startFlash(which){
   let deck = [];
   const add = n => { for(let k=1;k<n;k++) deck.push({ n, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' }); };
   if(which==='mix'){ for(let n=5;n<=10;n++) add(n); deck = shuffle(deck).slice(0,10); }
+  else if(which==='keep'){
+    // Keep practising: 20 cards — every split of 10 (0 + 10 … 10 + 0) plus 9 from 6, 7, 8 and 9
+    for(let k=0;k<=10;k++) deck.push({ n:10, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' });
+    const more = []; for(let n=6;n<=9;n++) for(let k=1;k<n;k++) more.push({ n, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' });
+    deck = shuffle(deck.concat(shuffle(more).slice(0,9)));
+  }
   else if(+which===10){   // 10 also gets 0 + 10 and 10 + 0
     for(let k=0;k<=10;k++) deck.push({ n:10, k, blank: Math.random()<.5 ? 'l' : 'r', fmt:'split' });
     shuffle(deck);
@@ -957,7 +965,7 @@ function splitHTML(c, show){
 
 function renderFlash(){
   const c = flash.deck[0];
-  const title = flash.which==='mix' ? t('mixTitle') : t('splitsOf', {n:flash.which});
+  const title = flash.which==='mix' ? t('mixTitle') : flash.which==='keep' ? t('keepTitle') : t('splitsOf', {n:flash.which});
   $('#main').innerHTML = `
     <div class="topbar">
       <button class="back" data-action="flashPick" aria-label="back">←</button>
